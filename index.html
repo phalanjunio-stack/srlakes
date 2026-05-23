@@ -4565,52 +4565,88 @@ body{
   .screen[data-screen="live"] .m-content{grid-template-columns:1fr!important}
 }
 
-/* ===== Receptor mobile: SÓ a letra, gigante ===== */
-body.mode-rx .sidebar,
-body.mode-rx .screen[data-screen="live"] .m-topbar,
-body.mode-rx .screen[data-screen="live"] .m-song-card,
-body.mode-rx .screen[data-screen="live"] .m-section-titlebar,
-body.mode-rx .screen[data-screen="live"] .m-chords,
-body.mode-rx .screen[data-screen="live"] .m-beat,
-body.mode-rx .screen[data-screen="live"] .m-next-panel,
-body.mode-rx .screen[data-screen="live"] .m-transport,
-body.mode-rx .screen[data-screen="live"] .m-timeline,
-body.mode-rx .screen[data-screen="live"] .m-phone-zone{
-  display:none!important;
-}
+/* ===== Receptor mobile: SÓ a letra, gigante e centralizada ===== */
 @media(max-width:980px){
-  body.mode-rx .app{grid-template-columns:1fr!important;margin:0!important;border:0!important;border-radius:0!important;min-height:100vh!important}
-  body.mode-rx .screen[data-screen="live"]{padding:0!important;margin:0!important}
-  body.mode-rx .screen[data-screen="live"] .m-content{
-    display:flex!important;flex-direction:column!important;
-    padding:18px 16px!important;gap:14px!important;
+  /* Esconde sidebar, topbar, nav mobile inferior */
+  body.mode-rx .sidebar,
+  body.mode-rx #sidebar,
+  body.mode-rx .ph-nav-mobile{display:none!important}
+
+  /* Container vira 1 coluna full screen */
+  body.mode-rx .app{
+    display:block!important;
+    grid-template-columns:none!important;
+    margin:0!important;border:0!important;border-radius:0!important;
     min-height:100vh!important;
+    background:#030404!important;
   }
-  body.mode-rx .screen[data-screen="live"] .m-section-main{
-    padding:0!important;flex:1!important;justify-content:center!important;
-  }
-  body.mode-rx .screen[data-screen="live"] .m-lower-grid{
-    margin:0!important;display:block!important;grid-template-columns:1fr!important;
+  body.mode-rx .main{padding:0!important;display:block!important;background:transparent!important}
+
+  /* Esconde TODOS componentes da tela live, deixa só .m-section-main */
+  body.mode-rx .screen[data-screen="live"] .m-topbar,
+  body.mode-rx .screen[data-screen="live"] .m-song-card,
+  body.mode-rx .screen[data-screen="live"] .m-section-titlebar,
+  body.mode-rx .screen[data-screen="live"] .m-chords,
+  body.mode-rx .screen[data-screen="live"] .m-beat,
+  body.mode-rx .screen[data-screen="live"] .m-next-panel,
+  body.mode-rx .screen[data-screen="live"] .m-transport,
+  body.mode-rx .screen[data-screen="live"] .m-timeline,
+  body.mode-rx .screen[data-screen="live"] .m-phone-zone{display:none!important}
+
+  /* Colapsa TODOS os grids pais pra 1 coluna full width */
+  body.mode-rx .screen[data-screen="live"].on{padding:0!important;margin:0!important;min-height:100vh!important}
+  body.mode-rx .screen[data-screen="live"] .m-content,
+  body.mode-rx .screen[data-screen="live"] .m-stage,
+  body.mode-rx .screen[data-screen="live"] .m-section-grid,
+  body.mode-rx .screen[data-screen="live"] .m-section-main,
+  body.mode-rx .screen[data-screen="live"] .m-lower-grid,
+  body.mode-rx .screen[data-screen="live"] .m-lyrics{
+    display:block!important;
+    grid-template-columns:none!important;
+    width:100%!important;max-width:100%!important;
+    padding:0!important;margin:0!important;gap:0!important;
+    min-width:0!important;
   }
   body.mode-rx .screen[data-screen="live"] .m-lower-grid > div:not(.m-lyrics){display:none!important}
+
+  /* Label LETRA discreta no topo */
   body.mode-rx .screen[data-screen="live"] .m-lyric-label{
-    color:var(--m-gold-2)!important;font-size:14px!important;letter-spacing:.16em!important;
-    text-transform:uppercase!important;opacity:.6!important;
+    display:flex!important;justify-content:center!important;align-items:center!important;
+    color:var(--m-gold-2)!important;font-size:13px!important;letter-spacing:.32em!important;
+    text-transform:uppercase!important;opacity:.7!important;
+    padding:14px 0!important;
+    border-bottom:1px solid rgba(216,154,36,.18)!important;
   }
+
+  /* Caixa de letra ocupa tela inteira */
   body.mode-rx .screen[data-screen="live"] .m-lyric-box{
-    height:auto!important;min-height:calc(100vh - 100px)!important;
-    font-size:48px!important;line-height:1.4!important;
-    padding:32px 24px!important;
-    border:1px solid rgba(216,154,36,.4)!important;
+    width:100vw!important;max-width:100vw!important;
+    height:auto!important;min-height:calc(100vh - 56px)!important;
+    font-size:36px!important;line-height:1.35!important;
+    padding:24px 18px!important;
+    border:0!important;background:#030404!important;box-shadow:none!important;
     text-align:center!important;
-    display:flex!important;flex-direction:column!important;justify-content:center!important;gap:14px!important;
+    display:flex!important;flex-direction:column!important;
+    justify-content:center!important;align-items:center!important;
+    gap:18px!important;overflow:hidden!important;font-family:var(--m-fc)!important;
+  }
+  body.mode-rx .screen[data-screen="live"] .m-lyric-box > div,
+  body.mode-rx .screen[data-screen="live"] .m-lyric-box > p,
+  body.mode-rx .screen[data-screen="live"] .m-lyric-box > .ly{
+    display:block!important;margin:0!important;padding:0!important;
+    color:#cfc7ba!important;line-height:1.4!important;
+    width:100%!important;text-align:center!important;
   }
   body.mode-rx .screen[data-screen="live"] .m-lyric-box .active-line,
-  body.mode-rx .screen[data-screen="live"] .m-lyric-box .now{
-    font-size:60px!important;color:var(--m-mint)!important;font-weight:700!important;
+  body.mode-rx .screen[data-screen="live"] .m-lyric-box .now,
+  body.mode-rx .screen[data-screen="live"] .m-lyric-box .ly.match{
+    color:var(--m-mint)!important;font-weight:700!important;
+    font-size:1.25em!important;
+    text-shadow:0 0 24px rgba(128,212,188,.4)!important;
   }
   body.mode-rx .screen[data-screen="live"] .m-lyric-box .active-line::before,
-  body.mode-rx .screen[data-screen="live"] .m-lyric-box .now::before{display:none!important}
+  body.mode-rx .screen[data-screen="live"] .m-lyric-box .now::before,
+  body.mode-rx .screen[data-screen="live"] .m-lyric-box .ly.match::before{display:none!important}
 }
 
 /* ===== Bridge: classes que o JS gera dinamicamente ===== */
