@@ -3407,12 +3407,20 @@ body{
   background-repeat:no-repeat!important;
 }
 .splash.photo-ready .splash-photo{
-  background:
-    radial-gradient(900px 480px at 50% 30%,rgba(219,169,65,.10),transparent 62%),
-    linear-gradient(180deg,rgba(0,0,0,.34) 0%,rgba(0,0,0,.40) 36%,rgba(0,0,0,.72) 78%,#030303 100%),
-    url('/assets/banda.webp') center 38% / cover no-repeat #050504!important;
-  filter:saturate(.96) contrast(1.04) brightness(.92)!important;
+  background:url('/assets/splash-full.webp') center center / cover no-repeat #030404!important;
+  filter:none!important;
 }
+/* splash-full.webp ja tem TUDO desenhado (banda, cases, logo, texto, barra, tiles)
+   entao esconde overlay HTML pra nao duplicar */
+.splash.photo-ready .splash-top,
+.splash.photo-ready .splash-main,
+.splash.photo-ready .splash-nav,
+.splash.photo-ready .splash-tint,
+.splash.photo-ready .splash-vignette,
+.splash.photo-ready .splash-letterbox{display:none!important}
+.splash.photo-ready::before,
+.splash.photo-ready::after{display:none!important}
+.splash.photo-ready{padding:0!important;background:#030404!important}
 .splash-tint{
   position:absolute!important;
   inset:0!important;
@@ -7641,7 +7649,7 @@ if(splashEl){
   const img = new Image();
   img.onload = () => splashEl.classList.add('photo-ready');
   img.onerror = () => splashEl.classList.add('preview-only');
-  img.src = '/assets/banda.webp';
+  img.src = '/assets/splash-full.webp';
 
   const version = splashEl.querySelector('.version');
   if(version) version.textContent = 'VERSAO 1.0.0';
