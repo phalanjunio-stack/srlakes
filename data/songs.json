@@ -1,0 +1,3031 @@
+[
+  {
+    "id": 1,
+    "num": "01",
+    "title": "Ao Som da Chuva",
+    "artist": "Sr Lakes",
+    "key": "D",
+    "bpm": 128,
+    "sig": "4/4",
+    "duration": "01:53",
+    "parts": [
+      {
+        "type": "intro",
+        "chords": [
+          "D",
+          "A",
+          "Bm",
+          "G",
+          "F#m",
+          "B",
+          "Em",
+          "Am"
+        ],
+        "reps": 1,
+        "bars": 4,
+        "lyrics": "asdg",
+        "note": "Entrada limpa, só violão"
+      },
+      {
+        "type": "verso",
+        "chords": [
+          "D",
+          "A",
+          "Bm",
+          "G",
+          "Am",
+          "B",
+          "F#m",
+          "F"
+        ],
+        "reps": 1,
+        "bars": 8,
+        "lyrics": "A schuva caiu naquela noite\nE eu pensei em você outra vez",
+        "note": ""
+      },
+      {
+        "type": "refrao",
+        "chords": [
+          "G",
+          "D",
+          "A",
+          "Bm"
+        ],
+        "reps": 2,
+        "bars": 8,
+        "lyrics": "Volta pra mim, volta pra mim\nNo som da chuva, no fim do mundo",
+        "note": ""
+      },
+      {
+        "type": "verso",
+        "chords": [
+          "D",
+          "A",
+          "Bm",
+          "G"
+        ],
+        "reps": 1,
+        "bars": 8,
+        "lyrics": "O tempo passou e ficou\nA marca dos dias bonsa",
+        "note": ""
+      },
+      {
+        "type": "refrao2",
+        "chords": [
+          "G",
+          "D",
+          "A",
+          "Bm"
+        ],
+        "reps": 2,
+        "bars": 8,
+        "lyrics": "Volta pra mim, volta pra mim",
+        "note": ""
+      },
+      {
+        "type": "final",
+        "chords": [
+          "D",
+          "A",
+          "Bm",
+          "G"
+        ],
+        "reps": 2,
+        "bars": 4,
+        "lyrics": "",
+        "note": "Final em fade out"
+      }
+    ],
+    "timeline": {
+      "bars": 60,
+      "bpm": 128,
+      "sig": "4/4",
+      "tracks": [
+        {
+          "id": "tr-click",
+          "kind": "click",
+          "name": "Click",
+          "color": "#3dff8a",
+          "output": "fone",
+          "volume": 0.7,
+          "mute": false,
+          "clips": [
+            {
+              "start": 0,
+              "length": 60,
+              "content": "128 BPM · 4/4"
+            }
+          ]
+        },
+        {
+          "id": "tr-chord",
+          "kind": "chord",
+          "name": "Cifras",
+          "color": "#ff8a1c",
+          "output": "pa",
+          "volume": 0.8,
+          "mute": false,
+          "clips": [
+            {
+              "start": 0,
+              "length": 1,
+              "content": "D",
+              "partIndex": 0,
+              "source": "block"
+            },
+            {
+              "start": 1,
+              "length": 1,
+              "content": "A",
+              "partIndex": 0,
+              "source": "block"
+            },
+            {
+              "start": 2,
+              "length": 1,
+              "content": "Bm",
+              "partIndex": 0,
+              "source": "block"
+            },
+            {
+              "start": 3,
+              "length": 1,
+              "content": "G",
+              "partIndex": 0,
+              "source": "block"
+            },
+            {
+              "start": 4,
+              "length": 1,
+              "content": "D",
+              "partIndex": 1,
+              "source": "block"
+            },
+            {
+              "start": 5,
+              "length": 1,
+              "content": "A",
+              "partIndex": 1,
+              "source": "block"
+            },
+            {
+              "start": 6,
+              "length": 1,
+              "content": "Bm",
+              "partIndex": 1,
+              "source": "block"
+            },
+            {
+              "start": 7,
+              "length": 1,
+              "content": "G",
+              "partIndex": 1,
+              "source": "block"
+            },
+            {
+              "start": 8,
+              "length": 1,
+              "content": "Am",
+              "partIndex": 1,
+              "source": "block"
+            },
+            {
+              "start": 9,
+              "length": 1,
+              "content": "B",
+              "partIndex": 1,
+              "source": "block"
+            },
+            {
+              "start": 10,
+              "length": 1,
+              "content": "F#m",
+              "partIndex": 1,
+              "source": "block"
+            },
+            {
+              "start": 11,
+              "length": 1,
+              "content": "F",
+              "partIndex": 1,
+              "source": "block"
+            },
+            {
+              "start": 12,
+              "length": 1,
+              "content": "G",
+              "partIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 13,
+              "length": 1,
+              "content": "D",
+              "partIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 14,
+              "length": 1,
+              "content": "A",
+              "partIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 15,
+              "length": 1,
+              "content": "Bm",
+              "partIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 16,
+              "length": 1,
+              "content": "G",
+              "partIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 17,
+              "length": 1,
+              "content": "D",
+              "partIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 18,
+              "length": 1,
+              "content": "A",
+              "partIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 19,
+              "length": 1,
+              "content": "Bm",
+              "partIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 20,
+              "length": 1,
+              "content": "G",
+              "partIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 21,
+              "length": 1,
+              "content": "D",
+              "partIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 22,
+              "length": 1,
+              "content": "A",
+              "partIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 23,
+              "length": 1,
+              "content": "Bm",
+              "partIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 24,
+              "length": 1,
+              "content": "G",
+              "partIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 25,
+              "length": 1,
+              "content": "D",
+              "partIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 26,
+              "length": 1,
+              "content": "A",
+              "partIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 27,
+              "length": 1,
+              "content": "Bm",
+              "partIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 28,
+              "length": 1,
+              "content": "D",
+              "partIndex": 3,
+              "source": "block"
+            },
+            {
+              "start": 29,
+              "length": 1,
+              "content": "A",
+              "partIndex": 3,
+              "source": "block"
+            },
+            {
+              "start": 30,
+              "length": 1,
+              "content": "Bm",
+              "partIndex": 3,
+              "source": "block"
+            },
+            {
+              "start": 31,
+              "length": 1,
+              "content": "G",
+              "partIndex": 3,
+              "source": "block"
+            },
+            {
+              "start": 32,
+              "length": 1,
+              "content": "D",
+              "partIndex": 3,
+              "source": "block"
+            },
+            {
+              "start": 33,
+              "length": 1,
+              "content": "A",
+              "partIndex": 3,
+              "source": "block"
+            },
+            {
+              "start": 34,
+              "length": 1,
+              "content": "Bm",
+              "partIndex": 3,
+              "source": "block"
+            },
+            {
+              "start": 35,
+              "length": 1,
+              "content": "G",
+              "partIndex": 3,
+              "source": "block"
+            },
+            {
+              "start": 36,
+              "length": 1,
+              "content": "G",
+              "partIndex": 4,
+              "source": "block"
+            },
+            {
+              "start": 37,
+              "length": 1,
+              "content": "D",
+              "partIndex": 4,
+              "source": "block"
+            },
+            {
+              "start": 38,
+              "length": 1,
+              "content": "A",
+              "partIndex": 4,
+              "source": "block"
+            },
+            {
+              "start": 39,
+              "length": 1,
+              "content": "Bm",
+              "partIndex": 4,
+              "source": "block"
+            },
+            {
+              "start": 40,
+              "length": 1,
+              "content": "G",
+              "partIndex": 4,
+              "source": "block"
+            },
+            {
+              "start": 41,
+              "length": 1,
+              "content": "D",
+              "partIndex": 4,
+              "source": "block"
+            },
+            {
+              "start": 42,
+              "length": 1,
+              "content": "A",
+              "partIndex": 4,
+              "source": "block"
+            },
+            {
+              "start": 43,
+              "length": 1,
+              "content": "Bm",
+              "partIndex": 4,
+              "source": "block"
+            },
+            {
+              "start": 44,
+              "length": 1,
+              "content": "G",
+              "partIndex": 4,
+              "source": "block"
+            },
+            {
+              "start": 45,
+              "length": 1,
+              "content": "D",
+              "partIndex": 4,
+              "source": "block"
+            },
+            {
+              "start": 46,
+              "length": 1,
+              "content": "A",
+              "partIndex": 4,
+              "source": "block"
+            },
+            {
+              "start": 47,
+              "length": 1,
+              "content": "Bm",
+              "partIndex": 4,
+              "source": "block"
+            },
+            {
+              "start": 48,
+              "length": 1,
+              "content": "G",
+              "partIndex": 4,
+              "source": "block"
+            },
+            {
+              "start": 49,
+              "length": 1,
+              "content": "D",
+              "partIndex": 4,
+              "source": "block"
+            },
+            {
+              "start": 50,
+              "length": 1,
+              "content": "A",
+              "partIndex": 4,
+              "source": "block"
+            },
+            {
+              "start": 51,
+              "length": 1,
+              "content": "Bm",
+              "partIndex": 4,
+              "source": "block"
+            },
+            {
+              "start": 52,
+              "length": 1,
+              "content": "D",
+              "partIndex": 5,
+              "source": "block"
+            },
+            {
+              "start": 53,
+              "length": 1,
+              "content": "A",
+              "partIndex": 5,
+              "source": "block"
+            },
+            {
+              "start": 54,
+              "length": 1,
+              "content": "Bm",
+              "partIndex": 5,
+              "source": "block"
+            },
+            {
+              "start": 55,
+              "length": 1,
+              "content": "G",
+              "partIndex": 5,
+              "source": "block"
+            },
+            {
+              "start": 56,
+              "length": 1,
+              "content": "D",
+              "partIndex": 5,
+              "source": "block"
+            },
+            {
+              "start": 57,
+              "length": 1,
+              "content": "A",
+              "partIndex": 5,
+              "source": "block"
+            },
+            {
+              "start": 58,
+              "length": 1,
+              "content": "Bm",
+              "partIndex": 5,
+              "source": "block"
+            },
+            {
+              "start": 59,
+              "length": 1,
+              "content": "G",
+              "partIndex": 5,
+              "source": "block"
+            }
+          ]
+        },
+        {
+          "id": "tr-lyric",
+          "kind": "lyric",
+          "name": "Letra",
+          "color": "#4aa8ff",
+          "output": "both",
+          "volume": 0.8,
+          "mute": false,
+          "clips": [
+            {
+              "start": 0,
+              "length": 4,
+              "content": "asdg",
+              "partIndex": 0,
+              "source": "block"
+            },
+            {
+              "start": 4,
+              "length": 4,
+              "content": "A schuva caiu naquela noite",
+              "partIndex": 1,
+              "source": "block"
+            },
+            {
+              "start": 8,
+              "length": 4,
+              "content": "E eu pensei em você outra vez",
+              "partIndex": 1,
+              "source": "block"
+            },
+            {
+              "start": 12,
+              "length": 4,
+              "content": "Volta pra mim, volta pra mim",
+              "partIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 16,
+              "length": 4,
+              "content": "No som da chuva, no fim do mundo",
+              "partIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 20,
+              "length": 4,
+              "content": "Volta pra mim, volta pra mim",
+              "partIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 24,
+              "length": 4,
+              "content": "No som da chuva, no fim do mundo",
+              "partIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 28,
+              "length": 4,
+              "content": "O tempo passou e ficou",
+              "partIndex": 3,
+              "source": "block"
+            },
+            {
+              "start": 32,
+              "length": 4,
+              "content": "A marca dos dias bonsa",
+              "partIndex": 3,
+              "source": "block"
+            },
+            {
+              "start": 36,
+              "length": 8,
+              "content": "Volta pra mim, volta pra mim",
+              "partIndex": 4,
+              "source": "block"
+            },
+            {
+              "start": 44,
+              "length": 8,
+              "content": "Volta pra mim, volta pra mim",
+              "partIndex": 4,
+              "source": "block"
+            }
+          ]
+        },
+        {
+          "id": "tr-audio",
+          "kind": "audio",
+          "name": "Violão Ref.",
+          "color": "#a96bff",
+          "output": "fone",
+          "volume": 0.6,
+          "mute": false,
+          "clips": []
+        },
+        {
+          "id": "tr-cue",
+          "kind": "cue",
+          "name": "Regente",
+          "color": "#ffd246",
+          "output": "fone",
+          "volume": 1,
+          "mute": false,
+          "clips": [
+            {
+              "start": 0,
+              "length": 1,
+              "content": "Entrada limpa, só violão",
+              "partIndex": 0,
+              "source": "block-note"
+            },
+            {
+              "start": 52,
+              "length": 1,
+              "content": "Final em fade out",
+              "partIndex": 5,
+              "source": "block-note"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 2,
+    "num": "02",
+    "title": "Estrada de Terra",
+    "artist": "Sr Lakes",
+    "key": "G",
+    "bpm": 112,
+    "sig": "4/4",
+    "duration": "04:05",
+    "parts": [
+      {
+        "type": "intro",
+        "chords": [
+          "G",
+          "Em",
+          "C",
+          "D"
+        ],
+        "reps": 2,
+        "bars": 4,
+        "lyrics": "",
+        "note": "Bateria entra no 2º compasso"
+      },
+      {
+        "type": "verso",
+        "chords": [
+          "G",
+          "Em",
+          "C",
+          "D"
+        ],
+        "reps": 1,
+        "bars": 8,
+        "lyrics": "Pego a estrada de manhã cedo\nA poeira voa atrás",
+        "note": ""
+      },
+      {
+        "type": "refrao",
+        "chords": [
+          "C",
+          "G",
+          "D",
+          "Em"
+        ],
+        "reps": 2,
+        "bars": 8,
+        "lyrics": "Estrada de terra, coração\nMe leva pra onde a gente é livre",
+        "note": ""
+      },
+      {
+        "type": "solo",
+        "chords": [
+          "G",
+          "Em",
+          "C",
+          "D"
+        ],
+        "reps": 1,
+        "bars": 16,
+        "lyrics": "",
+        "note": "Solo de slide guitar — Tom de Sol maior"
+      },
+      {
+        "type": "refrao2",
+        "chords": [
+          "C",
+          "G",
+          "D",
+          "Em"
+        ],
+        "reps": 3,
+        "bars": 8,
+        "lyrics": "Estrada de terra, coração",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "num": "03",
+    "title": "Última Cerveja",
+    "artist": "Sr Lakes",
+    "key": "A",
+    "bpm": 140,
+    "sig": "4/4",
+    "duration": "03:18",
+    "parts": [
+      {
+        "type": "intro",
+        "chords": [
+          "A",
+          "D",
+          "E",
+          "A"
+        ],
+        "reps": 2,
+        "bars": 4,
+        "lyrics": "",
+        "note": ""
+      },
+      {
+        "type": "verso",
+        "chords": [
+          "A",
+          "D",
+          "E",
+          "A"
+        ],
+        "reps": 1,
+        "bars": 8,
+        "lyrics": "A última cerveja do bar\nNa mesa que era nossa",
+        "note": ""
+      },
+      {
+        "type": "refrao",
+        "chords": [
+          "D",
+          "A",
+          "E",
+          "F#m"
+        ],
+        "reps": 2,
+        "bars": 8,
+        "lyrics": "E eu fico aqui\nEsperando o sol nascer",
+        "note": ""
+      },
+      {
+        "type": "ponte",
+        "chords": [
+          "F#m",
+          "D",
+          "A",
+          "E"
+        ],
+        "reps": 1,
+        "bars": 4,
+        "lyrics": "Mas tudo bem",
+        "note": ""
+      },
+      {
+        "type": "final",
+        "chords": [
+          "A",
+          "D",
+          "E",
+          "A"
+        ],
+        "reps": 4,
+        "bars": 2,
+        "lyrics": "",
+        "note": "Final rápido"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "num": "04",
+    "title": "Mundo D? Voltas",
+    "artist": "Sr Lakes",
+    "key": "E",
+    "bpm": 128,
+    "sig": "4/4",
+    "duration": "04:12",
+    "parts": [
+      {
+        "type": "intro",
+        "chords": [
+          "Bm",
+          "G5",
+          "D",
+          "A"
+        ],
+        "reps": 4,
+        "bars": 2,
+        "lyrics": "",
+        "note": "Intro instrumental · Entrada da banda"
+      },
+      {
+        "type": "verso",
+        "chords": [
+          "Bm",
+          "G5",
+          "D",
+          "A"
+        ],
+        "reps": 1,
+        "bars": 8,
+        "lyrics": "Ela dormiu no calor dos meus braços\nE eu acordei sem saber se era um sonho",
+        "note": ""
+      },
+      {
+        "type": "refrao",
+        "chords": [
+          "Bm",
+          "G5",
+          "D",
+          "A"
+        ],
+        "reps": 5,
+        "bars": 8,
+        "lyrics": "E o tempo passou, e eu me encontrei\nNo meio da rua sem saber pra onde ir\nMas foi voc? que me fez entender\nQue tudo tem seu lugar",
+        "note": ""
+      },
+      {
+        "type": "solo",
+        "chords": [
+          "Bm",
+          "G5",
+          "D",
+          "A"
+        ],
+        "reps": 3,
+        "bars": 8,
+        "lyrics": "",
+        "note": "Solo da guitarra ? Baixo segura a base"
+      },
+      {
+        "type": "pausa",
+        "chords": [
+          "—"
+        ],
+        "reps": 1,
+        "bars": 1,
+        "lyrics": "",
+        "note": "Pausa total · Vocal entra solo"
+      },
+      {
+        "type": "volta",
+        "chords": [
+          "Bm",
+          "G5",
+          "D",
+          "A"
+        ],
+        "reps": 1,
+        "bars": 8,
+        "lyrics": "Há um tempo atrás pensei em te dizer\nQue o mundo dá voltas, dá voltas e vai",
+        "note": ""
+      },
+      {
+        "type": "refrao2",
+        "chords": [
+          "Bm",
+          "G5",
+          "D",
+          "A"
+        ],
+        "reps": 2,
+        "bars": 8,
+        "lyrics": "Naquele amor\nÀ sua maneira",
+        "note": ""
+      },
+      {
+        "type": "final",
+        "chords": [
+          "A",
+          "Bm",
+          "G5",
+          "D"
+        ],
+        "reps": 4,
+        "bars": 2,
+        "lyrics": "",
+        "note": "Repetir: A noite inteira"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "num": "05",
+    "title": "Garagem 3am",
+    "artist": "Sr Lakes",
+    "key": "F#m",
+    "bpm": 118,
+    "sig": "4/4",
+    "duration": "03:55",
+    "parts": [
+      {
+        "type": "intro",
+        "chords": [
+          "F#m",
+          "D",
+          "A",
+          "E"
+        ],
+        "reps": 2,
+        "bars": 4,
+        "lyrics": "",
+        "note": ""
+      },
+      {
+        "type": "verso",
+        "chords": [
+          "F#m",
+          "D",
+          "A",
+          "E"
+        ],
+        "reps": 1,
+        "bars": 8,
+        "lyrics": "Três da manhã na garagem\nE a banda ainda toca",
+        "note": ""
+      },
+      {
+        "type": "refrao",
+        "chords": [
+          "A",
+          "E",
+          "F#m",
+          "D"
+        ],
+        "reps": 2,
+        "bars": 8,
+        "lyrics": "Sonhos que ninguém ouviu\nNo amplificador",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "num": "06",
+    "title": "Praia Vazia",
+    "artist": "Sr Lakes",
+    "key": "C",
+    "bpm": 84,
+    "sig": "6/8",
+    "duration": "04:30",
+    "parts": [
+      {
+        "type": "intro",
+        "chords": [
+          "C",
+          "Am",
+          "F",
+          "G"
+        ],
+        "reps": 2,
+        "bars": 4,
+        "lyrics": "",
+        "note": ""
+      },
+      {
+        "type": "verso",
+        "chords": [
+          "C",
+          "Am",
+          "F",
+          "G"
+        ],
+        "reps": 1,
+        "bars": 8,
+        "lyrics": "A praia vazia em janeiro\nO céu de chumbo no inverno",
+        "note": ""
+      },
+      {
+        "type": "refrao",
+        "chords": [
+          "F",
+          "C",
+          "G",
+          "Am"
+        ],
+        "reps": 2,
+        "bars": 8,
+        "lyrics": "E o mar, o mar, o mar\nÉ sempre o mesmo mar",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "num": "07",
+    "title": "Bar do Zé",
+    "artist": "Cover · Tradicional",
+    "key": "G",
+    "bpm": 104,
+    "sig": "4/4",
+    "duration": "03:30",
+    "parts": [
+      {
+        "type": "intro",
+        "chords": [
+          "G",
+          "C",
+          "D",
+          "G"
+        ],
+        "reps": 2,
+        "bars": 4,
+        "lyrics": "",
+        "note": ""
+      },
+      {
+        "type": "verso",
+        "chords": [
+          "G",
+          "C",
+          "D",
+          "G"
+        ],
+        "reps": 1,
+        "bars": 8,
+        "lyrics": "No bar do Zé na esquina\nA banda toca toda noite",
+        "note": ""
+      },
+      {
+        "type": "refrao",
+        "chords": [
+          "C",
+          "G",
+          "D",
+          "Em"
+        ],
+        "reps": 2,
+        "bars": 8,
+        "lyrics": "E o povo canta junto",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "num": "08",
+    "title": "Trovão de Verão",
+    "artist": "Sr Lakes",
+    "key": "E",
+    "bpm": 152,
+    "sig": "4/4",
+    "duration": "02:58",
+    "parts": [
+      {
+        "type": "intro",
+        "chords": [
+          "E",
+          "B",
+          "C#m",
+          "A"
+        ],
+        "reps": 2,
+        "bars": 4,
+        "lyrics": "",
+        "note": "Bateria contagem 4"
+      },
+      {
+        "type": "verso",
+        "chords": [
+          "E",
+          "B",
+          "C#m",
+          "A"
+        ],
+        "reps": 1,
+        "bars": 8,
+        "lyrics": "Cai o trovão, cai o trovão",
+        "note": ""
+      },
+      {
+        "type": "refrao",
+        "chords": [
+          "A",
+          "E",
+          "B",
+          "C#m"
+        ],
+        "reps": 2,
+        "bars": 8,
+        "lyrics": "E a chuva vem rasgando o céu",
+        "note": ""
+      },
+      {
+        "type": "solo",
+        "chords": [
+          "E",
+          "B",
+          "C#m",
+          "A"
+        ],
+        "reps": 1,
+        "bars": 8,
+        "lyrics": "",
+        "note": "Solo distorcido"
+      },
+      {
+        "type": "final",
+        "chords": [
+          "E",
+          "B",
+          "A",
+          "E"
+        ],
+        "reps": 1,
+        "bars": 4,
+        "lyrics": "",
+        "note": "Acabar em E"
+      }
+    ]
+  },
+  {
+    "title": "Teste",
+    "parts": [],
+    "id": 10,
+    "num": "10"
+  },
+  {
+    "title": "SUA MANEIRA",
+    "artist": "Sr Lakes",
+    "key": "E",
+    "bpm": 120,
+    "sig": "4/4",
+    "duration": "01:04",
+    "parts": [
+      {
+        "type": "intro",
+        "chords": [
+          "E",
+          "B",
+          "C#m",
+          "A"
+        ],
+        "reps": 2,
+        "bars": 4,
+        "lyrics": "ed",
+        "note": ""
+      },
+      {
+        "type": "verso",
+        "chords": [
+          "E",
+          "B",
+          "C#m",
+          "A"
+        ],
+        "reps": 1,
+        "bars": 8,
+        "lyrics": "",
+        "note": ""
+      },
+      {
+        "type": "refrao",
+        "chords": [
+          "A",
+          "E",
+          "B",
+          "C#m"
+        ],
+        "reps": 2,
+        "bars": 8,
+        "lyrics": "",
+        "note": ""
+      }
+    ],
+    "timeline": {
+      "bars": 32,
+      "bpm": 120,
+      "sig": "4/4",
+      "tracks": [
+        {
+          "id": "tr-click",
+          "kind": "click",
+          "name": "Click",
+          "color": "#3dff8a",
+          "output": "fone",
+          "volume": 0.7,
+          "mute": false,
+          "clips": [
+            {
+              "start": 0,
+              "length": 32,
+              "content": "120 BPM · 4/4"
+            }
+          ]
+        },
+        {
+          "id": "tr-chord",
+          "kind": "chord",
+          "name": "Cifras",
+          "color": "#ff8a1c",
+          "output": "pa",
+          "volume": 0.8,
+          "mute": false,
+          "clips": [
+            {
+              "start": 0,
+              "length": 1,
+              "content": "E",
+              "partIndex": 0,
+              "source": "block"
+            },
+            {
+              "start": 1,
+              "length": 1,
+              "content": "B",
+              "partIndex": 0,
+              "source": "block"
+            },
+            {
+              "start": 2,
+              "length": 1,
+              "content": "C#m",
+              "partIndex": 0,
+              "source": "block"
+            },
+            {
+              "start": 3,
+              "length": 1,
+              "content": "A",
+              "partIndex": 0,
+              "source": "block"
+            },
+            {
+              "start": 4,
+              "length": 1,
+              "content": "E",
+              "partIndex": 0,
+              "source": "block"
+            },
+            {
+              "start": 5,
+              "length": 1,
+              "content": "B",
+              "partIndex": 0,
+              "source": "block"
+            },
+            {
+              "start": 6,
+              "length": 1,
+              "content": "C#m",
+              "partIndex": 0,
+              "source": "block"
+            },
+            {
+              "start": 7,
+              "length": 1,
+              "content": "A",
+              "partIndex": 0,
+              "source": "block"
+            },
+            {
+              "start": 8,
+              "length": 1,
+              "content": "E",
+              "partIndex": 1,
+              "source": "block"
+            },
+            {
+              "start": 9,
+              "length": 1,
+              "content": "B",
+              "partIndex": 1,
+              "source": "block"
+            },
+            {
+              "start": 10,
+              "length": 1,
+              "content": "C#m",
+              "partIndex": 1,
+              "source": "block"
+            },
+            {
+              "start": 11,
+              "length": 1,
+              "content": "A",
+              "partIndex": 1,
+              "source": "block"
+            },
+            {
+              "start": 12,
+              "length": 1,
+              "content": "E",
+              "partIndex": 1,
+              "source": "block"
+            },
+            {
+              "start": 13,
+              "length": 1,
+              "content": "B",
+              "partIndex": 1,
+              "source": "block"
+            },
+            {
+              "start": 14,
+              "length": 1,
+              "content": "C#m",
+              "partIndex": 1,
+              "source": "block"
+            },
+            {
+              "start": 15,
+              "length": 1,
+              "content": "A",
+              "partIndex": 1,
+              "source": "block"
+            },
+            {
+              "start": 16,
+              "length": 1,
+              "content": "A",
+              "partIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 17,
+              "length": 1,
+              "content": "E",
+              "partIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 18,
+              "length": 1,
+              "content": "B",
+              "partIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 19,
+              "length": 1,
+              "content": "C#m",
+              "partIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 20,
+              "length": 1,
+              "content": "A",
+              "partIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 21,
+              "length": 1,
+              "content": "E",
+              "partIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 22,
+              "length": 1,
+              "content": "B",
+              "partIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 23,
+              "length": 1,
+              "content": "C#m",
+              "partIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 24,
+              "length": 1,
+              "content": "A",
+              "partIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 25,
+              "length": 1,
+              "content": "E",
+              "partIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 26,
+              "length": 1,
+              "content": "B",
+              "partIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 27,
+              "length": 1,
+              "content": "C#m",
+              "partIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 28,
+              "length": 1,
+              "content": "A",
+              "partIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 29,
+              "length": 1,
+              "content": "E",
+              "partIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 30,
+              "length": 1,
+              "content": "B",
+              "partIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 31,
+              "length": 1,
+              "content": "C#m",
+              "partIndex": 2,
+              "source": "block"
+            }
+          ]
+        },
+        {
+          "id": "tr-lyric",
+          "kind": "lyric",
+          "name": "Letra",
+          "color": "#4aa8ff",
+          "output": "both",
+          "volume": 0.8,
+          "mute": false,
+          "clips": [
+            {
+              "start": 0,
+              "length": 4,
+              "content": "ed",
+              "partIndex": 0,
+              "source": "block"
+            },
+            {
+              "start": 4,
+              "length": 4,
+              "content": "ed",
+              "partIndex": 0,
+              "source": "block"
+            }
+          ]
+        },
+        {
+          "id": "tr-audio",
+          "kind": "audio",
+          "name": "Violão Ref.",
+          "color": "#a96bff",
+          "output": "fone",
+          "volume": 0.6,
+          "mute": false,
+          "clips": []
+        },
+        {
+          "id": "tr-cue",
+          "kind": "cue",
+          "name": "Regente",
+          "color": "#ffd246",
+          "output": "fone",
+          "volume": 1,
+          "mute": false,
+          "clips": []
+        }
+      ]
+    },
+    "id": 11,
+    "num": "11"
+  },
+  {
+    "title": "A SUA MANEIRA",
+    "artist": "Sr Lakes",
+    "key": "E",
+    "bpm": 120,
+    "sig": "4/4",
+    "duration": "01:04",
+    "parts": [
+      {
+        "type": "intro",
+        "chords": [
+          "E",
+          "B",
+          "C#m",
+          "A"
+        ],
+        "reps": 2,
+        "bars": 4,
+        "lyrics": "asdasdasddsdasd",
+        "note": ""
+      },
+      {
+        "type": "verso",
+        "chords": [
+          "E",
+          "B",
+          "C#m",
+          "A"
+        ],
+        "reps": 1,
+        "bars": 8,
+        "lyrics": "sdasdasdasdas",
+        "note": ""
+      },
+      {
+        "type": "refrao",
+        "chords": [
+          "A",
+          "E",
+          "B",
+          "C#m"
+        ],
+        "reps": 2,
+        "bars": 8,
+        "lyrics": "",
+        "note": ""
+      }
+    ],
+    "timeline": {
+      "bars": 32,
+      "bpm": 120,
+      "sig": "4/4",
+      "tracks": [
+        {
+          "id": "tr-click",
+          "kind": "click",
+          "name": "Click",
+          "color": "#3dff8a",
+          "output": "fone",
+          "volume": 0.7,
+          "mute": false,
+          "clips": [
+            {
+              "start": 0,
+              "length": 32,
+              "content": "120 BPM · 4/4"
+            }
+          ]
+        },
+        {
+          "id": "tr-chord",
+          "kind": "chord",
+          "name": "Cifras",
+          "color": "#ff8a1c",
+          "output": "pa",
+          "volume": 0.8,
+          "mute": false,
+          "clips": [
+            {
+              "start": 0,
+              "length": 1,
+              "content": "E",
+              "partIndex": 0,
+              "source": "block"
+            },
+            {
+              "start": 1,
+              "length": 1,
+              "content": "B",
+              "partIndex": 0,
+              "source": "block"
+            },
+            {
+              "start": 2,
+              "length": 1,
+              "content": "C#m",
+              "partIndex": 0,
+              "source": "block"
+            },
+            {
+              "start": 3,
+              "length": 1,
+              "content": "A",
+              "partIndex": 0,
+              "source": "block"
+            },
+            {
+              "start": 4,
+              "length": 1,
+              "content": "E",
+              "partIndex": 0,
+              "source": "block"
+            },
+            {
+              "start": 5,
+              "length": 1,
+              "content": "B",
+              "partIndex": 0,
+              "source": "block"
+            },
+            {
+              "start": 6,
+              "length": 1,
+              "content": "C#m",
+              "partIndex": 0,
+              "source": "block"
+            },
+            {
+              "start": 7,
+              "length": 1,
+              "content": "A",
+              "partIndex": 0,
+              "source": "block"
+            },
+            {
+              "start": 8,
+              "length": 1,
+              "content": "E",
+              "partIndex": 1,
+              "source": "block"
+            },
+            {
+              "start": 9,
+              "length": 1,
+              "content": "B",
+              "partIndex": 1,
+              "source": "block"
+            },
+            {
+              "start": 10,
+              "length": 1,
+              "content": "C#m",
+              "partIndex": 1,
+              "source": "block"
+            },
+            {
+              "start": 11,
+              "length": 1,
+              "content": "A",
+              "partIndex": 1,
+              "source": "block"
+            },
+            {
+              "start": 12,
+              "length": 1,
+              "content": "E",
+              "partIndex": 1,
+              "source": "block"
+            },
+            {
+              "start": 13,
+              "length": 1,
+              "content": "B",
+              "partIndex": 1,
+              "source": "block"
+            },
+            {
+              "start": 14,
+              "length": 1,
+              "content": "C#m",
+              "partIndex": 1,
+              "source": "block"
+            },
+            {
+              "start": 15,
+              "length": 1,
+              "content": "A",
+              "partIndex": 1,
+              "source": "block"
+            },
+            {
+              "start": 16,
+              "length": 1,
+              "content": "A",
+              "partIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 17,
+              "length": 1,
+              "content": "E",
+              "partIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 18,
+              "length": 1,
+              "content": "B",
+              "partIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 19,
+              "length": 1,
+              "content": "C#m",
+              "partIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 20,
+              "length": 1,
+              "content": "A",
+              "partIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 21,
+              "length": 1,
+              "content": "E",
+              "partIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 22,
+              "length": 1,
+              "content": "B",
+              "partIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 23,
+              "length": 1,
+              "content": "C#m",
+              "partIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 24,
+              "length": 1,
+              "content": "A",
+              "partIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 25,
+              "length": 1,
+              "content": "E",
+              "partIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 26,
+              "length": 1,
+              "content": "B",
+              "partIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 27,
+              "length": 1,
+              "content": "C#m",
+              "partIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 28,
+              "length": 1,
+              "content": "A",
+              "partIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 29,
+              "length": 1,
+              "content": "E",
+              "partIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 30,
+              "length": 1,
+              "content": "B",
+              "partIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 31,
+              "length": 1,
+              "content": "C#m",
+              "partIndex": 2,
+              "source": "block"
+            }
+          ]
+        },
+        {
+          "id": "tr-lyric",
+          "kind": "lyric",
+          "name": "Letra",
+          "color": "#4aa8ff",
+          "output": "both",
+          "volume": 0.8,
+          "mute": false,
+          "clips": [
+            {
+              "start": 0,
+              "length": 4,
+              "content": "asdasdasddsdasd",
+              "partIndex": 0,
+              "source": "block"
+            },
+            {
+              "start": 4,
+              "length": 4,
+              "content": "asdasdasddsdasd",
+              "partIndex": 0,
+              "source": "block"
+            },
+            {
+              "start": 8,
+              "length": 8,
+              "content": "sdasdasdasdas",
+              "partIndex": 1,
+              "source": "block"
+            }
+          ]
+        },
+        {
+          "id": "tr-audio",
+          "kind": "audio",
+          "name": "Violão Ref.",
+          "color": "#a96bff",
+          "output": "fone",
+          "volume": 0.6,
+          "mute": false,
+          "clips": []
+        },
+        {
+          "id": "tr-cue",
+          "kind": "cue",
+          "name": "Regente",
+          "color": "#ffd246",
+          "output": "fone",
+          "volume": 1,
+          "mute": false,
+          "clips": []
+        }
+      ]
+    },
+    "id": 12,
+    "num": "12"
+  },
+  {
+    "title": "SUA MANEIRA",
+    "artist": "Sr Lakes",
+    "key": "E",
+    "bpm": 120,
+    "sig": "4/4",
+    "duration": "01:04",
+    "parts": [
+      {
+        "type": "intro",
+        "chords": [
+          "E",
+          "B",
+          "C#m",
+          "A"
+        ],
+        "reps": 2,
+        "bars": 4,
+        "lyrics": "",
+        "note": ""
+      },
+      {
+        "type": "verso",
+        "chords": [
+          "E",
+          "B",
+          "C#m",
+          "A"
+        ],
+        "reps": 1,
+        "bars": 8,
+        "lyrics": "",
+        "note": ""
+      },
+      {
+        "type": "refrao",
+        "chords": [
+          "A",
+          "E",
+          "B",
+          "C#m"
+        ],
+        "reps": 2,
+        "bars": 8,
+        "lyrics": "",
+        "note": ""
+      }
+    ],
+    "timeline": {
+      "bars": 32,
+      "bpm": 120,
+      "sig": "4/4",
+      "tracks": [
+        {
+          "id": "tr-click",
+          "kind": "click",
+          "name": "Click",
+          "color": "#3dff8a",
+          "output": "fone",
+          "volume": 0.7,
+          "mute": false,
+          "clips": [
+            {
+              "start": 0,
+              "length": 32,
+              "content": "120 BPM · 4/4"
+            }
+          ]
+        },
+        {
+          "id": "tr-chord",
+          "kind": "chord",
+          "name": "Cifras",
+          "color": "#ff8a1c",
+          "output": "pa",
+          "volume": 0.8,
+          "mute": false,
+          "clips": [
+            {
+              "start": 0,
+              "length": 1,
+              "content": "E",
+              "partIndex": 0,
+              "chordIndex": 0,
+              "source": "block"
+            },
+            {
+              "start": 1,
+              "length": 1,
+              "content": "B",
+              "partIndex": 0,
+              "chordIndex": 1,
+              "source": "block"
+            },
+            {
+              "start": 2,
+              "length": 1,
+              "content": "C#m",
+              "partIndex": 0,
+              "chordIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 3,
+              "length": 1,
+              "content": "A",
+              "partIndex": 0,
+              "chordIndex": 3,
+              "source": "block"
+            },
+            {
+              "start": 4,
+              "length": 1,
+              "content": "E",
+              "partIndex": 0,
+              "chordIndex": 0,
+              "source": "block"
+            },
+            {
+              "start": 5,
+              "length": 1,
+              "content": "B",
+              "partIndex": 0,
+              "chordIndex": 1,
+              "source": "block"
+            },
+            {
+              "start": 6,
+              "length": 1,
+              "content": "C#m",
+              "partIndex": 0,
+              "chordIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 7,
+              "length": 1,
+              "content": "A",
+              "partIndex": 0,
+              "chordIndex": 3,
+              "source": "block"
+            },
+            {
+              "start": 8,
+              "length": 1,
+              "content": "E",
+              "partIndex": 1,
+              "chordIndex": 0,
+              "source": "block"
+            },
+            {
+              "start": 9,
+              "length": 1,
+              "content": "B",
+              "partIndex": 1,
+              "chordIndex": 1,
+              "source": "block"
+            },
+            {
+              "start": 10,
+              "length": 1,
+              "content": "C#m",
+              "partIndex": 1,
+              "chordIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 11,
+              "length": 1,
+              "content": "A",
+              "partIndex": 1,
+              "chordIndex": 3,
+              "source": "block"
+            },
+            {
+              "start": 12,
+              "length": 1,
+              "content": "E",
+              "partIndex": 1,
+              "chordIndex": 0,
+              "source": "block"
+            },
+            {
+              "start": 13,
+              "length": 1,
+              "content": "B",
+              "partIndex": 1,
+              "chordIndex": 1,
+              "source": "block"
+            },
+            {
+              "start": 14,
+              "length": 1,
+              "content": "C#m",
+              "partIndex": 1,
+              "chordIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 15,
+              "length": 1,
+              "content": "A",
+              "partIndex": 1,
+              "chordIndex": 3,
+              "source": "block"
+            },
+            {
+              "start": 16,
+              "length": 1,
+              "content": "A",
+              "partIndex": 2,
+              "chordIndex": 0,
+              "source": "block"
+            },
+            {
+              "start": 17,
+              "length": 1,
+              "content": "E",
+              "partIndex": 2,
+              "chordIndex": 1,
+              "source": "block"
+            },
+            {
+              "start": 18,
+              "length": 1,
+              "content": "B",
+              "partIndex": 2,
+              "chordIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 19,
+              "length": 1,
+              "content": "C#m",
+              "partIndex": 2,
+              "chordIndex": 3,
+              "source": "block"
+            },
+            {
+              "start": 20,
+              "length": 1,
+              "content": "A",
+              "partIndex": 2,
+              "chordIndex": 0,
+              "source": "block"
+            },
+            {
+              "start": 21,
+              "length": 1,
+              "content": "E",
+              "partIndex": 2,
+              "chordIndex": 1,
+              "source": "block"
+            },
+            {
+              "start": 22,
+              "length": 1,
+              "content": "B",
+              "partIndex": 2,
+              "chordIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 23,
+              "length": 1,
+              "content": "C#m",
+              "partIndex": 2,
+              "chordIndex": 3,
+              "source": "block"
+            },
+            {
+              "start": 24,
+              "length": 1,
+              "content": "A",
+              "partIndex": 2,
+              "chordIndex": 0,
+              "source": "block"
+            },
+            {
+              "start": 25,
+              "length": 1,
+              "content": "E",
+              "partIndex": 2,
+              "chordIndex": 1,
+              "source": "block"
+            },
+            {
+              "start": 26,
+              "length": 1,
+              "content": "B",
+              "partIndex": 2,
+              "chordIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 27,
+              "length": 1,
+              "content": "C#m",
+              "partIndex": 2,
+              "chordIndex": 3,
+              "source": "block"
+            },
+            {
+              "start": 28,
+              "length": 1,
+              "content": "A",
+              "partIndex": 2,
+              "chordIndex": 0,
+              "source": "block"
+            },
+            {
+              "start": 29,
+              "length": 1,
+              "content": "E",
+              "partIndex": 2,
+              "chordIndex": 1,
+              "source": "block"
+            },
+            {
+              "start": 30,
+              "length": 1,
+              "content": "B",
+              "partIndex": 2,
+              "chordIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 31,
+              "length": 1,
+              "content": "C#m",
+              "partIndex": 2,
+              "chordIndex": 3,
+              "source": "block"
+            }
+          ]
+        },
+        {
+          "id": "tr-lyric",
+          "kind": "lyric",
+          "name": "Letra",
+          "color": "#4aa8ff",
+          "output": "both",
+          "volume": 0.8,
+          "mute": false,
+          "clips": []
+        },
+        {
+          "id": "tr-audio",
+          "kind": "audio",
+          "name": "Violão Ref.",
+          "color": "#a96bff",
+          "output": "fone",
+          "volume": 0.6,
+          "mute": false,
+          "clips": []
+        },
+        {
+          "id": "tr-cue",
+          "kind": "cue",
+          "name": "Regente",
+          "color": "#ffd246",
+          "output": "fone",
+          "volume": 1,
+          "mute": false,
+          "clips": []
+        }
+      ]
+    },
+    "id": 13,
+    "num": "13"
+  },
+  {
+    "title": "amneida",
+    "artist": "Sr Lakes",
+    "key": "E",
+    "bpm": 120,
+    "sig": "4/4",
+    "duration": "01:04",
+    "parts": [
+      {
+        "type": "intro",
+        "chords": [
+          "E",
+          "B",
+          "C#m",
+          "A"
+        ],
+        "reps": 2,
+        "bars": 4,
+        "lyrics": "",
+        "note": ""
+      },
+      {
+        "type": "verso",
+        "chords": [
+          "E",
+          "B",
+          "C#m",
+          "A"
+        ],
+        "reps": 1,
+        "bars": 8,
+        "lyrics": "",
+        "note": ""
+      },
+      {
+        "type": "refrao",
+        "chords": [
+          "A",
+          "E",
+          "B",
+          "C#m"
+        ],
+        "reps": 2,
+        "bars": 8,
+        "lyrics": "",
+        "note": ""
+      }
+    ],
+    "timeline": {
+      "bars": 32,
+      "bpm": 120,
+      "sig": "4/4",
+      "tracks": [
+        {
+          "id": "tr-click",
+          "kind": "click",
+          "name": "Click",
+          "color": "#3dff8a",
+          "output": "fone",
+          "volume": 0.7,
+          "mute": false,
+          "clips": [
+            {
+              "start": 0,
+              "length": 32,
+              "content": "120 BPM · 4/4"
+            }
+          ]
+        },
+        {
+          "id": "tr-chord",
+          "kind": "chord",
+          "name": "Cifras",
+          "color": "#ff8a1c",
+          "output": "pa",
+          "volume": 0.8,
+          "mute": false,
+          "clips": [
+            {
+              "start": 0,
+              "length": 1,
+              "content": "E",
+              "partIndex": 0,
+              "chordIndex": 0,
+              "source": "block"
+            },
+            {
+              "start": 1,
+              "length": 1,
+              "content": "B",
+              "partIndex": 0,
+              "chordIndex": 1,
+              "source": "block"
+            },
+            {
+              "start": 2,
+              "length": 1,
+              "content": "C#m",
+              "partIndex": 0,
+              "chordIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 3,
+              "length": 1,
+              "content": "A",
+              "partIndex": 0,
+              "chordIndex": 3,
+              "source": "block"
+            },
+            {
+              "start": 4,
+              "length": 1,
+              "content": "E",
+              "partIndex": 0,
+              "chordIndex": 0,
+              "source": "block"
+            },
+            {
+              "start": 5,
+              "length": 1,
+              "content": "B",
+              "partIndex": 0,
+              "chordIndex": 1,
+              "source": "block"
+            },
+            {
+              "start": 6,
+              "length": 1,
+              "content": "C#m",
+              "partIndex": 0,
+              "chordIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 7,
+              "length": 1,
+              "content": "A",
+              "partIndex": 0,
+              "chordIndex": 3,
+              "source": "block"
+            },
+            {
+              "start": 8,
+              "length": 1,
+              "content": "E",
+              "partIndex": 1,
+              "chordIndex": 0,
+              "source": "block"
+            },
+            {
+              "start": 9,
+              "length": 1,
+              "content": "B",
+              "partIndex": 1,
+              "chordIndex": 1,
+              "source": "block"
+            },
+            {
+              "start": 10,
+              "length": 1,
+              "content": "C#m",
+              "partIndex": 1,
+              "chordIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 11,
+              "length": 1,
+              "content": "A",
+              "partIndex": 1,
+              "chordIndex": 3,
+              "source": "block"
+            },
+            {
+              "start": 12,
+              "length": 1,
+              "content": "E",
+              "partIndex": 1,
+              "chordIndex": 0,
+              "source": "block"
+            },
+            {
+              "start": 13,
+              "length": 1,
+              "content": "B",
+              "partIndex": 1,
+              "chordIndex": 1,
+              "source": "block"
+            },
+            {
+              "start": 14,
+              "length": 1,
+              "content": "C#m",
+              "partIndex": 1,
+              "chordIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 15,
+              "length": 1,
+              "content": "A",
+              "partIndex": 1,
+              "chordIndex": 3,
+              "source": "block"
+            },
+            {
+              "start": 16,
+              "length": 1,
+              "content": "A",
+              "partIndex": 2,
+              "chordIndex": 0,
+              "source": "block"
+            },
+            {
+              "start": 17,
+              "length": 1,
+              "content": "E",
+              "partIndex": 2,
+              "chordIndex": 1,
+              "source": "block"
+            },
+            {
+              "start": 18,
+              "length": 1,
+              "content": "B",
+              "partIndex": 2,
+              "chordIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 19,
+              "length": 1,
+              "content": "C#m",
+              "partIndex": 2,
+              "chordIndex": 3,
+              "source": "block"
+            },
+            {
+              "start": 20,
+              "length": 1,
+              "content": "A",
+              "partIndex": 2,
+              "chordIndex": 0,
+              "source": "block"
+            },
+            {
+              "start": 21,
+              "length": 1,
+              "content": "E",
+              "partIndex": 2,
+              "chordIndex": 1,
+              "source": "block"
+            },
+            {
+              "start": 22,
+              "length": 1,
+              "content": "B",
+              "partIndex": 2,
+              "chordIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 23,
+              "length": 1,
+              "content": "C#m",
+              "partIndex": 2,
+              "chordIndex": 3,
+              "source": "block"
+            },
+            {
+              "start": 24,
+              "length": 1,
+              "content": "A",
+              "partIndex": 2,
+              "chordIndex": 0,
+              "source": "block"
+            },
+            {
+              "start": 25,
+              "length": 1,
+              "content": "E",
+              "partIndex": 2,
+              "chordIndex": 1,
+              "source": "block"
+            },
+            {
+              "start": 26,
+              "length": 1,
+              "content": "B",
+              "partIndex": 2,
+              "chordIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 27,
+              "length": 1,
+              "content": "C#m",
+              "partIndex": 2,
+              "chordIndex": 3,
+              "source": "block"
+            },
+            {
+              "start": 28,
+              "length": 1,
+              "content": "A",
+              "partIndex": 2,
+              "chordIndex": 0,
+              "source": "block"
+            },
+            {
+              "start": 29,
+              "length": 1,
+              "content": "E",
+              "partIndex": 2,
+              "chordIndex": 1,
+              "source": "block"
+            },
+            {
+              "start": 30,
+              "length": 1,
+              "content": "B",
+              "partIndex": 2,
+              "chordIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 31,
+              "length": 1,
+              "content": "C#m",
+              "partIndex": 2,
+              "chordIndex": 3,
+              "source": "block"
+            }
+          ]
+        },
+        {
+          "id": "tr-lyric",
+          "kind": "lyric",
+          "name": "Letra",
+          "color": "#4aa8ff",
+          "output": "both",
+          "volume": 0.8,
+          "mute": false,
+          "clips": []
+        },
+        {
+          "id": "tr-audio",
+          "kind": "audio",
+          "name": "Violão Ref.",
+          "color": "#a96bff",
+          "output": "fone",
+          "volume": 0.6,
+          "mute": false,
+          "clips": []
+        },
+        {
+          "id": "tr-cue",
+          "kind": "cue",
+          "name": "Regente",
+          "color": "#ffd246",
+          "output": "fone",
+          "volume": 1,
+          "mute": false,
+          "clips": []
+        }
+      ]
+    },
+    "id": 14,
+    "num": "14"
+  },
+  {
+    "title": "sua meni",
+    "artist": "Sr Lakes",
+    "key": "E",
+    "bpm": 120,
+    "sig": "4/4",
+    "duration": "01:04",
+    "parts": [
+      {
+        "type": "intro",
+        "chords": [
+          "E",
+          "B",
+          "C#m",
+          "A"
+        ],
+        "reps": 2,
+        "bars": 4,
+        "lyrics": "Ela dormiu",
+        "note": "sem bateria"
+      },
+      {
+        "type": "verso",
+        "chords": [
+          "E",
+          "B",
+          "C#m",
+          "A"
+        ],
+        "reps": 1,
+        "bars": 8,
+        "lyrics": "",
+        "note": ""
+      },
+      {
+        "type": "refrao",
+        "chords": [
+          "A",
+          "E",
+          "B",
+          "C#m"
+        ],
+        "reps": 2,
+        "bars": 8,
+        "lyrics": "",
+        "note": ""
+      }
+    ],
+    "timeline": {
+      "bars": 32,
+      "bpm": 120,
+      "sig": "4/4",
+      "tracks": [
+        {
+          "id": "tr-click",
+          "kind": "click",
+          "name": "Click",
+          "color": "#3dff8a",
+          "output": "fone",
+          "volume": 0.7,
+          "mute": false,
+          "clips": [
+            {
+              "start": 0,
+              "length": 32,
+              "content": "120 BPM · 4/4"
+            }
+          ]
+        },
+        {
+          "id": "tr-chord",
+          "kind": "chord",
+          "name": "Cifras",
+          "color": "#ff8a1c",
+          "output": "pa",
+          "volume": 0.8,
+          "mute": false,
+          "clips": [
+            {
+              "start": 0,
+              "length": 1,
+              "content": "E",
+              "partIndex": 0,
+              "chordIndex": 0,
+              "source": "block"
+            },
+            {
+              "start": 1,
+              "length": 1,
+              "content": "B",
+              "partIndex": 0,
+              "chordIndex": 1,
+              "source": "block"
+            },
+            {
+              "start": 2,
+              "length": 1,
+              "content": "C#m",
+              "partIndex": 0,
+              "chordIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 3,
+              "length": 1,
+              "content": "A",
+              "partIndex": 0,
+              "chordIndex": 3,
+              "source": "block"
+            },
+            {
+              "start": 4,
+              "length": 1,
+              "content": "E",
+              "partIndex": 0,
+              "chordIndex": 0,
+              "source": "block"
+            },
+            {
+              "start": 5,
+              "length": 1,
+              "content": "B",
+              "partIndex": 0,
+              "chordIndex": 1,
+              "source": "block"
+            },
+            {
+              "start": 6,
+              "length": 1,
+              "content": "C#m",
+              "partIndex": 0,
+              "chordIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 7,
+              "length": 1,
+              "content": "A",
+              "partIndex": 0,
+              "chordIndex": 3,
+              "source": "block"
+            },
+            {
+              "start": 8,
+              "length": 1,
+              "content": "E",
+              "partIndex": 1,
+              "chordIndex": 0,
+              "source": "block"
+            },
+            {
+              "start": 9,
+              "length": 1,
+              "content": "B",
+              "partIndex": 1,
+              "chordIndex": 1,
+              "source": "block"
+            },
+            {
+              "start": 10,
+              "length": 1,
+              "content": "C#m",
+              "partIndex": 1,
+              "chordIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 11,
+              "length": 1,
+              "content": "A",
+              "partIndex": 1,
+              "chordIndex": 3,
+              "source": "block"
+            },
+            {
+              "start": 12,
+              "length": 1,
+              "content": "E",
+              "partIndex": 1,
+              "chordIndex": 0,
+              "source": "block"
+            },
+            {
+              "start": 13,
+              "length": 1,
+              "content": "B",
+              "partIndex": 1,
+              "chordIndex": 1,
+              "source": "block"
+            },
+            {
+              "start": 14,
+              "length": 1,
+              "content": "C#m",
+              "partIndex": 1,
+              "chordIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 15,
+              "length": 1,
+              "content": "A",
+              "partIndex": 1,
+              "chordIndex": 3,
+              "source": "block"
+            },
+            {
+              "start": 16,
+              "length": 1,
+              "content": "A",
+              "partIndex": 2,
+              "chordIndex": 0,
+              "source": "block"
+            },
+            {
+              "start": 17,
+              "length": 1,
+              "content": "E",
+              "partIndex": 2,
+              "chordIndex": 1,
+              "source": "block"
+            },
+            {
+              "start": 18,
+              "length": 1,
+              "content": "B",
+              "partIndex": 2,
+              "chordIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 19,
+              "length": 1,
+              "content": "C#m",
+              "partIndex": 2,
+              "chordIndex": 3,
+              "source": "block"
+            },
+            {
+              "start": 20,
+              "length": 1,
+              "content": "A",
+              "partIndex": 2,
+              "chordIndex": 0,
+              "source": "block"
+            },
+            {
+              "start": 21,
+              "length": 1,
+              "content": "E",
+              "partIndex": 2,
+              "chordIndex": 1,
+              "source": "block"
+            },
+            {
+              "start": 22,
+              "length": 1,
+              "content": "B",
+              "partIndex": 2,
+              "chordIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 23,
+              "length": 1,
+              "content": "C#m",
+              "partIndex": 2,
+              "chordIndex": 3,
+              "source": "block"
+            },
+            {
+              "start": 24,
+              "length": 1,
+              "content": "A",
+              "partIndex": 2,
+              "chordIndex": 0,
+              "source": "block"
+            },
+            {
+              "start": 25,
+              "length": 1,
+              "content": "E",
+              "partIndex": 2,
+              "chordIndex": 1,
+              "source": "block"
+            },
+            {
+              "start": 26,
+              "length": 1,
+              "content": "B",
+              "partIndex": 2,
+              "chordIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 27,
+              "length": 1,
+              "content": "C#m",
+              "partIndex": 2,
+              "chordIndex": 3,
+              "source": "block"
+            },
+            {
+              "start": 28,
+              "length": 1,
+              "content": "A",
+              "partIndex": 2,
+              "chordIndex": 0,
+              "source": "block"
+            },
+            {
+              "start": 29,
+              "length": 1,
+              "content": "E",
+              "partIndex": 2,
+              "chordIndex": 1,
+              "source": "block"
+            },
+            {
+              "start": 30,
+              "length": 1,
+              "content": "B",
+              "partIndex": 2,
+              "chordIndex": 2,
+              "source": "block"
+            },
+            {
+              "start": 31,
+              "length": 1,
+              "content": "C#m",
+              "partIndex": 2,
+              "chordIndex": 3,
+              "source": "block"
+            }
+          ]
+        },
+        {
+          "id": "tr-lyric",
+          "kind": "lyric",
+          "name": "Letra",
+          "color": "#4aa8ff",
+          "output": "both",
+          "volume": 0.8,
+          "mute": false,
+          "clips": [
+            {
+              "start": 0,
+              "length": 4,
+              "content": "Ela dormiu",
+              "partIndex": 0,
+              "source": "block"
+            },
+            {
+              "start": 4,
+              "length": 4,
+              "content": "Ela dormiu",
+              "partIndex": 0,
+              "source": "block"
+            }
+          ]
+        },
+        {
+          "id": "tr-audio",
+          "kind": "audio",
+          "name": "Violão Ref.",
+          "color": "#a96bff",
+          "output": "fone",
+          "volume": 0.6,
+          "mute": false,
+          "clips": []
+        },
+        {
+          "id": "tr-cue",
+          "kind": "cue",
+          "name": "Regente",
+          "color": "#ffd246",
+          "output": "fone",
+          "volume": 1,
+          "mute": false,
+          "clips": [
+            {
+              "start": 0,
+              "length": 1,
+              "content": "sem bateria",
+              "partIndex": 0,
+              "source": "block-note"
+            }
+          ]
+        }
+      ]
+    },
+    "id": 15,
+    "num": "15"
+  }
+]

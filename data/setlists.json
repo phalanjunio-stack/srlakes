@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "name": "Show — Bar Sessions",
+    "date": "2026-05-25",
+    "songs": [
+      1,
+      2,
+      4,
+      3,
+      5,
+      8
+    ],
+    "duration": "24:00",
+    "active": true
+  },
+  {
+    "id": 2,
+    "name": "Ensaio — Quinta",
+    "date": "2026-05-22",
+    "songs": [
+      4,
+      2,
+      5,
+      6,
+      7
+    ],
+    "duration": "19:30",
+    "active": false
+  },
+  {
+    "id": 3,
+    "name": "Casamento Lucas & Ana",
+    "date": "2026-06-14",
+    "songs": [
+      6,
+      1,
+      7,
+      2
+    ],
+    "duration": "15:45",
+    "active": false
+  },
+  {
+    "id": 4,
+    "name": "Acústico — Café Norte",
+    "date": "2026-06-28",
+    "songs": [
+      1,
+      6,
+      3
+    ],
+    "duration": "12:15",
+    "active": false
+  }
+]

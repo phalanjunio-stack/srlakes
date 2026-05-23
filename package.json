@@ -1,0 +1,48 @@
+{
+  "name": "sr-lakes-stage-sync",
+  "version": "1.0.0",
+  "description": "Stage Sync para banda — sincroniza repertório, letra, cifras e metrônomo entre celulares",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "server": "node server.js",
+    "dev": "node server.js",
+    "fetch-fonts": "node scripts/fetch-fonts.js",
+    "fix-encoding": "node scripts/fix-encoding.js",
+    "pack": "node scripts/pack-portable.js",
+    "build": "electron-builder",
+    "dist": "electron-builder --win --x64"
+  },
+  "dependencies": {
+    "express": "^4.21.0",
+    "socket.io": "^4.8.0",
+    "qrcode": "^1.5.4",
+    "bonjour-service": "^1.2.1"
+  },
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "electron-builder": "^25.0.5"
+  },
+  "build": {
+    "appId": "com.srlakes.stagesync",
+    "productName": "Sr Lakes Stage Sync",
+    "files": [
+      "main.js",
+      "server.js",
+      "index.html",
+      "manifest.webmanifest",
+      "sw.js",
+      "icon.svg",
+      "icon.png",
+      "data/**"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  }
+}

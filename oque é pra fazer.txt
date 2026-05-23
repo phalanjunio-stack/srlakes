@@ -1,0 +1,537 @@
+/* ============================================================
+   TIMELINE — multi-track DAW-light pra cifra, letra, click, cue, áudio
+   ============================================================ */
+const tl = {
+  // Estado
+  data: null,                 // { bars, bpm, sig, tracks }
+  barW: 80,                   // pixels por compasso
+  snap: true,                 // snap aos compassos
+  playing: false,
+  playStartTime: 0,           // performance.now() quando começou
+  playStartPos: 0,            // posição em bars onde começou
+  raf: null,
+  selectedClip: null,
+  recState: null,             // { recorder, chunks, trackId, startBar }
+  audioElements: new Map(),   // clipKey -> HTMLAudioElement
+
+  /* Gera timeline inicial a partir dos blocos do editor */
+  fromBlocks(blocks, bpm, sig){
+    const beatsPerBar = parseInt((sig||'4/4').split('/')[0]) || 4;
+    const chordTrack = { id:'tr-chord', kind:'chord', name:'Cifras', color:'#ff8a1c', output:'pa', volume:0.8, mute:false, clips:[] };
+    const lyricTrack = { id:'tr-lyric', kind:'lyric', name:'Letra', color:'#4aa8ff', output:'both', volume:0.8, mute:false, clips:[] };
+    const clickTrack = { id:'tr-click', kind:'click', name:'Click', color:'#3dff8a', output:'fone', volume:0.7, mute:false, clips:[] };
+    const cueTrack   = { id:'tr-cue',   kind:'cue',   name:'Regente', color:'#ffd246', output:'fone', volume:1.0, mute:false, clips:[] };
+    const audioTrack = { id:'tr-audio', kind:'audio', name:'Violão Ref.', color:'#a96bff', output:'fone', volume:0.6, mute:false, clips:[] };
+
+    let cursor = 0;
+    (blocks||[]).forEach(b => {
+      const partLen = b.bars * b.reps;
+      // Cifras: distribuir acordes ao longo do bloco (1 acorde por compasso, ciclando)
+      if(b.chords && b.chords.length && b.chords[0] !== '—'){
+        for(let i=0; i<partLen; i++){
+          const ch = b.chords[i % b.chords.length];
+          chordTrack.clips.push({ start: cursor + i, length: 1, content: ch });
+        }
+      }
+      // Letra: por repetição (cada repetição reusa a letra inteira)
+      if(b.lyrics && b.lyrics.trim()){
+        for(let r=0; r<b.reps; r++){
+          lyricTrack.clips.push({
+            start: cursor + r*b.bars,
+            length: b.bars,
+            content: b.lyrics.replace(/\n/g,' / ')
+          });
+        }
+      }
+      // Cue automática no início do bloco se houver "note"
+      if(b.note && b.note.trim()){
+        cueTrack.clips.push({ start: cursor, length: 0.5, content: '★ '+b.note });
+      }
+      cursor += partLen;
+    });
+
+    // Click: 1 clip cobrindo tudo
+    clickTrack.clips.push({ start: 0, length: cursor, content: `${bpm} BPM · ${sig}` });
+
+    return {
+      bars: Math.max(cursor, 16),
+      bpm: bpm || 120,
+      sig: sig || '4/4',
+      tracks: [clickTrack, chordTrack, lyricTrack, audioTrack, cueTrack]
+    };
+  },
+
+  init(){
+    if(!this.data) this.data = this.fromBlocks(editor.blocks, editor.bpm, editor.sig);
+    this.render();
+  },
+
+  regenerateFromBlocks(){
+    if(!confirm('Regerar timeline a partir dos blocos? Vai perder ajustes manuais (mas mantém áudios gravados).')) return;
+    const oldAudio = this.data?.tracks.find(t=>t.kind==='audio');
+    this.data = this.fromBlocks(editor.blocks, editor.bpm, editor.sig);
+    if(oldAudio){
+      const newAudio = this.data.tracks.find(t=>t.kind==='audio');
+      if(newAudio && oldAudio.clips.length) newAudio.clips = oldAudio.clips;
+    }
+    this.render();
+    toast('Timeline regerada');
+  },
+
+  /* ============== RENDER ============== */
+  render(){
+    if(!this.data) return;
+    const grid = $('tlGrid');
+    // remove tudo exceto rulerCell + ruler
+    [...grid.children].forEach(c => {
+      if(!c.classList.contains('tl-ruler-cell') && !c.classList.contains('tl-ruler')) c.remove();
+    });
+    // Atualiza CSS var pra background grid
+    document.documentElement.style.setProperty('--bar-w', this.barW + 'px');
+    grid.style.minWidth = (200 + this.data.bars * this.barW) + 'px';
+
+    this.renderRuler();
+    this.data.tracks.forEach(t => this.renderTrack(t, grid));
+    this.updateZoomInfo();
+  },
+
+  renderRuler(){
+    const r = $('tlRuler');
+    r.style.width = (this.data.bars * this.barW) + 'px';
+    let html = '';
+    for(let i=0; i<this.data.bars; i++){
+      const major = i % 4 === 0;
+      html += `<div class="bar ${major?'major':''}" style="left:${i*this.barW}px;width:${this.barW}px">${major?(i+1):''}</div>`;
+    }
+    r.innerHTML = html;
+  },
+
+  renderTrack(track, grid){
+    const head = document.createElement('div');
+    head.className = 'tl-track-head';
+    head.innerHTML = `
+      <div class="name"><span class="swatch" style="background:${track.color}"></span>${track.name}</div>
+      <div class="controls">
+        <button class="ctl-btn mute ${track.mute?'on':''}" onclick="tl.toggleMute('${track.id}')" title="Mute">M</button>
+        <button class="ctl-btn solo ${track.solo?'on':''}" onclick="tl.toggleSolo('${track.id}')" title="Solo">S</button>
+        ${track.kind!=='click' ? `<button class="ctl-btn" onclick="tl.deleteTrack('${track.id}')" title="Remover" style="color:var(--text-3)">×</button>` : ''}
+      </div>
+      <select class="routing ${track.output}" onchange="tl.setOutput('${track.id}',this.value)">
+        <option value="pa" ${track.output==='pa'?'selected':''}>🔊 PA</option>
+        <option value="fone" ${track.output==='fone'?'selected':''}>🎧 Fone</option>
+        <option value="both" ${track.output==='both'?'selected':''}>📢 Ambos</option>
+        <option value="off" ${track.output==='off'?'selected':''}>✕ Off</option>
+      </select>
+      <div class="vol">VOL <input type="range" min="0" max="100" value="${track.volume*100}" oninput="tl.setVolume('${track.id}',this.value/100)"></div>
+    `;
+    grid.appendChild(head);
+
+    const lane = document.createElement('div');
+    lane.className = `tl-lane ${track.kind} ${track.mute?'muted':''}`;
+    lane.style.width = (this.data.bars * this.barW) + 'px';
+    lane.dataset.trackId = track.id;
+    lane.addEventListener('dblclick', e => this.onLaneDblClick(e, track));
+    grid.appendChild(lane);
+
+    track.clips.forEach((clip, ci) => {
+      const el = document.createElement('div');
+      el.className = `tl-clip ${track.kind}`;
+      el.style.left = (clip.start * this.barW) + 'px';
+      el.style.width = Math.max(8, clip.length * this.barW) + 'px';
+      el.dataset.trackId = track.id;
+      el.dataset.clipIndex = ci;
+      el.innerHTML = `
+        <div class="grip-l"></div>
+        <span class="label">${this.clipLabel(track.kind, clip)}</span>
+        ${track.kind==='chord' && clip.length>=2 ? `<span class="badge">${clip.length}b</span>` : ''}
+        <div class="grip-r"></div>
+      `;
+      if(track.kind==='audio' && clip.audio){
+        el.innerHTML = `
+          <div class="grip-l"></div>
+          <div class="wave">${this.waveformHtml(clip.audio.waveform, Math.max(8, clip.length*this.barW)-16)}</div>
+          <div class="name">${clip.audio.label || '🎙 Gravação'}</div>
+          <div class="grip-r"></div>
+        `;
+      }
+      this.bindClipDrag(el, track, ci);
+      lane.appendChild(el);
+    });
+  },
+
+  clipLabel(kind, clip){
+    if(kind==='audio') return clip.audio?.label || '🎙';
+    return clip.content || '';
+  },
+
+  waveformHtml(data, width){
+    if(!data || !data.length) return '';
+    const cols = Math.max(20, Math.floor(width/3));
+    let html = '';
+    for(let i=0; i<cols; i++){
+      const v = data[Math.floor(i * data.length / cols)] || 0;
+      html += `<span style="height:${Math.max(2, v*60)}%"></span>`;
+    }
+    return html;
+  },
+
+  updateZoomInfo(){
+    $('tlZoomInfo').textContent = Math.round(this.barW) + 'px/bar';
+    const snapBtn = $('tlSnapBtn');
+    if(snapBtn) snapBtn.style.color = this.snap ? 'var(--green)' : 'var(--text-3)';
+  },
+
+  /* ============== INTERAÇÕES ============== */
+  zoom(factor){
+    this.barW = Math.max(20, Math.min(300, this.barW * factor));
+    this.render();
+  },
+  snapToggle(){ this.snap = !this.snap; this.updateZoomInfo(); },
+
+  toggleMute(id){
+    const t = this.data.tracks.find(x=>x.id===id); if(!t) return;
+    t.mute = !t.mute; this.render();
+  },
+  toggleSolo(id){
+    const t = this.data.tracks.find(x=>x.id===id); if(!t) return;
+    t.solo = !t.solo; this.render();
+  },
+  setOutput(id, val){
+    const t = this.data.tracks.find(x=>x.id===id); if(!t) return;
+    t.output = val; markDirty();
+    this.render();
+  },
+  setVolume(id, v){
+    const t = this.data.tracks.find(x=>x.id===id); if(!t) return;
+    t.volume = v;
+    // Aplica em audio elements ativos
+    this.audioElements.forEach((audio, key) => {
+      if(key.startsWith(id+':')) audio.volume = v;
+    });
+  },
+  deleteTrack(id){
+    if(!confirm('Remover este track?')) return;
+    this.data.tracks = this.data.tracks.filter(t=>t.id!==id);
+    markDirty(); this.render();
+  },
+
+  addTrack(){
+    const kind = prompt('Tipo do track? (cue / audio / chord / lyric)', 'cue');
+    if(!kind) return;
+    const colors = { cue:'#ffd246', audio:'#a96bff', chord:'#ff8a1c', lyric:'#4aa8ff' };
+    const names = { cue:'Regente 2', audio:'Áudio extra', chord:'Cifras alt.', lyric:'Letra alt.' };
+    if(!colors[kind]) return toast('Tipo inválido','error');
+    this.data.tracks.push({
+      id:'tr-'+Date.now(),
+      kind, name: names[kind], color: colors[kind],
+      output: kind==='cue'?'fone':'both', volume: 0.7, mute:false, clips:[]
+    });
+    markDirty(); this.render();
+  },
+
+  /* Adicionar clip clicando duas vezes na lane */
+  onLaneDblClick(e, track){
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    let bar = x / this.barW;
+    if(this.snap) bar = Math.round(bar);
+    if(track.kind==='chord'){
+      const ch = prompt('Acorde:', 'A'); if(!ch) return;
+      track.clips.push({ start: bar, length: 1, content: ch });
+    } else if(track.kind==='lyric'){
+      const txt = prompt('Letra:', ''); if(!txt) return;
+      track.clips.push({ start: bar, length: 2, content: txt });
+    } else if(track.kind==='cue'){
+      const txt = prompt('Anotação do regente:', ''); if(!txt) return;
+      track.clips.push({ start: bar, length: 0.5, content: '★ '+txt });
+    } else if(track.kind==='audio'){
+      toast('Use o botão Gravar pra capturar áudio');
+      return;
+    }
+    markDirty(); this.render();
+  },
+
+  /* Cue pelo botão da toolbar */
+  addCuePrompt(){
+    $('tlCueRow').style.display = 'flex';
+    $('tlCueInput').value = '';
+    $('tlCueInput').focus();
+  },
+  addCueConfirm(){
+    const text = $('tlCueInput').value.trim();
+    if(!text){ $('tlCueRow').style.display='none'; return; }
+    let cueTrack = this.data.tracks.find(t=>t.kind==='cue');
+    if(!cueTrack){
+      cueTrack = { id:'tr-cue', kind:'cue', name:'Regente', color:'#ffd246', output:'fone', volume:1, mute:false, clips:[] };
+      this.data.tracks.push(cueTrack);
+    }
+    const pos = this.currentPosBars();
+    cueTrack.clips.push({ start: pos, length: 0.5, content: '★ '+text });
+    $('tlCueRow').style.display = 'none';
+    markDirty(); this.render();
+  },
+
+  /* ============== DRAG / RESIZE ============== */
+  bindClipDrag(el, track, ci){
+    el.addEventListener('mousedown', e => {
+      const isLeft = e.target.classList.contains('grip-l');
+      const isRight = e.target.classList.contains('grip-r');
+      const clip = track.clips[ci];
+      const startX = e.clientX;
+      const orig = { start: clip.start, length: clip.length };
+      el.classList.add('dragging');
+      this.selectedClip = { trackId: track.id, ci };
+      document.querySelectorAll('.tl-clip.selected').forEach(x=>x.classList.remove('selected'));
+      el.classList.add('selected');
+
+      const onMove = ev => {
+        const dx = (ev.clientX - startX) / this.barW;
+        if(isLeft){
+          let ns = orig.start + dx;
+          let nl = orig.length - dx;
+          if(this.snap){ ns = Math.round(ns); nl = orig.start + orig.length - ns; }
+          if(nl >= 0.25){ clip.start = Math.max(0, ns); clip.length = nl; }
+        } else if(isRight){
+          let nl = orig.length + dx;
+          if(this.snap) nl = Math.max(0.25, Math.round(nl));
+          clip.length = Math.max(0.25, nl);
+        } else {
+          let ns = orig.start + dx;
+          if(this.snap) ns = Math.round(ns);
+          clip.start = Math.max(0, ns);
+        }
+        el.style.left = (clip.start * this.barW) + 'px';
+        el.style.width = Math.max(8, clip.length * this.barW) + 'px';
+      };
+      const onUp = () => {
+        el.classList.remove('dragging');
+        document.removeEventListener('mousemove', onMove);
+        document.removeEventListener('mouseup', onUp);
+        markDirty();
+      };
+      document.addEventListener('mousemove', onMove);
+      document.addEventListener('mouseup', onUp);
+      e.preventDefault();
+    });
+    el.addEventListener('contextmenu', e => {
+      e.preventDefault();
+      if(confirm('Excluir este clip?')){
+        track.clips.splice(ci,1); markDirty(); this.render();
+      }
+    });
+  },
+
+  /* ============== PLAYBACK ============== */
+  currentPosBars(){
+    if(!this.playing) return this.playStartPos;
+    const elapsed = (performance.now() - this.playStartTime) / 1000;
+    const beatsPerSec = this.data.bpm / 60;
+    const beatsPerBar = parseInt(this.data.sig.split('/')[0]) || 4;
+    return this.playStartPos + (elapsed * beatsPerSec) / beatsPerBar;
+  },
+
+  play(){
+    if(this.playing) return this.pause();
+    audio.ensure();
+    this.playing = true;
+    this.playStartTime = performance.now();
+    $('tlPlayBtn').innerHTML = '<svg class="ico" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>Pause';
+    $('tlPlayhead').style.display = 'block';
+    requestWakeLock();
+    this.tick();
+
+    // Inicia áudios que devem tocar
+    this.scheduleAudios();
+  },
+
+  pause(){
+    if(!this.playing) return;
+    this.playStartPos = this.currentPosBars();
+    this.playing = false;
+    cancelAnimationFrame(this.raf); this.raf = null;
+    $('tlPlayBtn').innerHTML = '<svg class="ico" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20"/></svg>Play';
+    this.audioElements.forEach(a => a.pause());
+    releaseWakeLock();
+  },
+
+  stop(){ this.pause(); this.playStartPos = 0; this.updatePlayhead(); this.updateLive(0); },
+  rewind(){ this.playStartPos = 0; if(this.playing){ this.playStartTime = performance.now(); } this.updatePlayhead(); this.updateLive(0); },
+
+  tick(){
+    if(!this.playing) return;
+    const pos = this.currentPosBars();
+    if(pos >= this.data.bars){ this.stop(); return; }
+    this.updatePlayhead(pos);
+    this.updateLive(pos);
+
+    // Click sintético no início de cada compasso
+    if(!this._lastClickBar) this._lastClickBar = Math.floor(pos)-1;
+    const currentBar = Math.floor(pos);
+    if(currentBar > this._lastClickBar){
+      const clickTrack = this.data.tracks.find(t=>t.kind==='click');
+      const audioOut = this.outputAllowed(clickTrack);
+      if(clickTrack && !clickTrack.mute && audioOut){
+        for(let b=this._lastClickBar+1; b<=currentBar; b++){
+          // ticks por compasso
+          const sig = parseInt(this.data.sig.split('/')[0]) || 4;
+          for(let i=0; i<sig; i++) setTimeout(()=>audio.click(i===0), i * (60000/this.data.bpm));
+        }
+      }
+      this._lastClickBar = currentBar;
+    }
+
+    this.raf = requestAnimationFrame(() => this.tick());
+  },
+
+  updatePlayhead(posOverride){
+    const pos = posOverride!=null ? posOverride : this.currentPosBars();
+    const px = 200 + pos * this.barW; // 200 = track head column
+    const ph = $('tlPlayhead');
+    if(ph){ ph.style.left = px + 'px'; ph.style.height = $('tlGrid').offsetHeight + 'px'; }
+    // Posição em formato bar.beat
+    const sig = parseInt(this.data.sig.split('/')[0]) || 4;
+    const bar = Math.floor(pos) + 1;
+    const beat = Math.floor((pos - Math.floor(pos)) * sig) + 1;
+    const sec = (pos * sig * 60) / this.data.bpm;
+    const mm = String(Math.floor(sec/60)).padStart(2,'0'), ss = String(Math.floor(sec)%60).padStart(2,'0');
+    $('tlPos').textContent = `${mm}:${ss} · ${bar}.${beat}`;
+
+    // Auto-scroll
+    const scroll = $('tlScroll');
+    if(scroll && this.playing){
+      const playheadAbs = px;
+      const viewLeft = scroll.scrollLeft;
+      const viewRight = viewLeft + scroll.clientWidth;
+      if(playheadAbs > viewRight - 120) scroll.scrollLeft = playheadAbs - scroll.clientWidth + 200;
+      if(playheadAbs < viewLeft + 100) scroll.scrollLeft = Math.max(0, playheadAbs - 200);
+    }
+  },
+
+  updateLive(pos){
+    // Marca clip ativo em cada track
+    document.querySelectorAll('.tl-clip').forEach(el=>el.classList.remove('active'));
+    this.data.tracks.forEach(t => {
+      t.clips.forEach((c, ci) => {
+        if(c.start <= pos && pos < c.start + c.length){
+          const sel = `.tl-lane[data-track-id="${t.id}"] .tl-clip[data-clip-index="${ci}"]`;
+          const el = document.querySelector(sel);
+          if(el) el.classList.add('active');
+        }
+      });
+    });
+  },
+
+  outputAllowed(track){
+    if(!track || track.mute) return false;
+    if(track.output === 'off') return false;
+    // Solo: se tem algum solo, só toca quem está em solo
+    const anySolo = this.data.tracks.some(t=>t.solo);
+    if(anySolo && !track.solo) return false;
+    return true;
+  },
+
+  scheduleAudios(){
+    const audioTracks = this.data.tracks.filter(t=>t.kind==='audio');
+    audioTracks.forEach(track => {
+      if(!this.outputAllowed(track)) return;
+      track.clips.forEach((clip, ci) => {
+        if(!clip.audio?.url) return;
+        const key = `${track.id}:${ci}`;
+        let el = this.audioElements.get(key);
+        if(!el){
+          el = new Audio(clip.audio.url);
+          el.volume = track.volume;
+          this.audioElements.set(key, el);
+        }
+        const startSec = (clip.start * (parseInt(this.data.sig.split('/')[0])||4) * 60) / this.data.bpm;
+        const curPosSec = (this.currentPosBars() * (parseInt(this.data.sig.split('/')[0])||4) * 60) / this.data.bpm;
+        const offset = curPosSec - startSec;
+        if(offset >= 0 && offset < (clip.audio.duration||clip.length*2)){
+          el.currentTime = offset;
+          el.play().catch(()=>{});
+          this.routeAudioElement(el, track.output);
+        }
+      });
+    });
+  },
+
+  async routeAudioElement(el, output){
+    // Usa setSinkId pra rotear pra placa de saída quando configurado
+    const sinkId = output==='pa' ? localStorage.getItem('paSinkId') :
+                   output==='fone' ? localStorage.getItem('foneSinkId') : null;
+    if(sinkId && el.setSinkId){
+      try{ await el.setSinkId(sinkId); }catch(e){ console.warn('setSinkId falhou', e.message); }
+    }
+  },
+
+  /* ============== GRAVAÇÃO ============== */
+  async recordToggle(){
+    if(this.recState){ return this.recordStop(); }
+    let audioTrack = this.data.tracks.find(t=>t.kind==='audio');
+    if(!audioTrack){
+      audioTrack = { id:'tr-audio', kind:'audio', name:'Áudio', color:'#a96bff', output:'fone', volume:0.8, mute:false, clips:[] };
+      this.data.tracks.push(audioTrack);
+      this.render();
+    }
+    let stream;
+    try{ stream = await navigator.mediaDevices.getUserMedia({ audio:true }); }
+    catch(e){ toast('Microfone negado','error'); return; }
+
+    const recorder = new MediaRecorder(stream, { mimeType: MediaRecorder.isTypeSupported('audio/webm') ? 'audio/webm' : '' });
+    const chunks = [];
+    const startBar = this.currentPosBars();
+    const t0 = performance.now();
+
+    // Analyser pra waveform
+    const ctx = new (window.AudioContext||window.webkitAudioContext)();
+    const src = ctx.createMediaStreamSource(stream);
+    const ana = ctx.createAnalyser(); ana.fftSize = 256;
+    src.connect(ana);
+    const buf = new Uint8Array(ana.frequencyBinCount);
+    const samples = [];
+    const sampler = setInterval(()=>{
+      ana.getByteFrequencyData(buf);
+      const v = buf.reduce((a,b)=>a+b,0) / buf.length / 255;
+      samples.push(Math.min(1, v*1.8));
+    }, 80);
+
+    recorder.ondataavailable = e => e.data && chunks.push(e.data);
+    recorder.onstop = () => {
+      clearInterval(sampler);
+      const blob = new Blob(chunks, { type: 'audio/webm' });
+      const url = URL.createObjectURL(blob);
+      const dur = (performance.now() - t0) / 1000;
+      const bars = (dur * this.data.bpm) / ((parseInt(this.data.sig.split('/')[0])||4) * 60);
+      audioTrack.clips.push({
+        start: startBar, length: bars,
+        audio: { url, duration: dur, label:'🎙 '+new Date().toLocaleTimeString().slice(0,5), waveform: samples }
+      });
+      ctx.close(); stream.getTracks().forEach(t=>t.stop());
+      this.recState = null;
+      $('tlRecBtn').classList.remove('on');
+      $('tlRecBtn').innerHTML = '<svg class="ico" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="6"/></svg>Gravar';
+      markDirty(); this.render();
+      toast('Gravação capturada');
+    };
+
+    recorder.start();
+    this.recState = { recorder, chunks, trackId: audioTrack.id };
+    $('tlRecBtn').classList.add('on');
+    $('tlRecBtn').innerHTML = '<svg class="ico" viewBox="0 0 24 24" fill="currentColor"><rect x="8" y="8" width="8" height="8"/></svg>Parar';
+
+    // Inicia playback junto pra captar no tempo certo (opcional)
+    if(!this.playing) this.play();
+  },
+  recordStop(){
+    if(!this.recState) return;
+    try{ this.recState.recorder.stop(); }catch(e){}
+  }
+};
+
+/* ============================================================
+   MODO DE CRIAÇÃO
+   ============================================================ */
+
+
+
+no editor criar uma time line, onde eu ajeito onde deve ser cada nota, o tempo pra cada nota entrar. pq o metrono marca e muda a nota, mas é melhor ter uma time line, que crio o plano de nota, da letra. na time line posso colocar regente, ate uma gravação de violão, a placa reconhece o que é  o vs, e o qe vai pro fone
