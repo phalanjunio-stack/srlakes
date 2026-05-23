@@ -4278,12 +4278,13 @@ body{
 /* ===== Live screen mockup look ===== */
 .screen[data-screen="live"] .m-stage,
 .screen[data-screen="live"] .m-content{font-family:var(--m-fm)}
-.screen[data-screen="live"]{
+.screen[data-screen="live"].on{
   padding:0!important;
   gap:0!important;
   display:flex!important;
   flex-direction:column!important;
 }
+.screen[data-screen="live"]:not(.on){display:none!important}
 .screen[data-screen="live"] .m-topbar{
   height:82px;
   display:grid;
