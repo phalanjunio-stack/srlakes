@@ -5292,105 +5292,23 @@ body{
     linear-gradient(160deg,#15110d 0%,#1a1612 50%,#0f0c08 100%) !important;
 }
 
-/* ============== SPLASH PEQUENO (CARD CENTRALIZADO 30%) ============== */
+/* ============== SPLASH — USA splash-preview.png inteira (a arte ja tem tudo) ============== */
 .splash{
   position:fixed!important;inset:0!important;z-index:9999!important;
-  display:grid!important;place-items:center!important;
-  background:rgba(15,12,8,.88)!important;
-  backdrop-filter:blur(8px)!important;
+  display:block!important;
+  background:#0a0805 url('/assets/splash-preview.png') center center / cover no-repeat!important;
   padding:0!important;
   grid-template-rows:none!important;
 }
 .splash::before,.splash::after{display:none!important}
 
-/* Esconde decoracoes antigas do splash */
+/* Esconde TODOS os overlays HTML - a arte ja tem texto+barra+tiles desenhados */
 .splash-photo,.splash-tint,.splash-vignette,.splash-letterbox,
-.splash-top,.splash-nav{display:none!important}
+.splash-top,.splash-main,.splash-nav,
+.splash-kicker,.splash-copy,.splash-progress,.splash-logo{display:none!important}
 
-.splash-main{
-  position:relative!important;
-  width:min(520px,90vw)!important;height:auto!important;
-  padding:0!important;margin:0!important;background:transparent!important;
-  align-self:center!important;justify-self:center!important;
-  display:flex!important;flex-direction:column!important;
-  border-radius:14px!important;overflow:hidden!important;
-  border:1px solid rgba(200,153,84,.4)!important;
-  box-shadow:
-    0 30px 90px rgba(0,0,0,.7),
-    0 0 0 1px rgba(0,0,0,.6),
-    inset 0 1px 0 rgba(244,241,236,.08)!important;
-}
-
-/* Foto da banda no topo do card */
-.splash-main::before{
-  content:""!important;display:block!important;
-  height:240px!important;width:100%!important;
-  background:
-    linear-gradient(180deg,transparent 50%,rgba(21,17,13,.96) 100%),
-    url('/assets/banda.webp') center 30% / cover no-repeat,
-    var(--leather)!important;
-  position:relative!important;z-index:1!important;
-}
-
-/* Kicker com gradient brass + sage (igual a logo) */
-.splash-kicker{
-  display:flex!important;justify-content:center!important;align-items:baseline!important;
-  gap:10px!important;
-  font-family:'Bebas Neue',Impact,sans-serif!important;
-  font-size:22px!important;letter-spacing:.32em!important;font-weight:900!important;
-  text-transform:uppercase!important;
-  padding:18px 24px 4px!important;background:var(--leather)!important;
-  margin:0!important;
-}
-.splash-kicker .k-gold,
-.splash-kicker > span:first-child{
-  color:var(--brass-hi)!important;
-  text-shadow:0 0 18px rgba(200,153,84,.5),0 2px 4px rgba(0,0,0,.5)!important;
-}
-.splash-kicker .k-sage,
-.splash-kicker > span:last-child{
-  color:var(--sage-hi)!important;
-  text-shadow:0 0 18px rgba(168,196,190,.4),0 2px 4px rgba(0,0,0,.5)!important;
-}
-.splash-copy{
-  font-family:'Inter',sans-serif!important;font-style:italic!important;
-  font-size:13px!important;letter-spacing:.04em!important;
-  color:var(--cream-dim)!important;text-align:center!important;
-  padding:0 24px 18px!important;background:var(--leather)!important;
-  margin:0!important;text-transform:none!important;
-}
-
-/* Barra de progresso ABAIXO do texto, com gradient brass→sage e glow */
-.splash-progress{
-  display:flex!important;align-items:center!important;gap:12px!important;
-  padding:0 24px 22px!important;background:var(--leather)!important;
-  grid-template-columns:none!important;
-}
-.splash-wave{display:none!important}
-.splash-bar{
-  flex:1!important;height:8px!important;padding:0!important;
-  border-radius:99px!important;
-  border:1px solid rgba(200,153,84,.45)!important;
-  background:rgba(15,12,8,.7)!important;
-  overflow:hidden!important;
-  box-shadow:inset 0 1px 2px rgba(0,0,0,.6),0 0 0 1px rgba(244,241,236,.04)!important;
-}
-.splash-bar::before,.splash-bar::after{display:none!important}
-.splash-fill{
-  height:100%!important;border-radius:99px!important;
-  background:linear-gradient(90deg,var(--brass-deep) 0%,var(--brass) 35%,var(--brass-hi) 50%,var(--sage) 75%,var(--sage-hi) 100%)!important;
-  box-shadow:
-    0 0 18px rgba(226,184,120,.6),
-    0 0 38px rgba(168,196,190,.3),
-    inset 0 1px 0 rgba(255,255,255,.4)!important;
-  transition:width .25s ease!important;
-}
-.splash-pct{
-  color:var(--brass-hi)!important;
-  font-family:'JetBrains Mono','Consolas',monospace!important;
-  font-size:13px!important;font-weight:800!important;letter-spacing:.06em!important;
-  min-width:42px!important;text-align:right!important;
-}
+/* Barra de progresso REAL invisivel mas funcional - usa pra auto-dismiss */
+.splash-fill{position:fixed;left:-9999px;top:-9999px;width:0;height:0;visibility:hidden}
 
 /* ============== SIDEBAR — wood + leather + brass glow ============== */
 .sidebar{
@@ -5416,19 +5334,37 @@ body{
 .sidebar .brand-name{color:var(--cream)!important;text-shadow:0 2px 6px rgba(0,0,0,.8)!important}
 .sidebar .brand-sub{color:var(--brass-hi)!important}
 
-/* Mode toggle premium brass */
+/* Mode toggle premium brass (texto inativo legivel, dots alinhados) */
 .sidebar .mode-toggle{
-  border-color:rgba(200,153,84,.4)!important;
-  background:linear-gradient(180deg,rgba(15,12,8,.7),rgba(45,38,32,.5))!important;
+  border-color:rgba(200,153,84,.35)!important;
+  background:linear-gradient(180deg,rgba(15,12,8,.75),rgba(45,38,32,.55))!important;
+  padding:4px!important;
+}
+.sidebar .mode-toggle button{
+  color:#9b938a!important;       /* inativo: cinza claro legivel */
+  font-size:11px!important;
+  letter-spacing:1.6px!important;
+  gap:6px!important;
+}
+.sidebar .mode-toggle button .dot{
+  width:5px!important;height:5px!important;
+  background:currentColor!important;opacity:.6!important;
+  border-radius:50%!important;
 }
 .sidebar .mode-toggle button.on{
-  background:linear-gradient(180deg,var(--brass-hi),var(--brass-deep))!important;
+  background:linear-gradient(180deg,var(--brass-hi) 0%,var(--brass) 60%,var(--brass-deep) 100%)!important;
   color:#1a140c!important;
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,.55),
     inset 0 -1px 0 rgba(0,0,0,.3),
-    0 2px 10px rgba(200,153,84,.5)!important;
+    0 2px 10px rgba(200,153,84,.45)!important;
+  text-shadow:0 1px 0 rgba(255,255,255,.2)!important;
 }
+.sidebar .mode-toggle button.on .dot{
+  opacity:1!important;
+  box-shadow:0 0 6px rgba(255,255,255,.6)!important;
+}
+.sidebar .mode-toggle button:hover:not(.on){color:var(--cream-dim)!important}
 
 /* Nav items: hairline brass + serif italic feel */
 .sidebar .nav button{
@@ -5782,35 +5718,51 @@ body{
 .tl-clip.cue{background:linear-gradient(160deg,rgba(200,153,84,.32),rgba(140,98,32,.18))!important;border-color:var(--brass)!important;color:var(--cream)!important}
 .tl-clip.audio{background:linear-gradient(160deg,rgba(168,116,31,.2),rgba(140,98,32,.08))!important;border-color:rgba(168,116,31,.5)!important;color:var(--rust)!important}
 
-/* DRAG HANDLES 18px com ranhura visual */
+/* DRAG HANDLES BEM VISIVEIS - sempre aparecem com 2 linhas brancas */
 .tl-clip .grip-l,.tl-clip .grip-r{
-  width:14px!important;
+  position:absolute!important;top:0!important;bottom:0!important;
+  width:18px!important;
   background:transparent!important;
   border:0!important;
+  cursor:ew-resize!important;
+  z-index:5!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
 }
-.tl-clip .grip-l{
-  border-left:3px solid transparent!important;
-}
-.tl-clip .grip-r{
-  border-right:3px solid transparent!important;
-}
-.tl-clip:hover .grip-l,.tl-clip.selected .grip-l{
-  border-left-color:rgba(244,241,236,.6)!important;
-  background:linear-gradient(90deg,rgba(244,241,236,.15),transparent)!important;
-}
-.tl-clip:hover .grip-r,.tl-clip.selected .grip-r{
-  border-right-color:rgba(244,241,236,.6)!important;
-  background:linear-gradient(-90deg,rgba(244,241,236,.15),transparent)!important;
-}
+.tl-clip .grip-l{left:0!important}
+.tl-clip .grip-r{right:0!important}
+
+/* Linhas brancas verticais sempre visiveis (ranhura) */
 .tl-clip .grip-l::before,.tl-clip .grip-r::before{
-  content:""!important;position:absolute!important;top:30%!important;bottom:30%!important;width:2px!important;
-  background:rgba(244,241,236,.4)!important;border-radius:2px!important;
-  opacity:0!important;transition:opacity .12s!important;
+  content:""!important;position:absolute!important;top:30%!important;bottom:30%!important;width:3px!important;
+  background:rgba(244,241,236,.55)!important;border-radius:2px!important;
+  box-shadow:0 0 0 1px rgba(0,0,0,.4)!important;
+  pointer-events:none!important;
+  transition:all .12s!important;
 }
 .tl-clip .grip-l::before{left:5px!important}
 .tl-clip .grip-r::before{right:5px!important}
+
+/* Segunda linha pra parecer alça de DAW (2 ranhuras lado a lado) */
+.tl-clip .grip-l::after,.tl-clip .grip-r::after{
+  content:""!important;position:absolute!important;top:30%!important;bottom:30%!important;width:3px!important;
+  background:rgba(244,241,236,.35)!important;border-radius:2px!important;
+  pointer-events:none!important;transition:all .12s!important;
+}
+.tl-clip .grip-l::after{left:11px!important}
+.tl-clip .grip-r::after{right:11px!important}
+
 .tl-clip:hover .grip-l::before,.tl-clip:hover .grip-r::before,
-.tl-clip.selected .grip-l::before,.tl-clip.selected .grip-r::before{opacity:1!important}
+.tl-clip.selected .grip-l::before,.tl-clip.selected .grip-r::before{
+  background:var(--brass-hi)!important;
+  box-shadow:0 0 8px rgba(226,184,120,.7),0 0 0 1px rgba(0,0,0,.5)!important;
+  top:18%!important;bottom:18%!important;
+}
+.tl-clip:hover .grip-l::after,.tl-clip:hover .grip-r::after,
+.tl-clip.selected .grip-l::after,.tl-clip.selected .grip-r::after{
+  background:var(--brass)!important;top:18%!important;bottom:18%!important;
+}
+.tl-clip{cursor:grab!important}
+.tl-clip:active{cursor:grabbing!important}
 
 .tl-clip.selected{outline:2px solid var(--brass-hi)!important;box-shadow:0 0 20px rgba(200,153,84,.45)!important}
 
@@ -6358,12 +6310,12 @@ body{
               <button onclick="tl.zoom(1.25)"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
               <select id="tlSnapSel" onchange="tl.setSnap(this.value)" title="Quantização do snap"
                 style="height:30px;padding:0 8px;border-radius:9px;border:1px solid var(--border);background:rgba(0,0,0,.3);color:var(--green);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-family:inherit;cursor:pointer;outline:none">
+                <option value="0" selected>Snap: Off (livre)</option>
                 <option value="1">Snap: Compasso</option>
                 <option value="0.5">Snap: Meio</option>
-                <option value="0.25" selected>Snap: Tempo (1/4)</option>
+                <option value="0.25">Snap: Tempo (1/4)</option>
                 <option value="0.125">Snap: 1/8</option>
                 <option value="0.0625">Snap: 1/16</option>
-                <option value="0">Snap: Off</option>
               </select>
             </div>
             <div class="group">
@@ -7618,7 +7570,7 @@ const tl = {
   // Estado
   data: null,                 // { bars, bpm, sig, tracks }
   barW: 80,                   // pixels por compasso
-  snapValue: 0.25,            // 1=bar, 0.5=half, 0.25=beat(1/4), 0.125=1/8, 0.0625=1/16, 0=off
+  snapValue: 0,            // padrao OFF - resize livre. 1=bar, 0.5=half, 0.25=beat(1/4), 0.125=1/8, 0.0625=1/16, 0=off
   playing: false,
   playStartTime: 0,           // performance.now() quando começou
   playStartPos: 0,            // posição em bars onde começou
