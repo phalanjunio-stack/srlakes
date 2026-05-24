@@ -4693,7 +4693,8 @@ body{
 /* ===== Compactacao geral: prioriza caber tudo no viewport ===== */
 .screen[data-screen="live"] .m-section-name h2{font-size:42px!important;margin:2px 0 0!important;line-height:.95!important}
 .screen[data-screen="live"] .m-chords > .chord,
-.screen[data-screen="live"] .m-chords > .m-chord{height:74px!important;font-size:36px!important;border-radius:10px!important}
+.screen[data-screen="live"] .m-chords > .m-chord{height:74px!important;max-height:74px!important;min-height:74px!important;font-size:36px!important;border-radius:10px!important;align-self:start!important}
+.screen[data-screen="live"] .m-chords{align-items:start!important;grid-auto-rows:74px!important}
 .screen[data-screen="live"] .m-chords > .chord small{font-size:9px!important;top:4px!important;left:6px!important}
 .screen[data-screen="live"] .m-chords > .chord:not(:last-child)::after{font-size:30px!important;top:14px!important;right:-14px!important}
 .screen[data-screen="live"] .m-chords{gap:14px!important;margin-top:2px!important}
