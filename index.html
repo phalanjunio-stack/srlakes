@@ -4856,6 +4856,46 @@ body{
   }
 }
 
+/* ===== Setlist e Ajustes do receptor (escondidos por padrao) ===== */
+.rx-setlist,.rx-ajustes{display:none}
+body.mode-rx[data-rxtab="setlist"] .rx-setlist{display:flex!important;flex-direction:column;gap:8px;padding:8px 0 80px;flex:1;overflow-y:auto}
+body.mode-rx[data-rxtab="setlist"] .m-phone-section{display:none!important}
+body.mode-rx[data-rxtab="setlist"] .m-phone-song{padding:14px 0!important;border:0!important}
+body.mode-rx[data-rxtab="setlist"] .m-phone-song small::after{content:" - Partes da musica";color:var(--m-gold-2,#f0bd4e)}
+
+.rx-set-row{
+  display:flex;align-items:center;gap:12px;padding:14px 16px;
+  border:1px solid rgba(255,255,255,.08);border-radius:10px;
+  background:rgba(255,255,255,.02);color:var(--m-text,#f3f0e9);
+  font-family:var(--m-fc);font-size:18px;cursor:pointer;
+  transition:.16s;text-align:left;
+}
+.rx-set-row:hover{background:rgba(216,154,36,.08);border-color:rgba(216,154,36,.3)}
+.rx-set-row.active{background:linear-gradient(180deg,rgba(240,189,78,.25),rgba(216,154,36,.08));border-color:#f0bd4e;color:var(--m-gold-2,#f0bd4e)}
+.rx-set-row .ix{font-family:'JetBrains Mono';font-size:13px;color:var(--m-mint,#80d4bc);min-width:28px}
+.rx-set-row .nm{flex:1}
+.rx-set-row .ch{font-size:11px;color:rgba(255,255,255,.5);font-family:'JetBrains Mono'}
+.rx-set-row .jump{font-size:10px;letter-spacing:.16em;color:var(--m-gold-2,#f0bd4e);padding:4px 8px;border:1px solid rgba(216,154,36,.4);border-radius:6px;background:transparent;cursor:pointer}
+
+body.mode-rx[data-rxtab="ajustes"] .rx-ajustes{display:flex!important;flex-direction:column;gap:10px;padding:18px 0 80px;flex:1}
+body.mode-rx[data-rxtab="ajustes"] .m-phone-section{display:none!important}
+body.mode-rx[data-rxtab="ajustes"] .m-phone-song small::after{content:" - Ajustes"}
+.rx-ajuste-row{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 18px;border:1px solid rgba(255,255,255,.08);border-radius:10px;
+  background:rgba(255,255,255,.02);color:var(--m-text,#f3f0e9);
+  font-family:var(--m-fc);font-size:18px;cursor:pointer;width:100%;text-align:left;
+}
+.rx-ajuste-row:hover{background:rgba(255,255,255,.04)}
+.rx-ajuste-row b{color:var(--m-gold-2,#f0bd4e);font-family:'JetBrains Mono';font-size:14px;text-transform:uppercase}
+
+/* Override CSS antigo das cifras tab que usava content trick */
+body.mode-rx[data-rxtab="cifras"] .m-phone-song,
+body.mode-rx[data-rxtab="setlist"] .m-phone-song,
+body.mode-rx[data-rxtab="ajustes"] .m-phone-song{display:block!important}
+body.mode-rx[data-rxtab="cifras"] .m-phone-song small,
+body.mode-rx[data-rxtab="setlist"] .m-phone-song small{display:block!important}
+
 /* ===== Modo paisagem mobile (letra gigante full screen) ===== */
 @media(max-width:980px) and (orientation:landscape){
   body.mode-rx[data-rxtab="letra"] .screen[data-screen="live"] .m-phone-tabs,
@@ -5227,6 +5267,22 @@ body{
                 <div class="ph-progress" style="display:none"><div id="phProgressBar"></div></div>
                 <span id="phNextTag" style="display:none"></span>
                 <span id="phNextChords" style="display:none"></span>
+              </div>
+              <!-- Setlist e Ajustes views (populados via render() + setRxTab CSS) -->
+              <div class="rx-setlist" id="rxSetlist"></div>
+              <div class="rx-ajustes" id="rxAjustes">
+                <button onclick="(()=>{const v=localStorage.getItem('vibrate')==='off'?'on':'off';localStorage.setItem('vibrate',v);location.reload()})()" class="rx-ajuste-row">
+                  Vibrar no tempo 1
+                  <b id="rxVibStatus">on</b>
+                </button>
+                <button onclick="(()=>{const v=parseFloat(localStorage.getItem('lyricScale')||'1');const nv=v>=1.4?1:v+.2;localStorage.setItem('lyricScale',nv);document.documentElement.style.setProperty('--lyric-scale',nv);})()" class="rx-ajuste-row">
+                  Tamanho da letra
+                  <b id="rxFontStatus">media</b>
+                </button>
+                <button onclick="if(navigator.share)navigator.share({title:'SR LAKES Stage Sync',url:location.href})" class="rx-ajuste-row">
+                  Compartilhar app
+                  <b>&rsaquo;</b>
+                </button>
               </div>
               <nav class="m-phone-tabs">
                 <div class="m-phone-tab active" data-rxtab="letra" onclick="setRxTab('letra')"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M8 16l8-8"/></svg>Letra</div>
@@ -6141,7 +6197,10 @@ function render(){
     const isCurrent = i === activeChordIndex;
     return `<div class="ph-chord ${isCurrent?'on':''}">${c}</div>`;
   }).join('');
-  $('phLyrics').innerHTML = lyricSource.split('\n').map(l=>`<div>${esc(l)}</div>`).join('');
+  $('phLyrics').innerHTML = lyricSource.split('\n').map((l,i)=>{
+    const matched = state.voiceMatch && l.toLowerCase().includes((state.voiceMatch||'').toLowerCase());
+    return `<div class="ly ${matched?'match active-line':''}">${esc(l)||'&nbsp;'}</div>`;
+  }).join('');
   $('phBeats').innerHTML = Array.from({length:beatCount},(_,i)=>{
     const n = i+1; const on = n===state.beat; const downbeat = n===1;
     return `<div class="ph-beat ${downbeat?'downbeat':''} ${on?'on':''}">${n}</div>`;
@@ -6151,6 +6210,36 @@ function render(){
   $('phNextTag').textContent = nt.label;
   $('phNextTag').className = 'part-tag '+nt.tag;
   $('phNextChords').textContent = n.chords.join(' ');
+
+  /* Auto-scroll: rola a linha ativa pro centro da view (lyrics tab) */
+  if(state.mode === 'rx'){
+    const activeEl = $('phLyrics')?.querySelector('.match, .active-line');
+    if(activeEl){
+      activeEl.scrollIntoView({behavior:'smooth', block:'center'});
+    }
+  }
+
+  /* Setlist tab no receptor: lista das partes da musica atual */
+  const rxSetlist = $('rxSetlist');
+  if(rxSetlist){
+    rxSetlist.innerHTML = s.parts.map((part,i)=>{
+      const t = PART_TYPES[part.type];
+      const isActive = i === state.partIdx;
+      return `<button class="rx-set-row ${isActive?'active':''}" onclick="rxRequestJump(${i})">
+        <span class="ix">${String(i+1).padStart(2,'0')}</span>
+        <span class="nm">${t.label}</span>
+        <span class="ch">${(part.chords||[]).slice(0,4).join(' ')}${part.chords?.length>4?'…':''}</span>
+        ${state.mode==='rx'?'<span class="jump">PEDIR</span>':''}
+      </button>`;
+    }).join('');
+  }
+
+  /* Status nos ajustes */
+  const vibEl = $('rxVibStatus'); if(vibEl) vibEl.textContent = localStorage.getItem('vibrate')==='off' ? 'OFF' : 'ON';
+  const fntEl = $('rxFontStatus'); if(fntEl){
+    const sc = parseFloat(localStorage.getItem('lyricScale')||'1');
+    fntEl.textContent = sc<1.1?'MEDIA':sc<1.3?'GRANDE':'GIGANTE';
+  }
 }
 
 /* ============================================================
