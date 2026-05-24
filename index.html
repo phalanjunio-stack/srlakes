@@ -900,9 +900,16 @@ input,select,textarea{font-family:inherit;color:inherit}
 .tl-track-head .ctl-btn.solo.on{color:var(--yellow);border-color:rgba(255,210,70,.4);background:rgba(255,210,70,.1)}
 .tl-track-head select.routing{
   width:100%;height:26px;padding:0 6px;border-radius:7px;border:1px solid var(--border);
-  background:rgba(0,0,0,.3);color:var(--text-2);font-size:10px;font-family:inherit;
+  background:#0a0a0a;color:var(--text-2);font-size:10px;font-family:inherit;
   text-transform:uppercase;letter-spacing:.06em;font-weight:700;cursor:pointer;outline:none;
+  appearance:none;-webkit-appearance:none;-moz-appearance:none;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><polyline points='1,1 5,5 9,1' fill='none' stroke='%23999' stroke-width='1.6'/></svg>");
+  background-repeat:no-repeat;background-position:right 8px center;
+  padding-right:24px;
 }
+.tl-track-head select.routing option{background:#0d0d0d;color:var(--text-2);padding:6px}
+.tl-track-head select.routing option:checked,
+.tl-track-head select.routing option:hover{background:rgba(216,154,36,.18);color:var(--m-gold-2,#f0bd4e)}
 .tl-track-head select.routing:focus{border-color:var(--green)}
 .tl-track-head select.routing.fone{color:var(--purple);border-color:rgba(169,107,255,.4)}
 .tl-track-head select.routing.pa{color:var(--orange);border-color:rgba(255,138,28,.4)}
@@ -4350,20 +4357,21 @@ body{
 .screen[data-screen="live"].on::-webkit-scrollbar{width:6px}
 .screen[data-screen="live"].on::-webkit-scrollbar-thumb{background:rgba(255,255,255,.08);border-radius:3px}
 .screen[data-screen="live"] .m-topbar{
-  height:82px;
+  height:62px;
   display:grid;
   grid-template-columns:1fr auto;
   align-items:center;
-  padding:0 35px 0 43px;
-  border-bottom:1px solid rgba(255,255,255,.11);
-  background:linear-gradient(180deg,rgba(255,255,255,.024),rgba(255,255,255,.004));
+  padding:0 28px 0 32px;
+  border-bottom:1px solid rgba(216,154,36,.22);
+  background:linear-gradient(180deg,rgba(15,13,10,.94),rgba(8,8,7,.92));
+  box-shadow:inset 0 -1px 0 rgba(216,154,36,.08),0 1px 12px rgba(0,0,0,.5);
 }
 .screen[data-screen="live"] .m-live{
-  display:flex;align-items:center;gap:16px;
+  display:flex;align-items:center;gap:14px;
   color:var(--m-gold-2);font-family:var(--m-fc);
-  font-size:30px;font-weight:800;letter-spacing:3px;
+  font-size:24px;font-weight:800;letter-spacing:2.5px;
 }
-.screen[data-screen="live"] .m-live svg{width:27px;height:27px;stroke:currentColor;fill:none;stroke-width:1.7}
+.screen[data-screen="live"] .m-live svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.7;filter:drop-shadow(0 0 6px rgba(240,189,78,.4))}
 .screen[data-screen="live"] .m-top-actions{display:flex;align-items:center;gap:28px;color:#d2cbc0;font-size:17px}
 .screen[data-screen="live"] .m-latency strong{color:var(--m-mint);font-size:23px;font-weight:500;margin-left:10px}
 
@@ -7409,7 +7417,22 @@ function setEditorTab(tab){
   $('blocksView').style.display = tab === 'blocks' ? '' : 'none';
   $('timelineView').style.display = tab === 'timeline' ? '' : 'none';
   if(tab === 'timeline'){
-    tl.init();
+    /* Auto-sync: cifras e letra da timeline refletem os blocos atuais.
+       Preserva audio (gravações) e cue do regente. */
+    if(tl.data){
+      const audio = tl.data.tracks.find(t=>t.kind==='audio');
+      const cue = tl.data.tracks.find(t=>t.kind==='cue');
+      const oldAudioClips = audio?.clips || [];
+      const oldCueClips = cue?.clips || [];
+      tl.data = tl.fromBlocks(editor.blocks, editor.bpm, editor.sig);
+      const newAudio = tl.data.tracks.find(t=>t.kind==='audio');
+      const newCue = tl.data.tracks.find(t=>t.kind==='cue');
+      if(newAudio && oldAudioClips.length) newAudio.clips = oldAudioClips;
+      if(newCue && oldCueClips.length) newCue.clips = oldCueClips;
+    } else {
+      tl.init();
+    }
+    tl.render();
     setTimeout(()=>tl.updatePlayhead(), 0);
   }
 }
