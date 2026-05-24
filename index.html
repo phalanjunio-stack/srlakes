@@ -663,37 +663,50 @@ input,select,textarea{font-family:inherit;color:inherit}
 .block-card.drag-over{border-color:var(--green);box-shadow:0 0 30px -8px rgba(61,255,138,.4)}
 
 .block-head{
-  display:grid;grid-template-columns:36px 220px 100px 100px 1fr auto;gap:10px;
-  align-items:center;padding:12px 14px;border-bottom:1px solid var(--border);
-  background:rgba(0,0,0,.15);
+  display:grid;
+  grid-template-columns:32px 42px minmax(180px,1fr) 90px 90px 90px auto;
+  gap:12px;
+  align-items:center;padding:14px 16px;border-bottom:1px solid var(--border);
+  background:rgba(0,0,0,.18);
 }
 .block-head .drag{
-  width:30px;height:30px;border-radius:8px;display:grid;place-items:center;
+  width:28px;height:34px;border-radius:6px;display:grid;place-items:center;
   color:var(--text-3);cursor:grab;
 }
-.block-head .drag:hover{color:var(--text);background:rgba(255,255,255,.04)}
+.block-head .drag:hover{color:var(--gold-2);background:rgba(255,255,255,.04)}
 .block-head .drag:active{cursor:grabbing}
-.block-head .num{font-family:'Bebas Neue';font-size:26px;color:var(--gold);letter-spacing:.04em;line-height:1;text-align:center;width:36px}
+.block-head .num{font-family:'Bebas Neue',Impact,sans-serif;font-size:28px;color:var(--gold);letter-spacing:.04em;line-height:1;text-align:center}
+.block-head .type-col{display:flex;flex-direction:column;gap:4px;min-width:0}
+.block-head .type-col .part-tag{align-self:flex-start;font-size:10px;padding:3px 9px}
 .block-head select.type-sel{
-  height:38px;padding:0 12px;border-radius:10px;border:1px solid var(--border);
-  background:rgba(0,0,0,.3);color:var(--text);font-weight:700;font-size:13px;
-  font-family:inherit;cursor:pointer;outline:none;
+  height:36px;padding:0 10px;border-radius:8px;border:1px solid var(--border);
+  background:rgba(0,0,0,.3);color:var(--text);font-weight:600;font-size:13px;
+  font-family:inherit;cursor:pointer;outline:none;width:100%;
+  text-overflow:ellipsis;
 }
+.block-head select.type-sel:focus{border-color:var(--gold-2)}
 .block-head .compact-input{
-  height:38px;padding:0 10px;border-radius:10px;border:1px solid var(--border);
-  background:rgba(0,0,0,.3);color:var(--text);font-family:'JetBrains Mono';font-size:13px;
-  text-align:center;outline:none;
+  height:36px;padding:0 8px;border-radius:8px;border:1px solid var(--border);
+  background:rgba(0,0,0,.3);color:var(--text);font-family:'JetBrains Mono';font-size:14px;
+  text-align:center;outline:none;width:100%;font-weight:700;
 }
-.block-head .compact-input:focus{border-color:var(--green)}
-.block-head .compact-label{font-size:9px;letter-spacing:.18em;color:var(--text-3);text-transform:uppercase;display:block;margin-bottom:3px;text-align:center}
-.block-head .actions{display:flex;gap:4px;justify-self:end}
+.block-head .compact-input:focus{border-color:var(--gold-2)}
+.block-head .compact-label{font-size:9px;letter-spacing:.16em;color:var(--text-3);text-transform:uppercase;display:block;margin-bottom:4px;text-align:center;font-weight:700}
+.block-head .info-col{font-family:'JetBrains Mono';font-size:10px;color:var(--text-3);text-align:right;letter-spacing:.04em;line-height:1.4}
+.block-head .info-col b{color:var(--gold-2);font-weight:800}
+.block-head .actions{display:flex;gap:4px;justify-self:end;align-self:flex-end;padding-bottom:1px}
 .block-head .actions button{
-  width:32px;height:32px;border-radius:8px;border:1px solid var(--border);
+  width:30px;height:30px;border-radius:7px;border:1px solid var(--border);
   background:rgba(255,255,255,.02);color:var(--text-2);display:grid;place-items:center;
-  transition:.16s;
+  transition:.16s;cursor:pointer;
 }
 .block-head .actions button:hover{background:rgba(255,255,255,.06);color:var(--text);border-color:var(--border-2)}
 .block-head .actions .del:hover{color:var(--red);border-color:rgba(255,85,112,.4);background:rgba(255,85,112,.08)}
+
+@media(max-width:1100px){
+  .block-head{grid-template-columns:28px 38px 1fr 75px 75px auto;gap:8px;padding:12px}
+  .block-head .info-col{display:none}
+}
 
 .block-body{padding:14px;display:grid;grid-template-columns:1fr 1.4fr;gap:12px}
 @media(max-width:780px){.block-body{grid-template-columns:1fr}}
@@ -5443,8 +5456,8 @@ body{
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
               Quantizar ao snap
             </button>
-            <button class="btn-ghost" onclick="tl.alignSelected('prev')" style="height:36px">â‡¤ Ant.</button>
-            <button class="btn-ghost" onclick="tl.alignSelected('next')" style="height:36px">Prox. â‡¥</button>
+            <button class="btn-ghost" onclick="tl.alignSelected('prev')" style="height:36px">&larr; Ant.</button>
+            <button class="btn-ghost" onclick="tl.alignSelected('next')" style="height:36px">Prox. &rarr;</button>
             <span style="flex:1"></span>
             <button class="btn-danger" onclick="tl.deleteSelected()" style="height:36px">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-2 14H7L5 6"/></svg>
@@ -5489,7 +5502,7 @@ body{
           <!-- Blocks -->
           <div class="blocks-head">
             <h3>Blocos da Música</h3>
-            <span class="hint">Arraste pelo â‹®â‹® pra reordenar · Atalhos: Ctrl+S salva</span>
+            <span class="hint">Arraste pelo &#x205E; pra reordenar &middot; Atalhos: Ctrl+S salva</span>
           </div>
 
           <div id="blocksList" style="display:flex;flex-direction:column;gap:12px"></div>
@@ -7383,23 +7396,23 @@ function renderBlocks(){
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><circle cx="9" cy="6" r="1.5"/><circle cx="15" cy="6" r="1.5"/><circle cx="9" cy="12" r="1.5"/><circle cx="15" cy="12" r="1.5"/><circle cx="9" cy="18" r="1.5"/><circle cx="15" cy="18" r="1.5"/></svg>
           </div>
           <div class="num">${String(i+1).padStart(2,'0')}</div>
-          <div>
-            <span class="part-tag ${t.tag}" style="margin-bottom:4px">${t.label}</span>
-            <select class="type-sel" onchange="updateBlock(${i},'type',this.value)" style="margin-top:2px;width:100%">
+          <div class="type-col">
+            <span class="part-tag ${t.tag}">${t.label}</span>
+            <select class="type-sel" onchange="updateBlock(${i},'type',this.value)">
               ${Object.entries(PART_TYPES).map(([k,v])=>`<option value="${k}" ${k===b.type?'selected':''}>${v.label}</option>`).join('')}
             </select>
           </div>
           <div>
             <span class="compact-label">Repete</span>
-            <input class="compact-input" type="number" min="1" value="${b.reps}" onchange="updateBlock(${i},'reps',+this.value)" style="width:100%">
+            <input class="compact-input" type="number" min="1" value="${b.reps}" onchange="updateBlock(${i},'reps',+this.value)">
           </div>
           <div>
             <span class="compact-label">Compassos</span>
-            <input class="compact-input" type="number" min="1" value="${b.bars}" onchange="updateBlock(${i},'bars',+this.value)" style="width:100%">
+            <input class="compact-input" type="number" min="1" value="${b.bars}" onchange="updateBlock(${i},'bars',+this.value)">
           </div>
-          <div style="text-align:right;font-family:'JetBrains Mono';font-size:11px;color:var(--text-3)">
-            <div style="margin-bottom:2px">${b.chords.length} acordes</div>
-            <div>${b.bars*b.reps} comp.</div>
+          <div class="info-col">
+            <div><b>${b.chords.length}</b> acordes</div>
+            <div><b>${b.bars*b.reps}</b> comp.</div>
           </div>
           <div class="actions">
             <button onclick="moveBlock(${i},-1)" title="Subir" ${i===0?'disabled style="opacity:.3"':''}>
@@ -7793,15 +7806,15 @@ function repairMojibakeText(){
     ['REPETIÃ‡Ã•ES', 'REPETIÇÕES'],
     ['PRÃ“XIMA', 'PRÓXIMA'],
     ['PRÃ“XIMO', 'PRÓXIMO'],
-    ['RefrÃ£o', 'Refrão'],
-    ['MetrÃ´nomo', 'Metrônomo'],
-    ['RepertÃ³rio', 'Repertório'],
-    ['ConfiguraÃ§Ãµes', 'Configurações'],
-    ['CriaÃ§Ã£o', 'Criação'],
-    ['MÃºsica', 'Música'],
-    ['DÃ¡', 'Dá'],
+    ['Refrão', 'Refrão'],
+    ['Metrônomo', 'Metrônomo'],
+    ['Repertório', 'Repertório'],
+    ['Configurações', 'Configurações'],
+    ['Criação', 'Criação'],
+    ['Música', 'Música'],
+    ['Dá', 'Dá'],
     ['NÂº', 'Nº'],
-    ['Â·', '·'],
+    ['·', '·'],
     ['Â™©', '♪'],
     ['â™©', '♪'],
     ['â—‰', '◉'],
@@ -7812,8 +7825,8 @@ function repairMojibakeText(){
     ['â–°', '▰'],
     ['âˆ’', '−'],
     ['Ã—', '×'],
-    ['Ã¢Ë†â€™', '−'],
-    ['Ã¢â€¦Â¡', 'Ⅱ']
+    ['âË†â€™', '−'],
+    ['â…Â¡', 'Ⅱ']
   ]);
   const fix = value => {
     let next = value;
