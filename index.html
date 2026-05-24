@@ -948,6 +948,8 @@ input,select,textarea{font-family:inherit;color:inherit}
 .tl-lane.chord,.tl-lane.lyric,.tl-lane.click,.tl-lane.cue,.tl-lane.audio{
   display:block!important;
   min-width:0!important;
+  width:auto!important;          /* deixa o inline style.width=9040px ganhar */
+  max-width:none!important;
   height:64px!important;
   padding:0!important;
   border-radius:0!important;
@@ -963,6 +965,7 @@ input,select,textarea{font-family:inherit;color:inherit}
    forcado pelo .chord generico, mostrando width=0 height=0 (so o primeiro visivel).
    Reset display:flex + reset de width/height/min/max pra deixar o tl-clip inline-style ganhar. */
 .tl-clip.chord,.tl-clip.lyric,.tl-clip.click,.tl-clip.cue,.tl-clip.audio{
+  position:absolute!important;     /* CRITICO: chord generico forcou relative */
   display:flex!important;
   align-items:center!important;
   justify-content:flex-start!important;
@@ -980,6 +983,9 @@ input,select,textarea{font-family:inherit;color:inherit}
   text-shadow:none!important;
   box-shadow:none!important;
 }
+/* Width vem do inline style (this.barW * clip.length) - precisa deixar inline ganhar */
+.tl-lane .tl-clip{width:auto}
+.tl-lane .tl-clip[style*="width"]{}
 /* Restaurar cores especificas de cada kind sem o display:grid */
 .tl-clip.chord{
   background:linear-gradient(160deg,rgba(255,138,28,.22),rgba(255,138,28,.06))!important;
