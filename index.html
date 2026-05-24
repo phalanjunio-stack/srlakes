@@ -4341,8 +4341,12 @@ body{
   gap:0!important;
   display:flex!important;
   flex-direction:column!important;
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
 }
 .screen[data-screen="live"]:not(.on){display:none!important}
+.screen[data-screen="live"].on::-webkit-scrollbar{width:6px}
+.screen[data-screen="live"].on::-webkit-scrollbar-thumb{background:rgba(255,255,255,.08);border-radius:3px}
 .screen[data-screen="live"] .m-topbar{
   height:82px;
   display:grid;
@@ -4378,18 +4382,20 @@ body{
 }
 
 .screen[data-screen="live"] .m-song-card{
-  height:321px;
+  height:auto;
+  min-height:250px;
   border:2px solid rgba(216,154,36,.96);
   border-radius:11px;
   background:linear-gradient(90deg,rgba(6,8,8,.95),rgba(8,10,10,.88)),radial-gradient(circle at 78% 56%,rgba(220,160,47,.09),transparent 32%);
   position:relative;overflow:hidden;
-  padding:32px 34px;
+  padding:26px 32px;
   box-shadow:inset 0 0 36px rgba(0,0,0,.7),0 0 20px rgba(216,154,36,.06);
 }
 .screen[data-screen="live"] .m-song-card::after{
-  content:"";position:absolute;right:60px;top:24px;width:280px;height:280px;
+  content:"";position:absolute;right:60px;top:50%;transform:translateY(-50%);
+  width:200px;height:200px;
   background:url('/assets/srlakes.png') center/contain no-repeat;
-  opacity:.16;pointer-events:none;
+  opacity:.10;pointer-events:none;
 }
 .screen[data-screen="live"] .m-song-card .row{position:relative;z-index:2;display:grid;grid-template-columns:1fr 150px;height:100%}
 .screen[data-screen="live"] .m-song-meta h2{
