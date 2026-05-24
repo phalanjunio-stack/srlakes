@@ -4515,12 +4515,7 @@ body{
   padding:26px 32px;
   box-shadow:inset 0 0 36px rgba(0,0,0,.7),0 0 20px rgba(216,154,36,.06);
 }
-.screen[data-screen="live"] .m-song-card::after{
-  content:"";position:absolute;right:60px;top:50%;transform:translateY(-50%);
-  width:200px;height:200px;
-  background:url('/assets/srlakes.png') center/contain no-repeat;
-  opacity:.10;pointer-events:none;
-}
+.screen[data-screen="live"] .m-song-card::after{display:none!important}
 .screen[data-screen="live"] .m-song-card .row{position:relative;z-index:2;display:grid;grid-template-columns:1fr 150px;height:100%}
 .screen[data-screen="live"] .m-song-meta h2{
   margin:18px 0 0;font-family:var(--m-fc);font-size:70px;letter-spacing:-1px;
@@ -4837,15 +4832,18 @@ body{
 }
 .screen[data-screen="live"] .m-chords > .chord,
 .screen[data-screen="live"] .m-chords > .m-chord{
-  height:62px!important;max-height:62px!important;min-height:62px!important;
-  font-size:30px!important;border-radius:9px!important;align-self:start!important;
-  justify-self:start!important;width:110px!important;
+  height:54px!important;max-height:54px!important;min-height:54px!important;
+  font-size:24px!important;border-radius:7px!important;align-self:start!important;
+  justify-self:start!important;width:84px!important;
   position:relative;overflow:hidden;
 }
 .screen[data-screen="live"] .m-chords{
-  align-items:start!important;grid-auto-rows:62px!important;
+  align-items:start!important;grid-auto-rows:54px!important;
   justify-content:start!important;justify-items:start!important;
-  gap:12px!important;margin:2px 0 8px!important;
+  gap:10px!important;margin:2px 0 8px!important;
+}
+.screen[data-screen="live"] .m-chords > .chord:not(:last-child)::after{
+  font-size:22px!important;right:-8px!important;top:12px!important;
 }
 /* Acorde ativo brilha mais, com gradiente dourado e leve scale */
 .screen[data-screen="live"] .m-chords > .chord.on{
@@ -5608,6 +5606,123 @@ body{
 }
 .screen[data-screen="live"] .m-play-tri{border-left-color:#1a140c!important}
 
+/* CONECTADO pill - reposicionado pra dentro da sidebar (acima do mode-toggle) */
+#connPill{
+  position:relative!important;top:auto!important;right:auto!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;gap:6px!important;
+  margin:10px 14px 0!important;
+  height:22px!important;padding:0 10px!important;
+  border-radius:6px!important;border:1px solid rgba(200,153,84,.25)!important;
+  background:linear-gradient(180deg,rgba(15,12,8,.6),rgba(45,38,32,.4))!important;
+  font-size:9px!important;letter-spacing:.18em!important;font-weight:700!important;
+  text-transform:uppercase!important;
+  color:#9b938a!important;
+  z-index:auto!important;
+}
+#connPill.on{color:var(--sage-hi)!important;border-color:rgba(168,196,190,.4)!important;background:linear-gradient(180deg,rgba(94,122,115,.18),rgba(45,38,32,.3))!important}
+#connPill.on .dot{background:var(--sage-hi)!important;box-shadow:0 0 6px var(--sage)!important}
+#connPill.warn{color:#e8a544!important}
+#connPill.err{color:#e85070!important}
+#connPill .dot{width:6px!important;height:6px!important}
+
+/* Textura LISA - remove repeating-linear-gradient noise dos cards principais */
+.screen[data-screen="live"] .m-song-card,
+.screen[data-screen="live"] .m-next-card,
+.screen[data-screen="live"] .m-lyric-box,
+.screen[data-screen="live"] .m-transport,
+.screen[data-screen="live"] .m-bpm-btn,
+.screen[data-screen="live"] .m-tap-btn,
+.screen[data-screen="live"] .m-small-btn,
+.screen[data-screen="live"] .m-cue-box{
+  background-image:none!important;
+}
+.screen[data-screen="live"] .m-song-card{
+  background:linear-gradient(160deg,#2d2620 0%,#1f1812 70%,#15110d 100%)!important;
+}
+.screen[data-screen="live"] .m-next-card{
+  background:linear-gradient(180deg,#2d2620,#1f1812)!important;
+}
+.screen[data-screen="live"] .m-lyric-box{
+  background:linear-gradient(180deg,#2a221a 0%,#1f1812 100%)!important;
+}
+.screen[data-screen="live"] .m-transport{
+  background:linear-gradient(180deg,#2a221a 0%,#1f1812 100%)!important;
+}
+/* Sidebar SEM repeating gradient noise */
+.sidebar{
+  background:linear-gradient(180deg,#2a221a 0%,#1f1812 60%,#15110d 100%)!important;
+}
+
+/* BPM split em 3 partes: - | display | + */
+.screen[data-screen="live"] .m-bpm-btn{
+  display:grid!important;grid-template-columns:28px 1fr 28px!important;
+  height:64px!important;padding:0!important;
+  background:linear-gradient(180deg,#3a2f24 0%,#2a2018 60%,#1a140e 100%)!important;
+  border:1px solid rgba(200,153,84,.42)!important;
+  border-radius:8px!important;
+  box-shadow:inset 0 1px 0 rgba(244,241,236,.1),inset 0 -1px 0 rgba(0,0,0,.5)!important;
+  overflow:hidden!important;
+}
+.screen[data-screen="live"] .m-bpm-minus,
+.screen[data-screen="live"] .m-bpm-plus{
+  background:linear-gradient(180deg,rgba(244,241,236,.05),rgba(0,0,0,.2))!important;
+  border:0!important;border-right:1px solid rgba(200,153,84,.2)!important;
+  color:var(--brass-hi)!important;font-size:18px!important;font-weight:800!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  cursor:pointer!important;font-family:'Inter',sans-serif!important;
+  transition:background .14s!important;
+}
+.screen[data-screen="live"] .m-bpm-plus{border-right:0!important;border-left:1px solid rgba(200,153,84,.2)!important}
+.screen[data-screen="live"] .m-bpm-minus:hover,
+.screen[data-screen="live"] .m-bpm-plus:hover{
+  background:linear-gradient(180deg,rgba(200,153,84,.25),rgba(140,98,32,.15))!important;
+  color:#fff!important;
+}
+.screen[data-screen="live"] .m-bpm-minus:active,
+.screen[data-screen="live"] .m-bpm-plus:active{transform:scale(.92)!important}
+.screen[data-screen="live"] .m-bpm-display{
+  display:flex!important;flex-direction:column!important;
+  align-items:center!important;justify-content:center!important;
+  color:var(--brass-hi)!important;font-size:11px!important;letter-spacing:.16em!important;
+  font-family:'Bebas Neue',Impact,sans-serif!important;text-transform:uppercase!important;
+  line-height:1!important;gap:2px!important;
+}
+.screen[data-screen="live"] .m-bpm-display strong{
+  color:var(--cream)!important;font-size:22px!important;font-weight:800!important;
+  font-family:'JetBrains Mono','Consolas',monospace!important;
+}
+
+/* Timeline track com fill + knob clicavel */
+.screen[data-screen="live"] .m-timeline{
+  cursor:pointer!important;user-select:none!important;
+  background:linear-gradient(180deg,rgba(45,38,32,.4),rgba(15,12,8,.3))!important;
+  border:1px solid rgba(200,153,84,.15)!important;border-radius:6px!important;
+}
+.screen[data-screen="live"] .m-track{
+  position:relative!important;height:6px!important;
+  background:rgba(15,12,8,.7)!important;border-radius:99px!important;
+  box-shadow:inset 0 1px 2px rgba(0,0,0,.6)!important;
+  cursor:pointer!important;
+}
+.screen[data-screen="live"] .m-track::before{display:none!important}
+.screen[data-screen="live"] .m-track::after{display:none!important}
+.screen[data-screen="live"] .m-track-fill{
+  position:absolute!important;left:0!important;top:0!important;bottom:0!important;
+  width:0%!important;border-radius:99px!important;
+  background:linear-gradient(90deg,var(--brass-deep),var(--brass) 60%,var(--brass-hi))!important;
+  box-shadow:0 0 10px rgba(226,184,120,.5)!important;
+  pointer-events:none!important;transition:width .12s!important;
+}
+.screen[data-screen="live"] .m-track-knob{
+  position:absolute!important;top:50%!important;left:0%!important;
+  width:14px!important;height:14px!important;border-radius:50%!important;
+  background:radial-gradient(circle at 38% 32%,#ffeac6,var(--brass-hi) 50%,var(--brass-deep))!important;
+  border:1px solid var(--cream)!important;
+  box-shadow:0 0 10px rgba(226,184,120,.7),0 2px 4px rgba(0,0,0,.5)!important;
+  transform:translate(-50%,-50%)!important;
+  pointer-events:none!important;transition:left .12s!important;
+}
+
 /* ============== PRÓXIMA SEÇÃO — ticket stub ============== */
 .screen[data-screen="live"] .m-next-panel{
   border-left-color:rgba(200,153,84,.18)!important;
@@ -6007,7 +6122,11 @@ body{
 
           <div class="m-transport">
             <button onclick="tapTempo.hit()" class="m-tap-btn">Tap Tempo<strong>128</strong></button>
-            <button class="m-bpm-btn">− &nbsp; BPM &nbsp; +<strong id="srBpmMirror">128</strong></button>
+            <div class="m-bpm-btn" role="group">
+              <button class="m-bpm-minus" onclick="liveBpmAdjust(-1)" title="-1 BPM" aria-label="Reduz BPM">−</button>
+              <div class="m-bpm-display">BPM<strong id="srBpmMirror">128</strong></div>
+              <button class="m-bpm-plus" onclick="liveBpmAdjust(1)" title="+1 BPM" aria-label="Aumenta BPM">+</button>
+            </div>
             <button class="m-play-btn" id="playBtn" onclick="togglePlay()"><span class="m-play-tri"></span><b id="playLabel">Play</b></button>
             <button class="m-small-btn" onclick="restartSong()"><strong>▪</strong>Stop</button>
             <button class="m-small-btn" onclick="togglePlay()"><strong>Ⅱ</strong>Pausar</button>
@@ -6018,9 +6137,9 @@ body{
             <button onclick="nextPart()" class="sr-hidden-control">Próxima</button>
           </div>
 
-          <div class="m-timeline">
+          <div class="m-timeline" onclick="liveSeekFromClick(event)">
             <span id="elapsed">02:16</span>
-            <div class="m-track" id="timelineBar"></div>
+            <div class="m-track" id="timelineBar"><div class="m-track-fill" id="timelineFill"></div><div class="m-track-knob" id="timelineKnob"></div></div>
             <span id="totalClock">04:12</span>
           </div>
         </div>
@@ -6922,8 +7041,8 @@ function render(){
      no CSS). Quanto mais cifras, mais compactas. */
   const chCount = p.chords.length;
   $('bigChords').className = 'm-chords' + (chCount>8?' xs':chCount>4?' sm':'');
-  /* repeat(auto-fill, fixed-width) faz boxes terem mesma largura e wrap natural */
-  const colW = chCount<=4 ? '130px' : chCount<=8 ? '100px' : '80px';
+  /* Left-aligned com width fixa - cada cifra 90px, gap 10px, sem stretch */
+  const colW = chCount<=4 ? '90px' : chCount<=8 ? '78px' : '64px';
   $('bigChords').style.gridTemplateColumns = `repeat(auto-fill, ${colW})`;
 
   /* Lyrics — destaca primeira frase quando voz casa */
@@ -7008,7 +7127,18 @@ function render(){
     return `<div class="ph-beat ${downbeat?'downbeat':''} ${on?'on':''}">${n}</div>`;
   }).join('');
   const totalSec = (s.duration.split(':')[0]*60)+parseInt(s.duration.split(':')[1]);
-  $('phProgressBar').style.width = ((state.elapsedSec/totalSec)*100)+'%';
+  const pct = Math.min(100, (state.elapsedSec/totalSec)*100);
+  $('phProgressBar').style.width = pct+'%';
+  /* Timeline desktop: fill + knob */
+  const tlFill = $('timelineFill'); if(tlFill) tlFill.style.width = pct+'%';
+  const tlKnob = $('timelineKnob'); if(tlKnob) tlKnob.style.left = pct+'%';
+  /* Tempo atual no display */
+  const elps = $('elapsed');
+  if(elps){
+    const mm = String(Math.floor(state.elapsedSec/60)).padStart(2,'0');
+    const ss = String(state.elapsedSec%60).padStart(2,'0');
+    elps.textContent = `${mm}:${ss}`;
+  }
   $('phNextTag').textContent = nt.label;
   $('phNextTag').className = 'part-tag '+nt.tag;
   $('phNextChords').textContent = n.chords.join(' ');
@@ -7061,6 +7191,70 @@ function toggleLoopPart(){
 function prevPart(){ state.partIdx = (state.partIdx-1+cur().parts.length) % cur().parts.length; state.beat=1; state.rep=1; state.bar=1; render(); publish(); }
 function restartPart(){ state.beat=1; state.rep=1; state.bar=1; render(); publish(); }
 function restartSong(){ state.partIdx=0; state.beat=1; state.rep=1; state.bar=1; state.elapsedSec=0; state.elapsedRaw=0; render(); publish(); }
+
+/* Move connPill (CONECTADO) pra dentro da sidebar, logo acima do mode-toggle */
+(function relocateConnPill(){
+  const move = ()=>{
+    const pill = document.getElementById('connPill');
+    const target = document.querySelector('.sidebar .mode-toggle');
+    if(pill && target && pill.parentElement !== target.parentElement){
+      pill.removeAttribute('style');
+      target.parentElement.insertBefore(pill, target);
+    }
+  };
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', move);
+  } else { move(); }
+  setTimeout(move, 100);
+})();
+
+/* Ajuste BPM ao vivo (botoes +/- do transport) */
+function liveBpmAdjust(delta){
+  const s = cur(); if(!s) return;
+  s.bpm = Math.max(40, Math.min(280, (s.bpm || 120) + delta));
+  if(typeof markDirty === 'function') markDirty();
+  // Reinicia o tick com novo BPM se estiver tocando
+  if(state.playing && typeof metroTimer !== 'undefined' && metroTimer){
+    clearInterval(metroTimer); metroTimer = null;
+    setTimeout(()=>togglePlay() || (state.playing=false, togglePlay()), 10);
+  }
+  render(); publish();
+  // Salva no servidor
+  if(typeof saveCurrentSong === 'function') saveCurrentSong();
+}
+
+/* Seek bar da musica - clica em qualquer ponto e pula pra la */
+function liveSeekFromClick(ev){
+  const s = cur(); if(!s) return;
+  const bar = ev.currentTarget.querySelector('#timelineBar');
+  if(!bar) return;
+  const rect = bar.getBoundingClientRect();
+  const clickX = ev.clientX - rect.left;
+  const ratio = Math.max(0, Math.min(1, clickX / rect.width));
+  const dur = s.duration || '04:00';
+  const totalSec = (parseInt(dur.split(':')[0])||0)*60 + (parseInt(dur.split(':')[1])||0);
+  state.elapsedSec = Math.round(totalSec * ratio);
+  state.elapsedRaw = state.elapsedSec;
+  /* Calcula partIdx, bar, rep aproximados baseado no tempo */
+  let acc = 0;
+  const sig = parseInt((s.sig||'4/4').split('/')[0]) || 4;
+  for(let i=0; i<s.parts.length; i++){
+    const p = s.parts[i];
+    const partSec = (p.bars * p.reps * sig * 60) / s.bpm;
+    if(state.elapsedSec < acc + partSec){
+      state.partIdx = i;
+      const within = state.elapsedSec - acc;
+      const beatsIn = (within * s.bpm) / 60;
+      state.rep = Math.floor(beatsIn / (p.bars * sig)) + 1;
+      const inRep = beatsIn % (p.bars * sig);
+      state.bar = Math.floor(inRep / sig) + 1;
+      state.beat = Math.floor(inRep % sig) + 1;
+      break;
+    }
+    acc += partSec;
+  }
+  render(); publish();
+}
 
 /* ============================================================
    RECEPTOR MOBILE - tabs Letra/Cifras/Setlist/Ajustes
@@ -7702,6 +7896,21 @@ const tl = {
       }
     }
     r.innerHTML = html;
+    /* Clique na regua = move playhead pra posicao clicada */
+    if(!r._seekBound){
+      r.style.cursor = 'pointer';
+      r.addEventListener('click', e => {
+        const rect = r.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const bar = Math.max(0, x / this.barW);
+        this.playStartPos = bar;
+        if(this.playing){
+          this.playStartTime = performance.now();
+        }
+        this.updatePlayhead();
+      });
+      r._seekBound = true;
+    }
   },
 
   renderTrack(track, grid){
