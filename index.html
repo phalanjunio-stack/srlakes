@@ -959,6 +959,55 @@ input,select,textarea{font-family:inherit;color:inherit}
 }
 .tl-lane.audio{height:80px!important}
 
+/* Mesma coisa pros CLIPS do timeline. .tl-clip.chord tinha display:grid + width:110px
+   forcado pelo .chord generico, mostrando width=0 height=0 (so o primeiro visivel).
+   Reset display:flex + reset de width/height/min/max pra deixar o tl-clip inline-style ganhar. */
+.tl-clip.chord,.tl-clip.lyric,.tl-clip.click,.tl-clip.cue,.tl-clip.audio{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  min-width:initial!important;
+  max-width:none!important;
+  height:auto!important;
+  top:6px!important;bottom:6px!important;
+  padding:0 10px!important;
+  border-radius:8px!important;
+  place-items:initial!important;
+  font-family:'Inter','Segoe UI',sans-serif!important;
+  font-size:13px!important;
+  letter-spacing:initial!important;
+  line-height:1.2!important;
+  text-shadow:none!important;
+  box-shadow:none!important;
+}
+/* Restaurar cores especificas de cada kind sem o display:grid */
+.tl-clip.chord{
+  background:linear-gradient(160deg,rgba(255,138,28,.22),rgba(255,138,28,.06))!important;
+  border:1px solid rgba(255,138,28,.55)!important;
+  color:var(--orange,#ff8a1c)!important;
+  font-weight:700!important;
+}
+.tl-clip.chord.on,.tl-clip.chord.active{
+  background:linear-gradient(160deg,rgba(255,138,28,.45),rgba(255,138,28,.15))!important;
+  box-shadow:0 0 18px rgba(255,138,28,.35)!important;
+}
+.tl-clip.lyric{
+  background:linear-gradient(160deg,rgba(74,168,255,.18),rgba(74,168,255,.04))!important;
+  border:1px solid rgba(74,168,255,.45)!important;
+  color:var(--blue,#4aa8ff)!important;
+  font-style:italic!important;
+}
+.tl-clip.cue{
+  background:linear-gradient(160deg,rgba(255,210,70,.20),rgba(255,210,70,.06))!important;
+  border:1px solid rgba(255,210,70,.55)!important;
+  color:var(--yellow,#ffd246)!important;
+}
+.tl-clip.audio{
+  background:linear-gradient(160deg,rgba(169,107,255,.18),rgba(169,107,255,.05))!important;
+  border:1px solid rgba(169,107,255,.5)!important;
+  color:var(--purple,#a96bff)!important;
+}
+
 /* Clip */
 .tl-clip{
   position:absolute;top:6px;bottom:6px;
