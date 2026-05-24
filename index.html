@@ -5391,6 +5391,432 @@ body{
   font-size:13px!important;font-weight:800!important;letter-spacing:.06em!important;
   min-width:42px!important;text-align:right!important;
 }
+
+/* ============== SIDEBAR — wood + leather + brass glow ============== */
+.sidebar{
+  background:
+    repeating-linear-gradient(0deg,
+      rgba(0,0,0,.18) 0 1px,transparent 1px 3px),
+    repeating-linear-gradient(0deg,
+      rgba(244,241,236,.018) 0 2px,transparent 2px 60px),
+    linear-gradient(180deg,#2a221a 0%,#1f1812 60%,#15110d 100%)!important;
+  border-right:1px solid rgba(200,153,84,.28)!important;
+  box-shadow:inset -1px 0 0 rgba(200,153,84,.12),8px 0 30px rgba(0,0,0,.5)!important;
+}
+.sidebar .brand{
+  position:relative!important;
+  background:
+    radial-gradient(circle at 50% 30%,rgba(200,153,84,.18),transparent 65%),
+    linear-gradient(180deg,rgba(244,241,236,.04),transparent)!important;
+  border-bottom:1px solid rgba(200,153,84,.18)!important;
+}
+.sidebar .brand-logo{
+  filter:drop-shadow(0 0 24px rgba(200,153,84,.35)) drop-shadow(0 8px 16px rgba(0,0,0,.6))!important;
+}
+.sidebar .brand-name{color:var(--cream)!important;text-shadow:0 2px 6px rgba(0,0,0,.8)!important}
+.sidebar .brand-sub{color:var(--brass-hi)!important}
+
+/* Mode toggle premium brass */
+.sidebar .mode-toggle{
+  border-color:rgba(200,153,84,.4)!important;
+  background:linear-gradient(180deg,rgba(15,12,8,.7),rgba(45,38,32,.5))!important;
+}
+.sidebar .mode-toggle button.on{
+  background:linear-gradient(180deg,var(--brass-hi),var(--brass-deep))!important;
+  color:#1a140c!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.55),
+    inset 0 -1px 0 rgba(0,0,0,.3),
+    0 2px 10px rgba(200,153,84,.5)!important;
+}
+
+/* Nav items: hairline brass + serif italic feel */
+.sidebar .nav button{
+  color:#cfc7ba!important;
+  border-bottom:1px solid transparent!important;
+  position:relative!important;
+}
+.sidebar .nav button:hover:not(.on){
+  background:rgba(200,153,84,.06)!important;
+  color:var(--cream)!important;
+}
+.sidebar .nav button.on{
+  background:linear-gradient(90deg,rgba(200,153,84,.32) 0%,rgba(140,98,32,.18) 60%,transparent 100%)!important;
+  color:var(--cream)!important;
+  border-top:1px solid rgba(226,184,120,.4)!important;
+  border-bottom:1px solid rgba(226,184,120,.3)!important;
+  box-shadow:inset 3px 0 0 var(--brass-hi),inset 0 0 22px rgba(200,153,84,.14)!important;
+}
+
+/* Sala ativa = passe de backstage */
+.sidebar .room-card .head{
+  background:linear-gradient(180deg,rgba(45,38,32,.85),rgba(30,25,20,.7))!important;
+  border-color:rgba(200,153,84,.5)!important;
+}
+.sidebar .room-card .head .title{color:var(--cream)!important}
+.sidebar .room-card .head .live-pulse{color:var(--sage-hi)!important}
+.sidebar .room-card > .row{
+  background:linear-gradient(180deg,rgba(45,38,32,.6),rgba(30,25,20,.5))!important;
+  border-color:rgba(200,153,84,.5)!important;
+}
+.sidebar .room-card > .row b{color:var(--sage)!important}
+.sidebar .room-card > .row:last-of-type{border-color:rgba(200,153,84,.5)!important}
+.sidebar .room-card .end{
+  border-color:rgba(200,153,84,.4)!important;color:var(--cream-dim)!important;
+}
+.sidebar .room-card .end:hover{background:rgba(200,153,84,.1)!important;color:var(--brass-hi)!important}
+
+/* ============== TOPBAR AO VIVO — brass plate ============== */
+.screen[data-screen="live"] .m-topbar{
+  background:
+    radial-gradient(500px 60px at 8% 50%,rgba(200,153,84,.22),transparent 65%),
+    radial-gradient(400px 50px at 92% 50%,rgba(168,196,190,.12),transparent 65%),
+    linear-gradient(180deg,#2a221a,#1a140e)!important;
+  box-shadow:
+    inset 0 -1px 0 rgba(200,153,84,.35),
+    0 3px 18px rgba(0,0,0,.7)!important;
+  border-bottom:0!important;
+}
+.screen[data-screen="live"] .m-topbar::before{
+  background:linear-gradient(90deg,transparent,rgba(200,153,84,.6) 20%,var(--brass-hi) 50%,rgba(200,153,84,.6) 80%,transparent)!important;
+}
+.screen[data-screen="live"] .m-topbar::after{
+  background:linear-gradient(180deg,transparent,var(--brass-hi) 30%,var(--brass-hi) 70%,transparent)!important;
+  box-shadow:0 0 14px rgba(226,184,120,.6)!important;
+}
+.screen[data-screen="live"] .m-live{color:var(--brass-hi)!important}
+.screen[data-screen="live"] .m-live svg{filter:drop-shadow(0 0 6px rgba(226,184,120,.5))!important}
+.screen[data-screen="live"] .m-latency strong{color:var(--sage-hi)!important}
+
+/* ============== MÚSICA ATUAL CARD — paper aged + brass border ============== */
+.screen[data-screen="live"] .m-song-card{
+  background:
+    repeating-linear-gradient(0deg,rgba(244,241,236,.012) 0 1px,transparent 1px 4px),
+    radial-gradient(circle at 78% 50%,rgba(200,153,84,.10),transparent 35%),
+    linear-gradient(160deg,#2d2620 0%,#1f1812 70%,#15110d 100%)!important;
+  border:2px solid var(--brass)!important;
+  border-radius:9px!important;
+  box-shadow:
+    inset 0 1px 0 rgba(244,241,236,.07),
+    inset 0 0 36px rgba(0,0,0,.7),
+    0 6px 28px rgba(0,0,0,.5),
+    0 0 0 1px rgba(15,12,8,.9)!important;
+}
+.screen[data-screen="live"] .m-label-gold{color:var(--brass-hi)!important;letter-spacing:.22em!important}
+.screen[data-screen="live"] .m-song-meta h2{
+  color:var(--cream)!important;
+  text-shadow:0 4px 14px rgba(0,0,0,.8),0 0 30px rgba(200,153,84,.15)!important;
+}
+.screen[data-screen="live"] .m-song-meta h3{
+  color:var(--sage)!important;
+  font-family:'Crimson Pro',Georgia,serif!important;font-style:italic!important;font-weight:600!important;
+}
+.screen[data-screen="live"] .m-song-line{
+  background:linear-gradient(90deg,transparent,rgba(200,153,84,.5) 50%,transparent)!important;
+}
+.screen[data-screen="live"] .m-mini-stat{color:#a9a097!important;border-color:rgba(200,153,84,.18)!important}
+.screen[data-screen="live"] .m-mini-stat strong{color:var(--brass-hi)!important}
+.screen[data-screen="live"] .m-mini-stat strong.mint{color:var(--sage-hi)!important}
+.screen[data-screen="live"] .m-song-number{border-color:rgba(200,153,84,.25)!important}
+.screen[data-screen="live"] .m-song-number span{color:var(--brass)!important}
+.screen[data-screen="live"] .m-song-number strong{
+  color:var(--brass-hi)!important;
+  text-shadow:0 0 32px rgba(200,153,84,.4),0 4px 12px rgba(0,0,0,.7)!important;
+}
+
+/* ============== SECTION TITLE — Refrão brass plate vibe ============== */
+.screen[data-screen="live"] .m-section-titlebar{
+  border-bottom-color:rgba(200,153,84,.22)!important;
+}
+.screen[data-screen="live"] .m-section-name h2{
+  background:linear-gradient(180deg,var(--cream) 0%,var(--brass-hi) 60%,var(--brass) 100%)!important;
+  -webkit-background-clip:text!important;background-clip:text!important;
+  -webkit-text-fill-color:transparent!important;color:transparent!important;
+}
+.screen[data-screen="live"] .m-repeat-box{
+  border-color:rgba(200,153,84,.4)!important;
+  background:linear-gradient(180deg,rgba(45,38,32,.75),rgba(15,12,8,.5))!important;
+}
+.screen[data-screen="live"] .m-repeat-box > div{color:var(--cream)!important}
+.screen[data-screen="live"] .m-repeat-box small{color:var(--brass-hi)!important}
+
+/* ============== CIFRAS — BRASS PLATES com gravação ============== */
+.screen[data-screen="live"] .m-chords > .chord{
+  background:
+    linear-gradient(180deg,rgba(244,241,236,.06) 0%,transparent 40%,rgba(0,0,0,.4) 100%),
+    linear-gradient(160deg,#3a2f24 0%,#2a2018 60%,#1a140e 100%)!important;
+  border:1px solid rgba(200,153,84,.45)!important;
+  box-shadow:
+    inset 0 1px 0 rgba(244,241,236,.12),
+    inset 0 -1px 0 rgba(0,0,0,.5),
+    inset 0 0 18px rgba(0,0,0,.5),
+    0 3px 8px rgba(0,0,0,.4)!important;
+  color:var(--brass-hi)!important;
+  text-shadow:
+    0 1px 0 rgba(0,0,0,.8),
+    0 2px 6px rgba(0,0,0,.7),
+    0 0 14px rgba(200,153,84,.12)!important;
+  font-family:'Bebas Neue',Impact,sans-serif!important;
+  font-weight:900!important;
+  letter-spacing:.04em!important;
+}
+.screen[data-screen="live"] .m-chords > .chord.on{
+  background:
+    linear-gradient(180deg,rgba(244,241,236,.18) 0%,transparent 50%,rgba(0,0,0,.3) 100%),
+    linear-gradient(160deg,var(--brass-hi) 0%,var(--brass) 50%,var(--brass-deep) 100%)!important;
+  border-color:var(--brass-hi)!important;
+  color:#1a140c!important;
+  text-shadow:
+    0 1px 0 rgba(255,255,255,.5),
+    0 0 18px rgba(255,238,200,.6),
+    0 -1px 0 rgba(0,0,0,.3)!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.6),
+    inset 0 -1px 0 rgba(0,0,0,.3),
+    0 0 32px rgba(200,153,84,.55),
+    0 4px 14px rgba(0,0,0,.5)!important;
+  transform:scale(1.04) translateY(-1px)!important;
+}
+.screen[data-screen="live"] .m-chords > .chord:not(:last-child)::after{
+  color:rgba(200,153,84,.4)!important;
+}
+
+/* ============== LYRIC BOX — paper aged + Crimson Pro italic ============== */
+.screen[data-screen="live"] .m-lyric-label{color:var(--brass-hi)!important}
+.screen[data-screen="live"] .m-lyric-box{
+  background:
+    repeating-linear-gradient(0deg,rgba(244,241,236,.018) 0 1px,transparent 1px 24px),
+    linear-gradient(180deg,#2a221a 0%,#1f1812 100%)!important;
+  border:1px solid rgba(200,153,84,.22)!important;
+  border-left:3px solid rgba(200,153,84,.5)!important;
+  font-family:'Crimson Pro',Georgia,serif!important;
+  font-style:italic!important;
+  color:var(--cream-dim)!important;
+  box-shadow:
+    inset 0 1px 0 rgba(244,241,236,.04),
+    inset 0 0 28px rgba(0,0,0,.6),
+    0 2px 8px rgba(0,0,0,.3)!important;
+}
+.screen[data-screen="live"] .m-lyric-box > .ly.match,
+.screen[data-screen="live"] .m-lyric-box .active-line{
+  color:var(--sage-hi)!important;font-weight:600!important;
+  text-shadow:0 0 14px rgba(168,196,190,.4)!important;
+}
+
+/* ============== BEAT CIRCLES — lâmpadas de palco ============== */
+.screen[data-screen="live"] .m-beat-circles > .beat{
+  background:
+    radial-gradient(circle at 38% 32%,rgba(255,255,255,.08) 0%,transparent 35%),
+    radial-gradient(circle at 50% 50%,#1a140e 0%,#0a0805 100%)!important;
+  border:1.5px solid rgba(200,153,84,.25)!important;
+  box-shadow:
+    inset 0 0 0 2px rgba(0,0,0,.7),
+    inset 0 -1px 4px rgba(0,0,0,.8),
+    0 2px 6px rgba(0,0,0,.5)!important;
+  transition:all .14s cubic-bezier(.4,0,.2,1)!important;
+}
+.screen[data-screen="live"] .m-beat-circles > .beat.on{
+  background:
+    radial-gradient(circle at 38% 32%,#ffeac6 0%,var(--brass-hi) 40%,var(--brass) 70%,var(--brass-deep) 100%)!important;
+  border-color:#ffeac6!important;
+  box-shadow:
+    inset 0 -2px 6px rgba(140,98,32,.6),
+    inset 0 1px 0 rgba(255,255,255,.5),
+    0 0 28px rgba(226,184,120,.7),
+    0 0 50px rgba(200,153,84,.4)!important;
+  transform:scale(1.12)!important;
+}
+
+/* ============== TRANSPORT — TR-808 vintage bege ============== */
+.screen[data-screen="live"] .m-transport{
+  background:
+    repeating-linear-gradient(0deg,rgba(244,241,236,.012) 0 1px,transparent 1px 3px),
+    linear-gradient(180deg,#2a221a 0%,#1f1812 100%)!important;
+  border:1px solid rgba(200,153,84,.28)!important;
+  box-shadow:inset 0 1px 0 rgba(244,241,236,.05),inset 0 0 28px rgba(0,0,0,.6),0 4px 14px rgba(0,0,0,.5)!important;
+}
+.screen[data-screen="live"] .m-tap-btn,
+.screen[data-screen="live"] .m-bpm-btn,
+.screen[data-screen="live"] .m-small-btn,
+.screen[data-screen="live"] .m-cue-box{
+  background:linear-gradient(180deg,#3a2f24 0%,#2a2018 60%,#1a140e 100%)!important;
+  border:1px solid rgba(200,153,84,.42)!important;
+  color:var(--brass-hi)!important;
+  box-shadow:
+    inset 0 1px 0 rgba(244,241,236,.1),
+    inset 0 -1px 0 rgba(0,0,0,.5),
+    0 2px 6px rgba(0,0,0,.4)!important;
+  text-shadow:0 1px 0 rgba(0,0,0,.6)!important;
+}
+.screen[data-screen="live"] .m-tap-btn:hover,
+.screen[data-screen="live"] .m-bpm-btn:hover,
+.screen[data-screen="live"] .m-small-btn:hover{
+  background:linear-gradient(180deg,#46392c,#33271d)!important;
+  color:#ffe9c2!important;
+}
+.screen[data-screen="live"] .m-tap-btn strong,
+.screen[data-screen="live"] .m-bpm-btn strong{color:var(--cream)!important}
+
+.screen[data-screen="live"] .m-play-btn{
+  background:
+    linear-gradient(180deg,rgba(244,241,236,.18) 0%,transparent 35%,rgba(0,0,0,.35) 100%),
+    linear-gradient(160deg,var(--brass-hi) 0%,var(--brass) 50%,var(--brass-deep) 100%)!important;
+  border:1.5px solid var(--brass-hi)!important;
+  color:#1a140c!important;
+  box-shadow:
+    inset 0 2px 0 rgba(255,255,255,.55),
+    inset 0 -2px 0 rgba(0,0,0,.3),
+    0 0 32px rgba(200,153,84,.55),
+    0 6px 16px rgba(0,0,0,.5)!important;
+  text-shadow:0 1px 0 rgba(255,255,255,.4)!important;
+}
+.screen[data-screen="live"] .m-play-tri{border-left-color:#1a140c!important}
+
+/* ============== PRÓXIMA SEÇÃO — ticket stub ============== */
+.screen[data-screen="live"] .m-next-panel{
+  border-left-color:rgba(200,153,84,.18)!important;
+}
+.screen[data-screen="live"] .m-next-card{
+  position:relative!important;
+  background:
+    repeating-linear-gradient(0deg,rgba(244,241,236,.012) 0 1px,transparent 1px 4px),
+    linear-gradient(180deg,#2a221a,#1f1812)!important;
+  border:1px solid rgba(168,196,190,.22)!important;
+  border-left:3px solid var(--sage)!important;
+}
+.screen[data-screen="live"] .m-next-card::before{
+  content:""!important;position:absolute!important;top:-1px!important;left:30%!important;right:30%!important;
+  height:8px!important;background:rgba(168,196,190,.18)!important;
+  border-bottom-left-radius:4px!important;border-bottom-right-radius:4px!important;
+  border:1px solid rgba(168,196,190,.3)!important;border-top:0!important;
+  /* fita adesiva sutil */
+}
+.screen[data-screen="live"] .m-next-card h3{
+  color:var(--sage-hi)!important;
+  text-shadow:0 0 12px rgba(168,196,190,.3),0 2px 4px rgba(0,0,0,.6)!important;
+  letter-spacing:.04em!important;
+}
+.screen[data-screen="live"] .m-divider{
+  background:linear-gradient(90deg,rgba(168,196,190,.3),transparent)!important;
+}
+.screen[data-screen="live"] .m-after strong{color:var(--cream)!important;font-family:'JetBrains Mono'!important}
+.screen[data-screen="live"] .m-outline-btn{
+  border-color:rgba(200,153,84,.5)!important;
+  background:linear-gradient(180deg,rgba(200,153,84,.08),rgba(200,153,84,.02))!important;
+  color:var(--brass-hi)!important;
+}
+.screen[data-screen="live"] .m-outline-btn:hover{
+  background:linear-gradient(180deg,rgba(200,153,84,.22),rgba(200,153,84,.08))!important;
+  box-shadow:0 0 18px rgba(200,153,84,.3)!important;
+}
+
+/* ============== TIMELINE — couro + brass + drag handles grandes ============== */
+.tl-wrap{background:linear-gradient(180deg,#1a140e,#0f0c08)!important}
+.tl-toolbar{
+  background:
+    linear-gradient(180deg,#2a221a,#1f1812)!important;
+  border-bottom:1px solid rgba(200,153,84,.28)!important;
+}
+.tl-toolbar button{
+  background:linear-gradient(180deg,#3a2f24,#2a2018)!important;
+  border:1px solid rgba(200,153,84,.35)!important;
+  color:var(--cream-dim)!important;
+}
+.tl-toolbar button:hover{background:linear-gradient(180deg,#46392c,#33271d)!important;color:var(--brass-hi)!important}
+.tl-toolbar button.play{
+  background:linear-gradient(180deg,var(--brass-hi),var(--brass-deep))!important;
+  color:#1a140c!important;border-color:var(--brass-hi)!important;
+}
+.tl-toolbar button.rec{
+  background:linear-gradient(180deg,#d84545,#8e2828)!important;
+  color:#fff!important;border-color:#ed5e5e!important;
+}
+
+.tl-grid{background:#1a140e!important}
+.tl-ruler-cell{
+  background:linear-gradient(180deg,#2a221a,#1f1812)!important;
+  border-color:rgba(200,153,84,.28)!important;color:var(--brass-hi)!important;
+}
+.tl-ruler{background:linear-gradient(180deg,#1f1812,#15110d)!important;border-color:rgba(200,153,84,.28)!important}
+.tl-ruler .bar{color:var(--cream-dim)!important;border-left-color:rgba(244,241,236,.15)!important}
+.tl-ruler .bar.major{color:var(--brass-hi)!important;border-left-color:rgba(200,153,84,.55)!important}
+.tl-ruler .bar.major::after{background:var(--brass-hi)!important;box-shadow:0 0 6px rgba(226,184,120,.5)!important}
+.tl-ruler .beat-tick{background:rgba(244,241,236,.08)!important}
+
+.tl-track-head{
+  background:linear-gradient(90deg,#2a221a,#241d17)!important;
+  border-color:rgba(200,153,84,.22)!important;
+}
+.tl-track-head .name{color:var(--cream)!important}
+
+/* Lanes couro envelhecido */
+.tl-lane.chord,.tl-lane.lyric,.tl-lane.click,.tl-lane.cue,.tl-lane.audio{
+  background:
+    /* noise */
+    repeating-linear-gradient(45deg,rgba(244,241,236,.008) 0 1px,transparent 1px 4px),
+    /* beat ticks fracos */
+    repeating-linear-gradient(90deg,transparent 0 calc(var(--bar-w,80px)/4 - 1px),rgba(244,241,236,.04) calc(var(--bar-w,80px)/4 - 1px),rgba(244,241,236,.04) calc(var(--bar-w,80px)/4)),
+    /* bar lines fortes brass */
+    repeating-linear-gradient(90deg,transparent 0 var(--bar-w,80px),rgba(200,153,84,.18) var(--bar-w,80px),rgba(200,153,84,.18) calc(var(--bar-w,80px) + 1px)),
+    /* leather base */
+    linear-gradient(180deg,#241d17,#1a140e)!important;
+}
+
+/* Clips brass plates */
+.tl-clip.chord{
+  background:
+    linear-gradient(180deg,rgba(244,241,236,.12) 0%,transparent 50%,rgba(0,0,0,.4) 100%),
+    linear-gradient(160deg,var(--brass) 0%,var(--brass-deep) 100%)!important;
+  border:1px solid var(--brass-hi)!important;
+  color:#1a140c!important;
+  font-family:'Bebas Neue',Impact,sans-serif!important;font-weight:900!important;
+  text-shadow:0 1px 0 rgba(255,255,255,.3)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.5),inset 0 -1px 0 rgba(0,0,0,.3),0 2px 6px rgba(0,0,0,.4)!important;
+}
+.tl-clip.lyric{
+  background:linear-gradient(160deg,rgba(168,196,190,.25),rgba(94,122,115,.15))!important;
+  border:1px solid rgba(168,196,190,.5)!important;color:var(--sage-hi)!important;
+  font-family:'Crimson Pro',Georgia,serif!important;font-style:italic!important;
+}
+.tl-clip.click{background:linear-gradient(180deg,rgba(94,122,115,.25),rgba(15,12,8,.4))!important;border-color:rgba(168,196,190,.5)!important;color:var(--sage-hi)!important}
+.tl-clip.cue{background:linear-gradient(160deg,rgba(200,153,84,.32),rgba(140,98,32,.18))!important;border-color:var(--brass)!important;color:var(--cream)!important}
+.tl-clip.audio{background:linear-gradient(160deg,rgba(168,116,31,.2),rgba(140,98,32,.08))!important;border-color:rgba(168,116,31,.5)!important;color:var(--rust)!important}
+
+/* DRAG HANDLES 18px com ranhura visual */
+.tl-clip .grip-l,.tl-clip .grip-r{
+  width:14px!important;
+  background:transparent!important;
+  border:0!important;
+}
+.tl-clip .grip-l{
+  border-left:3px solid transparent!important;
+}
+.tl-clip .grip-r{
+  border-right:3px solid transparent!important;
+}
+.tl-clip:hover .grip-l,.tl-clip.selected .grip-l{
+  border-left-color:rgba(244,241,236,.6)!important;
+  background:linear-gradient(90deg,rgba(244,241,236,.15),transparent)!important;
+}
+.tl-clip:hover .grip-r,.tl-clip.selected .grip-r{
+  border-right-color:rgba(244,241,236,.6)!important;
+  background:linear-gradient(-90deg,rgba(244,241,236,.15),transparent)!important;
+}
+.tl-clip .grip-l::before,.tl-clip .grip-r::before{
+  content:""!important;position:absolute!important;top:30%!important;bottom:30%!important;width:2px!important;
+  background:rgba(244,241,236,.4)!important;border-radius:2px!important;
+  opacity:0!important;transition:opacity .12s!important;
+}
+.tl-clip .grip-l::before{left:5px!important}
+.tl-clip .grip-r::before{right:5px!important}
+.tl-clip:hover .grip-l::before,.tl-clip:hover .grip-r::before,
+.tl-clip.selected .grip-l::before,.tl-clip.selected .grip-r::before{opacity:1!important}
+
+.tl-clip.selected{outline:2px solid var(--brass-hi)!important;box-shadow:0 0 20px rgba(200,153,84,.45)!important}
+
+/* Playhead = agulha vermelha cromada */
+.tl-playhead{background:linear-gradient(180deg,#e8504e,#a82828)!important;width:2px!important;box-shadow:0 0 14px rgba(232,80,78,.7)!important}
+.tl-playhead::before{background:#e8504e!important;filter:drop-shadow(0 0 6px rgba(232,80,78,.8))!important}
 </style>
 
 <body>
