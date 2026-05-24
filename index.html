@@ -862,9 +862,10 @@ input,select,textarea{font-family:inherit;color:inherit}
   position:relative;border-bottom:1px solid var(--border);background:rgba(0,0,0,.2);
   height:38px;overflow:hidden;
 }
-.tl-ruler .bar{position:absolute;top:0;bottom:0;border-left:1px solid rgba(255,255,255,.1);font-family:'JetBrains Mono';font-size:10px;color:var(--text-3);padding:4px 0 0 5px}
-.tl-ruler .bar.major{border-left-color:rgba(255,255,255,.22);color:var(--text-2)}
-.tl-ruler .bar.major::after{content:"";position:absolute;left:-1px;bottom:0;width:2px;height:6px;background:var(--blue)}
+.tl-ruler .bar{position:absolute;top:0;bottom:0;border-left:1px solid rgba(255,255,255,.18);font-family:'JetBrains Mono';font-size:10px;color:var(--text-2);padding:4px 0 0 5px;font-weight:600}
+.tl-ruler .bar.major{border-left-color:rgba(255,210,70,.55);color:var(--yellow);font-weight:800}
+.tl-ruler .bar.major::after{content:"";position:absolute;left:-1px;bottom:0;width:2px;height:8px;background:var(--yellow);box-shadow:0 0 6px rgba(255,210,70,.5)}
+.tl-ruler .beat-tick{position:absolute;top:60%;bottom:0;width:1px;background:rgba(255,255,255,.10)}
 
 /* Track header */
 .tl-track-head{
@@ -901,8 +902,20 @@ input,select,textarea{font-family:inherit;color:inherit}
   position:relative;
   border-bottom:1px solid var(--border);
   background:
-    repeating-linear-gradient(90deg, transparent 0 var(--bar-w,80px), rgba(255,255,255,.04) var(--bar-w,80px) calc(var(--bar-w,80px) + 1px)),
-    linear-gradient(180deg, rgba(255,255,255,.01), transparent);
+    /* Beat ticks (mais fracas, a cada 1/4 do compasso) */
+    repeating-linear-gradient(90deg,
+      transparent 0 calc(var(--bar-w,80px) / 4 - 1px),
+      rgba(255,255,255,.04) calc(var(--bar-w,80px) / 4 - 1px),
+      rgba(255,255,255,.04) calc(var(--bar-w,80px) / 4)),
+    /* Bar lines (fortes, a cada compasso) */
+    repeating-linear-gradient(90deg, transparent 0 var(--bar-w,80px),
+      rgba(255,255,255,.16) var(--bar-w,80px),
+      rgba(255,255,255,.16) calc(var(--bar-w,80px) + 1px)),
+    /* Bar major (a cada 4 compassos - amarelo discreto) */
+    repeating-linear-gradient(90deg, transparent 0 calc(var(--bar-w,80px) * 4),
+      rgba(255,210,70,.10) calc(var(--bar-w,80px) * 4),
+      rgba(255,210,70,.10) calc(var(--bar-w,80px) * 4 + 1px)),
+    linear-gradient(180deg, rgba(255,255,255,.015), transparent);
   min-height:64px;
   overflow:hidden;
   cursor:pointer;
@@ -949,8 +962,24 @@ input,select,textarea{font-family:inherit;color:inherit}
 .tl-clip.lyric.active{background:linear-gradient(160deg,rgba(74,168,255,.45),rgba(74,168,255,.15));box-shadow:0 0 26px rgba(74,168,255,.5)}
 
 .tl-clip.click{
-  background:repeating-linear-gradient(90deg,rgba(61,255,138,.3) 0 2px,transparent 2px 20px);
+  background:linear-gradient(180deg,rgba(61,255,138,.10),rgba(61,255,138,.03));
   border-color:rgba(61,255,138,.5);color:var(--green);
+  padding:0 10px;
+}
+.tl-clip.click .click-pulses{position:absolute;top:0;bottom:0;left:0;right:0;pointer-events:none}
+.tl-clip.click .click-pulse{
+  position:absolute;top:30%;bottom:30%;width:2px;background:rgba(61,255,138,.45);
+  border-radius:1px;
+}
+.tl-clip.click .click-pulse.down{
+  top:15%;bottom:15%;width:3px;background:var(--green);
+  box-shadow:0 0 8px rgba(61,255,138,.7);
+}
+.tl-clip.click .click-label{
+  position:absolute;left:10px;top:50%;transform:translateY(-50%);
+  background:rgba(0,0,0,.7);padding:3px 8px;border-radius:5px;
+  font-family:'JetBrains Mono';font-size:11px;font-weight:800;letter-spacing:.04em;
+  color:var(--green);z-index:2;
 }
 
 .tl-clip.cue{
@@ -6526,10 +6555,18 @@ const tl = {
   renderRuler(){
     const r = $('tlRuler');
     r.style.width = (this.data.bars * this.barW) + 'px';
+    const beatsPerBar = parseInt((this.data.sig||'4/4').split('/')[0]) || 4;
+    const beatW = this.barW / beatsPerBar;
     let html = '';
     for(let i=0; i<this.data.bars; i++){
       const major = i % 4 === 0;
-      html += `<div class="bar ${major?'major':''}" style="left:${i*this.barW}px;width:${this.barW}px">${major?(i+1):''}</div>`;
+      html += `<div class="bar ${major?'major':''}" style="left:${i*this.barW}px;width:${this.barW}px">${i+1}</div>`;
+      // Subdivisoes (beats 2,3,4 dentro do compasso) - so se a barra for larga o suficiente pra caber
+      if(this.barW >= 60){
+        for(let b=1; b<beatsPerBar; b++){
+          html += `<div class="beat-tick" style="left:${i*this.barW + b*beatW}px"></div>`;
+        }
+      }
     }
     r.innerHTML = html;
   },
@@ -6574,7 +6611,23 @@ const tl = {
         ${track.kind==='chord' && clip.length>=2 ? `<span class="badge">${clip.length}b</span>` : ''}
         <div class="grip-r"></div>
       `;
-      if(track.kind==='audio' && clip.audio){
+      if(track.kind==='click'){
+        // Pulsos visuais por compasso (downbeat acentuado, demais menores)
+        const beatsPerBar = parseInt((this.data.sig||'4/4').split('/')[0]) || 4;
+        const beatW = this.barW / beatsPerBar;
+        const totalBeats = Math.floor(clip.length * beatsPerBar);
+        let pulses = '';
+        for(let i=0; i<totalBeats; i++){
+          const isDown = i % beatsPerBar === 0;
+          pulses += `<span class="click-pulse ${isDown?'down':''}" style="left:${i*beatW}px"></span>`;
+        }
+        el.innerHTML = `
+          <div class="grip-l"></div>
+          <div class="click-pulses">${pulses}</div>
+          <span class="label click-label">${clip.content || ''}</span>
+          <div class="grip-r"></div>
+        `;
+      } else if(track.kind==='audio' && clip.audio){
         el.innerHTML = `
           <div class="grip-l"></div>
           <div class="wave">${this.waveformHtml(clip.audio.waveform, Math.max(8, clip.length*this.barW)-16)}</div>
