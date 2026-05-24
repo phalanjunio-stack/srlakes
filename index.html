@@ -5242,6 +5242,157 @@ body.mode-rx[data-rxtab="setlist"] .m-phone-song small{display:block!important}
 .screen[data-screen="live"] .m-lyric-box > .ly.match::before{content:"▶";color:var(--m-mint);margin-right:10px;font-size:15px}
 </style>
 
+<style id="vintage-system">
+/* ============================================================
+   SR LAKES VINTAGE DESIGN SYSTEM
+   Paleta extraida da logo. Brass + sage + cream + leather.
+   Inspiracao: poster de show anos 70, oficina de musico,
+   placa de brass envelhecida, etiqueta de instrumento.
+   ============================================================ */
+:root{
+  /* Cores principais (todos os elementos derivam destas) */
+  --brass:#c89954;
+  --brass-hi:#e2b878;
+  --brass-deep:#8b6420;
+  --brass-shadow:rgba(140,98,32,.5);
+  --sage:#a8c4be;
+  --sage-hi:#c2dad4;
+  --sage-deep:#5e7a73;
+  --cream:#f4f1ec;
+  --cream-dim:#cfc7ba;
+  --paper:#e8dec6;
+  --ink:#15110d;
+  --canvas:#211c17;
+  --leather:#2d2620;
+  --leather-hi:#3d342c;
+  --rust:#a8741f;
+
+  /* Spacing scale */
+  --sp-1:4px;--sp-2:8px;--sp-3:12px;--sp-4:16px;--sp-5:20px;--sp-6:24px;--sp-8:32px;--sp-10:40px;
+  /* Radii */
+  --r-sm:6px;--r-md:9px;--r-lg:12px;
+  /* Borders */
+  --hairline:rgba(200,153,84,.18);
+  --hairline-2:rgba(200,153,84,.32);
+}
+
+/* Noise grain global (papel envelhecido) */
+.app::before{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:1;
+  opacity:.08;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence baseFrequency='.9' numOctaves='3' seed='5'/><feColorMatrix values='0 0 0 0 0.78 0 0 0 0 0.6 0 0 0 0 0.33 0 0 0 1 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  background-size:180px 180px;
+}
+
+/* Body background: deep leather com vinheta sutil */
+body{
+  background:
+    radial-gradient(800px 500px at 50% -10%,rgba(168,116,31,.10),transparent 60%),
+    radial-gradient(600px 400px at 90% 90%,rgba(168,196,190,.05),transparent 65%),
+    linear-gradient(160deg,#15110d 0%,#1a1612 50%,#0f0c08 100%) !important;
+}
+
+/* ============== SPLASH PEQUENO (CARD CENTRALIZADO 30%) ============== */
+.splash{
+  position:fixed!important;inset:0!important;z-index:9999!important;
+  display:grid!important;place-items:center!important;
+  background:rgba(15,12,8,.88)!important;
+  backdrop-filter:blur(8px)!important;
+  padding:0!important;
+  grid-template-rows:none!important;
+}
+.splash::before,.splash::after{display:none!important}
+
+/* Esconde decoracoes antigas do splash */
+.splash-photo,.splash-tint,.splash-vignette,.splash-letterbox,
+.splash-top,.splash-nav{display:none!important}
+
+.splash-main{
+  position:relative!important;
+  width:min(520px,90vw)!important;height:auto!important;
+  padding:0!important;margin:0!important;background:transparent!important;
+  align-self:center!important;justify-self:center!important;
+  display:flex!important;flex-direction:column!important;
+  border-radius:14px!important;overflow:hidden!important;
+  border:1px solid rgba(200,153,84,.4)!important;
+  box-shadow:
+    0 30px 90px rgba(0,0,0,.7),
+    0 0 0 1px rgba(0,0,0,.6),
+    inset 0 1px 0 rgba(244,241,236,.08)!important;
+}
+
+/* Foto da banda no topo do card */
+.splash-main::before{
+  content:""!important;display:block!important;
+  height:240px!important;width:100%!important;
+  background:
+    linear-gradient(180deg,transparent 50%,rgba(21,17,13,.96) 100%),
+    url('/assets/banda.webp') center 30% / cover no-repeat,
+    var(--leather)!important;
+  position:relative!important;z-index:1!important;
+}
+
+/* Kicker com gradient brass + sage (igual a logo) */
+.splash-kicker{
+  display:flex!important;justify-content:center!important;align-items:baseline!important;
+  gap:10px!important;
+  font-family:'Bebas Neue',Impact,sans-serif!important;
+  font-size:22px!important;letter-spacing:.32em!important;font-weight:900!important;
+  text-transform:uppercase!important;
+  padding:18px 24px 4px!important;background:var(--leather)!important;
+  margin:0!important;
+}
+.splash-kicker .k-gold,
+.splash-kicker > span:first-child{
+  color:var(--brass-hi)!important;
+  text-shadow:0 0 18px rgba(200,153,84,.5),0 2px 4px rgba(0,0,0,.5)!important;
+}
+.splash-kicker .k-sage,
+.splash-kicker > span:last-child{
+  color:var(--sage-hi)!important;
+  text-shadow:0 0 18px rgba(168,196,190,.4),0 2px 4px rgba(0,0,0,.5)!important;
+}
+.splash-copy{
+  font-family:'Inter',sans-serif!important;font-style:italic!important;
+  font-size:13px!important;letter-spacing:.04em!important;
+  color:var(--cream-dim)!important;text-align:center!important;
+  padding:0 24px 18px!important;background:var(--leather)!important;
+  margin:0!important;text-transform:none!important;
+}
+
+/* Barra de progresso ABAIXO do texto, com gradient brass→sage e glow */
+.splash-progress{
+  display:flex!important;align-items:center!important;gap:12px!important;
+  padding:0 24px 22px!important;background:var(--leather)!important;
+  grid-template-columns:none!important;
+}
+.splash-wave{display:none!important}
+.splash-bar{
+  flex:1!important;height:8px!important;padding:0!important;
+  border-radius:99px!important;
+  border:1px solid rgba(200,153,84,.45)!important;
+  background:rgba(15,12,8,.7)!important;
+  overflow:hidden!important;
+  box-shadow:inset 0 1px 2px rgba(0,0,0,.6),0 0 0 1px rgba(244,241,236,.04)!important;
+}
+.splash-bar::before,.splash-bar::after{display:none!important}
+.splash-fill{
+  height:100%!important;border-radius:99px!important;
+  background:linear-gradient(90deg,var(--brass-deep) 0%,var(--brass) 35%,var(--brass-hi) 50%,var(--sage) 75%,var(--sage-hi) 100%)!important;
+  box-shadow:
+    0 0 18px rgba(226,184,120,.6),
+    0 0 38px rgba(168,196,190,.3),
+    inset 0 1px 0 rgba(255,255,255,.4)!important;
+  transition:width .25s ease!important;
+}
+.splash-pct{
+  color:var(--brass-hi)!important;
+  font-family:'JetBrains Mono','Consolas',monospace!important;
+  font-size:13px!important;font-weight:800!important;letter-spacing:.06em!important;
+  min-width:42px!important;text-align:right!important;
+}
+</style>
+
 <body>
 
 <!-- =================== SPLASH SCREEN =================== -->
