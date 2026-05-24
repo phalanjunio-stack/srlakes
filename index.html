@@ -3594,7 +3594,7 @@ body{
   text-align:center!important;
   gap:0!important;
 }
-.splash-logo{display:none!important}
+/* .splash-logo display:none REMOVIDO - novo splash usa a logo */
 .splash-kicker{
   margin:0 0 5px!important;
   color:#e2b64e!important;
@@ -5290,23 +5290,121 @@ body{
     linear-gradient(160deg,#15110d 0%,#1a1612 50%,#0f0c08 100%) !important;
 }
 
-/* ============== SPLASH — USA splash-preview.png inteira (a arte ja tem tudo) ============== */
+/* ============== SPLASH CUSTOM — card pequeno com borda animada brass+sage ============== */
 .splash{
   position:fixed!important;inset:0!important;z-index:9999!important;
-  display:block!important;
-  background:#0a0805 url('/assets/splash-preview.png') center center / cover no-repeat!important;
-  padding:0!important;
-  grid-template-rows:none!important;
+  display:grid!important;place-items:center!important;
+  background:radial-gradient(ellipse at center,#1a140e 0%,#0a0805 70%)!important;
+  padding:0!important;grid-template-rows:none!important;
 }
 .splash::before,.splash::after{display:none!important}
 
-/* Esconde TODOS os overlays HTML - a arte ja tem texto+barra+tiles desenhados */
+/* Esconde TODOS os overlays HTML antigos */
 .splash-photo,.splash-tint,.splash-vignette,.splash-letterbox,
-.splash-top,.splash-main,.splash-nav,
-.splash-kicker,.splash-copy,.splash-progress,.splash-logo{display:none!important}
+.splash-top,.splash-nav,
+.splash-copy,.splash-progress{display:none!important}
 
-/* Barra de progresso REAL invisivel mas funcional - usa pra auto-dismiss */
-.splash-fill{position:fixed;left:-9999px;top:-9999px;width:0;height:0;visibility:hidden}
+.splash-main{
+  position:relative!important;
+  width:min(420px,86vw)!important;height:auto!important;aspect-ratio:auto!important;
+  padding:38px 36px!important;margin:0!important;
+  background:#15110d!important;
+  border-radius:18px!important;
+  display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:18px!important;
+  box-shadow:0 30px 80px rgba(0,0,0,.7)!important;
+  z-index:2!important;
+  overflow:hidden!important;
+}
+
+/* Borda animada brass+sage rodando (conic gradient com mask) */
+.splash-main::before{
+  content:""!important;display:block!important;
+  position:absolute!important;inset:-3px!important;z-index:0!important;
+  border-radius:20px!important;
+  background:conic-gradient(from var(--angle,0deg),
+    #c89954 0deg,
+    #a8c4be 60deg,
+    #c89954 120deg,
+    #a8c4be 180deg,
+    #c89954 240deg,
+    #a8c4be 300deg,
+    #c89954 360deg)!important;
+  -webkit-mask:
+    linear-gradient(#000,#000) content-box,
+    linear-gradient(#000,#000)!important;
+  -webkit-mask-composite:xor!important;
+  mask:
+    linear-gradient(#000,#000) content-box,
+    linear-gradient(#000,#000)!important;
+  mask-composite:exclude!important;
+  padding:2.5px!important;
+  filter:drop-shadow(0 0 14px rgba(200,153,84,.5)) drop-shadow(0 0 22px rgba(168,196,190,.35))!important;
+  animation:splashBorderRotate 3s linear infinite!important;
+}
+@property --angle{syntax:'<angle>';initial-value:0deg;inherits:false}
+@keyframes splashBorderRotate{
+  to{--angle:360deg}
+}
+/* Fallback pra browsers sem @property: rotate o pseudo-element inteiro */
+@supports not (background:conic-gradient(from 1turn,red)){
+  .splash-main::before{animation:splashRotateFallback 3s linear infinite!important}
+}
+@keyframes splashRotateFallback{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+
+/* Logo central */
+.splash-logo{
+  display:block!important;
+  width:160px!important;height:auto!important;
+  margin:0 auto!important;
+  position:relative!important;z-index:2!important;
+  filter:drop-shadow(0 0 24px rgba(200,153,84,.35)) drop-shadow(0 8px 16px rgba(0,0,0,.6))!important;
+  animation:splashLogoFloat 3.4s ease-in-out infinite!important;
+}
+@keyframes splashLogoFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+
+/* Kicker SINCRONIZANDO SUA BANDA */
+.splash-kicker{
+  display:flex!important;justify-content:center!important;align-items:baseline!important;
+  gap:9px!important;
+  font-family:'Bebas Neue',Impact,sans-serif!important;
+  font-size:18px!important;letter-spacing:.34em!important;font-weight:900!important;
+  text-transform:uppercase!important;
+  padding:0!important;margin:0!important;background:transparent!important;
+  position:relative!important;z-index:2!important;
+}
+.splash-kicker .k-gold,.splash-kicker > span:first-child{color:#e2b878!important;text-shadow:0 0 14px rgba(200,153,84,.5)!important}
+.splash-kicker .k-sage,.splash-kicker > span:last-child{color:#c2dad4!important;text-shadow:0 0 14px rgba(168,196,190,.4)!important}
+
+/* Barra de progresso REAL ativa */
+.splash-progress{
+  display:flex!important;align-items:center!important;gap:10px!important;
+  width:100%!important;
+  padding:0!important;background:transparent!important;
+  grid-template-columns:none!important;
+  position:relative!important;z-index:2!important;
+}
+.splash-wave{display:none!important}
+.splash-bar{
+  flex:1!important;height:5px!important;padding:0!important;
+  border-radius:99px!important;
+  border:0!important;
+  background:rgba(15,12,8,.7)!important;
+  overflow:hidden!important;
+  box-shadow:inset 0 1px 2px rgba(0,0,0,.7)!important;
+}
+.splash-bar::before,.splash-bar::after{display:none!important}
+.splash-fill{
+  height:100%!important;border-radius:99px!important;
+  background:linear-gradient(90deg,#c89954 0%,#e2b878 35%,#c2dad4 70%,#a8c4be 100%)!important;
+  box-shadow:0 0 14px rgba(226,184,120,.7),0 0 24px rgba(168,196,190,.3)!important;
+  transition:width .25s ease!important;
+}
+.splash-pct{
+  color:#e2b878!important;
+  font-family:'JetBrains Mono','Consolas',monospace!important;
+  font-size:11px!important;font-weight:800!important;letter-spacing:.06em!important;
+  min-width:36px!important;text-align:right!important;
+}
 
 /* ============== SIDEBAR — wood + leather + brass glow ============== */
 .sidebar{

@@ -24,8 +24,15 @@ function createWindow() {
     height: 920,
     minWidth: 900,
     minHeight: 600,
-    backgroundColor: '#04060b',
+    backgroundColor: '#0a0805',
     autoHideMenuBar: true,
+    frame: false,
+    titleBarStyle: 'hidden',
+    titleBarOverlay: {
+      color: '#15110d',
+      symbolColor: '#c89954',
+      height: 30,
+    },
     show: false,
     icon: path.join(__dirname, 'icon.png'),
     webPreferences: {
