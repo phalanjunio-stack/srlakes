@@ -6689,6 +6689,342 @@ body::before{
   .screen[data-screen="live"] .m-song-card .row{grid-template-columns:1fr!important}
   .screen[data-screen="live"] .m-song-number{border-left:0!important;border-top:1px solid rgba(255,255,255,.1)!important;padding-left:0!important;padding-top:14px!important}
 }
+
+/* ==================================================================
+   RX MOBILE PREMIUM - design baseado em sr-lakes-receptor-mobile-premium.html
+   Gold #f3c86f + mint #55f0c7 + canvas escuro com grid pattern + ambient blur
+   ================================================================== */
+@media(max-width:980px){
+  body.mode-rx{
+    --rx-bg:#030606;
+    --rx-glass:rgba(16,17,14,.76);
+    --rx-stroke:rgba(229,180,83,.28);
+    --rx-stroke-strong:rgba(244,196,90,.72);
+    --rx-gold:#f3c86f;
+    --rx-gold2:#b98428;
+    --rx-mint:#55f0c7;
+    --rx-mint-soft:rgba(85,240,199,.16);
+    --rx-text:#f7f4ea;
+    --rx-muted:#9b978b;
+    --rx-danger:#ff486c;
+  }
+  /* Override do background do app pra textura mobile premium */
+  body.mode-rx .app{
+    height:100dvh!important;background:transparent!important;
+    padding:0!important;border:0!important;border-radius:0!important;
+    box-shadow:none!important;display:block!important;
+  }
+  body.mode-rx .main{
+    border:0!important;border-radius:0!important;
+    background:
+      linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px),
+      radial-gradient(circle at 50% -10%,rgba(244,196,90,.10),transparent 42%),
+      linear-gradient(180deg,rgba(10,13,13,.96),rgba(3,6,6,.98))!important;
+    background-size:36px 36px,36px 36px,100% 100%,100% 100%!important;
+    box-shadow:none!important;padding:0!important;
+    position:relative!important;height:100dvh!important;
+  }
+  body.mode-rx .main::before{
+    content:""!important;position:absolute!important;inset:-20%!important;pointer-events:none!important;
+    background:
+      radial-gradient(circle at 52% 42%,rgba(243,200,111,.14),transparent 18%),
+      radial-gradient(circle at 75% 72%,rgba(85,240,199,.08),transparent 20%)!important;
+    filter:blur(30px)!important;opacity:.8!important;
+    animation:rxDrift 8s ease-in-out infinite alternate!important;
+    background-size:auto!important;
+  }
+  @keyframes rxDrift{from{transform:translate3d(-2%,-1%,0) scale(1)}to{transform:translate3d(2%,1%,0) scale(1.04)}}
+
+  /* Live screen content */
+  body.mode-rx .screen[data-screen="live"]{
+    padding:14px 14px calc(86px + env(safe-area-inset-bottom,0px))!important;
+    display:flex!important;flex-direction:column!important;
+    height:100dvh!important;overflow:hidden!important;gap:0!important;
+  }
+  body.mode-rx .screen[data-screen="live"] .m-content{
+    flex:1!important;display:flex!important;flex-direction:column!important;
+    padding:0!important;gap:0!important;overflow:visible!important;
+    min-height:0!important;
+  }
+  body.mode-rx .screen[data-screen="live"] .m-stage{display:contents!important}
+
+  /* TOPBAR premium - logo + SR LAKES + CONECTADO pill */
+  body.mode-rx .screen[data-screen="live"] .m-topbar{
+    min-height:64px!important;height:64px!important;
+    display:flex!important;align-items:center!important;justify-content:space-between!important;gap:10px!important;
+    border:1px solid rgba(243,200,111,.18)!important;
+    background:linear-gradient(135deg,rgba(19,18,12,.84),rgba(4,11,12,.72))!important;
+    border-radius:22px!important;padding:11px 12px!important;
+    box-shadow:0 16px 38px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.08)!important;
+    backdrop-filter:blur(18px)!important;-webkit-backdrop-filter:blur(18px)!important;
+    margin-bottom:14px!important;
+  }
+  body.mode-rx .screen[data-screen="live"] .m-topbar::before,
+  body.mode-rx .screen[data-screen="live"] .m-topbar::after{display:none!important}
+  body.mode-rx .screen[data-screen="live"] .m-live{
+    display:flex!important;align-items:center!important;gap:10px!important;
+    color:var(--rx-text)!important;font-family:'Inter',sans-serif!important;
+  }
+  /* Substitui o SVG por brand premium com logo PNG inline */
+  body.mode-rx .screen[data-screen="live"] .m-live svg{
+    width:38px!important;height:42px!important;
+    background:url('/assets/srlakes.png') center/contain no-repeat!important;
+    filter:drop-shadow(0 10px 18px rgba(0,0,0,.5))!important;
+    border-radius:0!important;box-shadow:none!important;
+  }
+  body.mode-rx .screen[data-screen="live"] .m-live svg > *{display:none!important}
+  body.mode-rx .screen[data-screen="live"] .m-live::after{
+    content:"SR LAKES\\A RECEPTOR"!important;
+    white-space:pre!important;display:block!important;
+    font-size:11px!important;letter-spacing:.22em!important;line-height:1.3!important;
+    color:var(--rx-text)!important;font-weight:900!important;
+  }
+  body.mode-rx .screen[data-screen="live"] .m-live{font-size:0!important}
+  body.mode-rx .screen[data-screen="live"] .m-top-actions{
+    display:flex!important;align-items:center!important;gap:7px!important;
+    color:#c7fff2!important;font-size:10px!important;letter-spacing:.16em!important;font-weight:800!important;
+    background:rgba(85,240,199,.09)!important;border:1px solid rgba(85,240,199,.26)!important;
+    border-radius:999px!important;padding:7px 10px!important;
+    white-space:nowrap!important;text-transform:uppercase!important;
+  }
+  body.mode-rx .screen[data-screen="live"] .m-top-actions::before{
+    content:""!important;display:block!important;
+    width:8px!important;height:8px!important;border-radius:99px!important;
+    background:var(--rx-mint)!important;
+    box-shadow:0 0 0 4px rgba(85,240,199,.11),0 0 18px rgba(85,240,199,.85)!important;
+  }
+  body.mode-rx .screen[data-screen="live"] .m-top-actions::after{content:"CONECTADO"!important;color:#c7fff2!important}
+  body.mode-rx .screen[data-screen="live"] .m-latency,
+  body.mode-rx .screen[data-screen="live"] #modeLabel{display:none!important}
+
+  /* SCROLL area com cards */
+  body.mode-rx .screen[data-screen="live"] .m-phone-zone{
+    flex:1!important;min-height:0!important;overflow:auto!important;
+    padding:0 2px 12px!important;
+    scrollbar-width:none!important;
+  }
+  body.mode-rx .screen[data-screen="live"] .m-phone-zone::-webkit-scrollbar{display:none!important}
+  body.mode-rx .screen[data-screen="live"] .m-iphone{
+    width:100%!important;height:auto!important;min-height:0!important;padding:0!important;
+    border:0!important;border-radius:0!important;background:transparent!important;
+    box-shadow:none!important;transform:none!important;
+  }
+  body.mode-rx .screen[data-screen="live"] .m-iphone::before{display:none!important}
+  body.mode-rx .screen[data-screen="live"] .m-phone-screen{
+    height:auto!important;min-height:0!important;padding:0!important;
+    background:transparent!important;border:0!important;border-radius:0!important;
+    display:flex!important;flex-direction:column!important;gap:14px!important;
+  }
+  body.mode-rx .screen[data-screen="live"] .m-phone-status,
+  body.mode-rx .screen[data-screen="live"] .m-phone-header{display:none!important}
+
+  /* HERO card - música atual */
+  body.mode-rx .screen[data-screen="live"] .m-phone-song{
+    position:relative!important;overflow:hidden!important;
+    border:1px solid rgba(243,200,111,.24)!important;border-radius:28px!important;
+    padding:20px 18px 18px!important;
+    background:
+      linear-gradient(135deg,rgba(31,27,18,.92),rgba(5,12,13,.78) 58%,rgba(1,6,7,.9)),
+      radial-gradient(circle at 82% 28%,rgba(85,240,199,.14),transparent 24%)!important;
+    box-shadow:0 26px 60px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.08)!important;
+  }
+  body.mode-rx .screen[data-screen="live"] .m-phone-song::after{
+    content:""!important;position:absolute!important;top:0!important;left:-35%!important;
+    width:55%!important;height:100%!important;
+    background:linear-gradient(100deg,transparent,rgba(255,255,255,.07),transparent)!important;
+    transform:skewX(-16deg)!important;animation:rxShine 4.8s ease-in-out infinite!important;
+    opacity:.7!important;pointer-events:none!important;
+  }
+  @keyframes rxShine{0%,45%{translate:-80% 0}70%,100%{translate:340% 0}}
+  body.mode-rx .screen[data-screen="live"] .m-phone-song small{
+    position:relative!important;z-index:1!important;
+    color:var(--rx-muted)!important;text-transform:uppercase!important;
+    letter-spacing:.24em!important;font-weight:900!important;font-size:10px!important;
+    display:block!important;margin-bottom:10px!important;
+  }
+  body.mode-rx .screen[data-screen="live"] .m-phone-song .row{
+    position:relative!important;z-index:1!important;
+    display:grid!important;grid-template-columns:auto 1fr!important;
+    gap:13px!important;align-items:end!important;
+  }
+  body.mode-rx .screen[data-screen="live"] .m-phone-song .row > b{
+    font-size:48px!important;font-weight:950!important;line-height:.92!important;
+    letter-spacing:-.07em!important;color:var(--rx-gold)!important;
+    text-shadow:0 0 32px rgba(243,200,111,.28)!important;
+    font-family:'Inter',sans-serif!important;
+  }
+  body.mode-rx .screen[data-screen="live"] .m-phone-song .row > b::after{content:"."!important}
+  body.mode-rx .screen[data-screen="live"] .m-phone-song h4{
+    margin:0!important;font-size:22px!important;line-height:1!important;
+    letter-spacing:-.04em!important;color:#fff!important;font-weight:900!important;
+    white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;
+    font-family:'Inter',sans-serif!important;
+  }
+  body.mode-rx .screen[data-screen="live"] .m-phone-song p{
+    margin:5px 0 0!important;color:#c7fff2!important;font-weight:700!important;
+    font-size:13px!important;font-family:'Inter',sans-serif!important;font-style:normal!important;
+  }
+  /* Meta grid TOM/BPM/COMPASSO - virtual via stats */
+  body.mode-rx .screen[data-screen="live"] .m-phone-stats{
+    position:relative!important;z-index:1!important;margin-top:17px!important;
+    display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:8px!important;
+    height:auto!important;border:0!important;background:transparent!important;
+  }
+  body.mode-rx .screen[data-screen="live"] .m-phone-stats > div{
+    border:1px solid rgba(243,200,111,.18)!important;background:rgba(0,0,0,.24)!important;
+    border-radius:15px!important;padding:10px!important;text-align:center!important;
+    display:flex!important;flex-direction:column!important;gap:5px!important;
+  }
+  body.mode-rx .screen[data-screen="live"] .m-phone-stats small{
+    color:var(--rx-muted)!important;font-size:9px!important;letter-spacing:.2em!important;
+    text-transform:uppercase!important;font-weight:900!important;margin:0!important;
+  }
+  body.mode-rx .screen[data-screen="live"] .m-phone-stats strong{
+    color:var(--rx-text)!important;font-size:18px!important;line-height:1!important;
+    font-family:'Inter',sans-serif!important;font-weight:900!important;margin:0!important;
+  }
+  body.mode-rx .screen[data-screen="live"] .m-phone-stats strong.mint{color:var(--rx-text)!important}
+
+  /* SECTION CARD - Verso + counter + chords + lyrics */
+  body.mode-rx .screen[data-screen="live"] .m-phone-section{
+    border:1px solid rgba(255,255,255,.08)!important;
+    background:linear-gradient(180deg,rgba(15,17,15,.86),rgba(5,8,8,.78))!important;
+    border-radius:26px!important;padding:18px!important;
+    box-shadow:0 18px 46px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.05)!important;
+    margin:0!important;flex:0 0 auto!important;display:flex!important;flex-direction:column!important;gap:0!important;
+  }
+  body.mode-rx .screen[data-screen="live"] .m-phone-section > small{
+    color:var(--rx-muted)!important;letter-spacing:.24em!important;font-size:10px!important;
+    text-transform:uppercase!important;font-weight:900!important;margin:0!important;display:block!important;
+  }
+  body.mode-rx .screen[data-screen="live"] .m-phone-section .titlebar{
+    display:flex!important;justify-content:space-between!important;align-items:end!important;gap:12px!important;
+    margin:0!important;padding:0!important;
+  }
+  body.mode-rx .screen[data-screen="live"] .m-phone-section h2{
+    margin:3px 0 0!important;font-size:38px!important;line-height:.95!important;
+    letter-spacing:-.06em!important;color:var(--rx-text)!important;font-weight:900!important;
+    font-family:'Inter',sans-serif!important;
+  }
+  body.mode-rx .screen[data-screen="live"] .m-phone-section .rep{
+    min-width:56px!important;text-align:center!important;padding:8px 10px!important;
+    border-radius:16px!important;border:1px solid rgba(243,200,111,.19)!important;
+    background:rgba(0,0,0,.22)!important;color:var(--rx-text)!important;
+    font-weight:900!important;font-size:14px!important;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.06)!important;
+  }
+  /* Chord row */
+  body.mode-rx .screen[data-screen="live"] .m-phone-chords{
+    display:grid!important;grid-template-columns:repeat(4,1fr)!important;gap:8px!important;margin-top:15px!important;
+  }
+  body.mode-rx .screen[data-screen="live"] .m-phone-chords > .ph-chord,
+  body.mode-rx .screen[data-screen="live"] .m-phone-chord{
+    min-height:54px!important;height:54px!important;
+    display:grid!important;place-items:center!important;border-radius:15px!important;
+    border:1px solid rgba(243,200,111,.28)!important;color:#f7dc94!important;
+    background:linear-gradient(180deg,rgba(22,18,10,.92),rgba(9,8,5,.88))!important;
+    font-size:22px!important;font-weight:950!important;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.07)!important;
+    font-family:'Inter',sans-serif!important;
+  }
+  body.mode-rx .screen[data-screen="live"] .m-phone-chords > .ph-chord.on,
+  body.mode-rx .screen[data-screen="live"] .m-phone-chord.active{
+    background:linear-gradient(180deg,#ffe09a,#c48a2a)!important;
+    color:#231704!important;border-color:#ffd67f!important;
+    box-shadow:0 0 34px rgba(243,200,111,.30),inset 0 1px 0 rgba(255,255,255,.45)!important;
+  }
+  /* Lyrics box */
+  body.mode-rx .screen[data-screen="live"] .m-phone-lyrics{
+    margin-top:14px!important;min-height:132px!important;
+    border-radius:20px!important;border:1px solid rgba(255,255,255,.08)!important;
+    background:
+      linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px),
+      linear-gradient(180deg,rgba(255,255,255,.025) 1px,transparent 1px),
+      rgba(0,0,0,.26)!important;
+    background-size:24px 24px!important;
+    padding:17px!important;color:#d9d4c9!important;
+    line-height:1.65!important;font-size:17px!important;max-height:none!important;
+    text-align:left!important;font-family:'Inter',sans-serif!important;font-style:normal!important;
+  }
+  body.mode-rx .screen[data-screen="live"] .m-phone-lyrics > div,
+  body.mode-rx .screen[data-screen="live"] .m-phone-lyrics > p,
+  body.mode-rx .screen[data-screen="live"] .m-phone-lyrics > .ly{
+    display:block!important;margin:0 0 4px!important;color:#9b978b!important;font-size:15px!important;
+  }
+  body.mode-rx .screen[data-screen="live"] .m-phone-lyrics .active-line,
+  body.mode-rx .screen[data-screen="live"] .m-phone-lyrics .ly.match{
+    color:#fff!important;font-weight:850!important;font-size:18px!important;
+    text-shadow:0 0 24px rgba(243,200,111,.16)!important;
+  }
+  body.mode-rx .screen[data-screen="live"] .m-phone-lyrics .ly.match::before,
+  body.mode-rx .screen[data-screen="live"] .m-phone-lyrics .active-line::before{display:none!important}
+
+  /* Bottom NAV premium - floating gold/mint */
+  body.mode-rx .screen[data-screen="live"] .m-phone-tabs{
+    position:fixed!important;
+    left:14px!important;right:14px!important;
+    bottom:calc(10px + env(safe-area-inset-bottom,0px))!important;
+    display:grid!important;grid-template-columns:repeat(4,1fr)!important;gap:7px!important;
+    padding:8px!important;height:auto!important;
+    border:1px solid rgba(243,200,111,.24)!important;
+    background:linear-gradient(135deg,rgba(18,16,10,.92),rgba(4,9,10,.9))!important;
+    border-radius:24px!important;
+    box-shadow:0 22px 58px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.08)!important;
+    backdrop-filter:blur(20px)!important;-webkit-backdrop-filter:blur(20px)!important;
+    z-index:5!important;border-bottom:0!important;
+  }
+  body.mode-rx .screen[data-screen="live"] .m-phone-tab{
+    height:54px!important;border-radius:17px!important;
+    background:transparent!important;color:#bdb6a8!important;
+    display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;
+    gap:4px!important;font-size:10px!important;font-weight:800!important;
+    font-family:'Inter',sans-serif!important;
+  }
+  body.mode-rx .screen[data-screen="live"] .m-phone-tab svg{width:19px!important;height:19px!important;stroke:currentColor!important}
+  body.mode-rx .screen[data-screen="live"] .m-phone-tab.active{
+    color:#0b1814!important;
+    background:linear-gradient(180deg,#f8dc93,#b77b23)!important;
+    box-shadow:0 0 28px rgba(243,200,111,.23),inset 0 1px 0 rgba(255,255,255,.35)!important;
+  }
+  body.mode-rx .screen[data-screen="live"] .m-phone-tab.active::after{display:none!important}
+
+  /* Setlist e Ajustes - cards estilizados */
+  body.mode-rx[data-rxtab="setlist"] .rx-setlist{
+    border-radius:26px!important;border:1px solid rgba(255,255,255,.08)!important;
+    background:linear-gradient(180deg,rgba(15,17,15,.86),rgba(5,8,8,.78))!important;
+    padding:14px!important;box-shadow:0 18px 46px rgba(0,0,0,.34)!important;margin-top:0!important;
+  }
+  body.mode-rx[data-rxtab="setlist"] .rx-set-row{
+    display:grid!important;grid-template-columns:34px 1fr auto!important;gap:10px!important;align-items:center!important;
+    padding:12px 8px!important;border-radius:17px!important;
+    border:1px solid rgba(255,255,255,.06)!important;background:rgba(255,255,255,.025)!important;
+    margin-bottom:8px!important;color:var(--rx-text)!important;
+    font-family:'Inter',sans-serif!important;font-size:14px!important;
+  }
+  body.mode-rx[data-rxtab="setlist"] .rx-set-row.active{
+    border-color:rgba(85,240,199,.35)!important;background:rgba(85,240,199,.08)!important;
+  }
+  body.mode-rx[data-rxtab="setlist"] .rx-set-row .ix{color:var(--rx-gold)!important;font-weight:950!important;font-size:18px!important}
+  body.mode-rx[data-rxtab="setlist"] .rx-set-row .ch{color:#c7fff2!important;font-weight:950!important;font-size:13px!important}
+  body.mode-rx[data-rxtab="setlist"] .rx-set-row .jump{
+    background:rgba(85,240,199,.16)!important;color:var(--rx-mint)!important;border-color:rgba(85,240,199,.35)!important;
+  }
+
+  body.mode-rx[data-rxtab="ajustes"] .rx-ajustes{
+    border-radius:26px!important;border:1px solid rgba(255,255,255,.08)!important;
+    background:linear-gradient(180deg,rgba(15,17,15,.86),rgba(5,8,8,.78))!important;
+    padding:14px!important;margin-top:0!important;
+  }
+  body.mode-rx[data-rxtab="ajustes"] .rx-ajuste-row{
+    display:flex!important;justify-content:space-between!important;gap:12px!important;align-items:center!important;
+    padding:13px 4px!important;border-bottom:1px solid rgba(255,255,255,.07)!important;
+    background:transparent!important;border-radius:0!important;font-family:'Inter',sans-serif!important;
+    color:var(--rx-text)!important;font-size:15px!important;
+  }
+  body.mode-rx[data-rxtab="ajustes"] .rx-ajuste-row:last-child{border-bottom:0!important}
+  body.mode-rx[data-rxtab="ajustes"] .rx-ajuste-row b{color:var(--rx-gold)!important;font-family:'JetBrains Mono',monospace!important;font-size:13px!important}
+}
 </style>
 
 <body>
