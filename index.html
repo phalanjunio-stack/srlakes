@@ -4808,6 +4808,75 @@ body{
 
   /* Esconde o RECEPTOR Online no rodapé (fica clean) */
   body.mode-rx .screen[data-screen="live"] .m-receiver{display:none!important}
+
+  /* ===== Tab CIFRAS: mostra so o acorde atual GIGANTE ===== */
+  body.mode-rx[data-rxtab="cifras"] .screen[data-screen="live"] .m-phone-song,
+  body.mode-rx[data-rxtab="cifras"] .screen[data-screen="live"] .m-phone-section > small,
+  body.mode-rx[data-rxtab="cifras"] .screen[data-screen="live"] .m-phone-section .titlebar,
+  body.mode-rx[data-rxtab="cifras"] .screen[data-screen="live"] .m-phone-lyrics,
+  body.mode-rx[data-rxtab="cifras"] .screen[data-screen="live"] .m-phone-stats{display:none!important}
+  body.mode-rx[data-rxtab="cifras"] .screen[data-screen="live"] .m-phone-chords{
+    margin:0!important;flex:1!important;
+    display:flex!important;align-items:center!important;justify-content:center!important;
+    gap:8px!important;flex-wrap:wrap!important;
+    min-height:calc(100vh - 200px)!important;
+  }
+  body.mode-rx[data-rxtab="cifras"] .screen[data-screen="live"] .m-phone-chords > .ph-chord,
+  body.mode-rx[data-rxtab="cifras"] .screen[data-screen="live"] .m-phone-chord{
+    height:auto!important;min-height:120px!important;font-size:80px!important;
+    flex:1 1 calc(50% - 8px)!important;min-width:140px!important;
+    border-radius:14px!important;border-width:2px!important;
+  }
+  body.mode-rx[data-rxtab="cifras"] .screen[data-screen="live"] .m-phone-chords > .ph-chord.on{
+    font-size:120px!important;flex:1 1 100%!important;min-height:200px!important;
+    background:linear-gradient(180deg,rgba(240,189,78,.45),rgba(216,154,36,.15))!important;
+    border-color:#f0bd4e!important;
+    box-shadow:0 0 40px rgba(216,154,36,.6),inset 0 0 30px rgba(240,189,78,.2)!important;
+    text-shadow:0 0 20px rgba(240,189,78,.5)!important;
+  }
+
+  /* ===== Tab SETLIST: lista de musicas ===== */
+  body.mode-rx[data-rxtab="setlist"] .screen[data-screen="live"] .m-phone-song,
+  body.mode-rx[data-rxtab="setlist"] .screen[data-screen="live"] .m-phone-section{display:block!important}
+  body.mode-rx[data-rxtab="setlist"] .screen[data-screen="live"] .m-phone-section > *:not(.titlebar):not(small){display:none!important}
+  body.mode-rx[data-rxtab="setlist"] .screen[data-screen="live"] .m-phone-section .titlebar h2::before{
+    content:"Setlist"!important;display:block!important;font-size:30px!important;
+  }
+  body.mode-rx[data-rxtab="setlist"] .screen[data-screen="live"] .m-phone-section .titlebar h2{font-size:0!important}
+
+  /* ===== Tab AJUSTES: toggles ===== */
+  body.mode-rx[data-rxtab="ajustes"] .screen[data-screen="live"] .m-phone-song,
+  body.mode-rx[data-rxtab="ajustes"] .screen[data-screen="live"] .m-phone-section{display:block!important}
+  body.mode-rx[data-rxtab="ajustes"] .screen[data-screen="live"] .m-phone-section > *{display:none!important}
+  body.mode-rx[data-rxtab="ajustes"] .screen[data-screen="live"] .m-phone-section::before{
+    content:"AJUSTES\\AVibrar no tempo 1   ON\\AManter tela acesa   ON\\AFonte da letra      Media\\ATema                Dourado\\A\\A(em breve: mais opcoes)"!important;
+    display:block!important;white-space:pre-line!important;
+    color:#cfc7ba!important;font-family:var(--m-fc,sans-serif)!important;
+    font-size:14px!important;line-height:2!important;padding:20px 0!important;
+  }
+}
+
+/* ===== Modo paisagem mobile (letra gigante full screen) ===== */
+@media(max-width:980px) and (orientation:landscape){
+  body.mode-rx[data-rxtab="letra"] .screen[data-screen="live"] .m-phone-tabs,
+  body.mode-rx[data-rxtab="letra"] .screen[data-screen="live"] .m-phone-status,
+  body.mode-rx[data-rxtab="letra"] .screen[data-screen="live"] .m-phone-header,
+  body.mode-rx[data-rxtab="letra"] .screen[data-screen="live"] .m-phone-song,
+  body.mode-rx[data-rxtab="letra"] .screen[data-screen="live"] .m-phone-section > small,
+  body.mode-rx[data-rxtab="letra"] .screen[data-screen="live"] .m-phone-section .titlebar,
+  body.mode-rx[data-rxtab="letra"] .screen[data-screen="live"] .m-phone-chords,
+  body.mode-rx[data-rxtab="letra"] .screen[data-screen="live"] .m-phone-stats{display:none!important}
+  body.mode-rx[data-rxtab="letra"] .screen[data-screen="live"] .m-phone-lyrics{
+    margin:0!important;font-size:42px!important;
+    min-height:100vh!important;text-align:center!important;
+    display:flex!important;flex-direction:column!important;
+    justify-content:center!important;align-items:center!important;
+    padding:24px!important;
+  }
+  body.mode-rx[data-rxtab="letra"] .screen[data-screen="live"] .m-phone-lyrics .ly.match,
+  body.mode-rx[data-rxtab="letra"] .screen[data-screen="live"] .m-phone-lyrics .active-line{
+    font-size:56px!important;color:var(--m-mint,#80d4bc)!important;
+  }
 }
 
 /* ===== Bridge: classes que o JS gera dinamicamente ===== */
@@ -5160,10 +5229,10 @@ body{
                 <span id="phNextChords" style="display:none"></span>
               </div>
               <nav class="m-phone-tabs">
-                <div class="m-phone-tab active"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M8 16l8-8"/></svg>Letra</div>
-                <div class="m-phone-tab"><svg viewBox="0 0 24 24"><path d="M7 14a4 4 0 1 1 4 4h-1"/><path d="M17 10a4 4 0 1 1-4-4h1"/></svg>Cifras</div>
-                <div class="m-phone-tab"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>Setlist</div>
-                <div class="m-phone-tab"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/></svg>Ajustes</div>
+                <div class="m-phone-tab active" data-rxtab="letra" onclick="setRxTab('letra')"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M8 16l8-8"/></svg>Letra</div>
+                <div class="m-phone-tab" data-rxtab="cifras" onclick="setRxTab('cifras')"><svg viewBox="0 0 24 24"><path d="M7 14a4 4 0 1 1 4 4h-1"/><path d="M17 10a4 4 0 1 1-4-4h1"/></svg>Cifras</div>
+                <div class="m-phone-tab" data-rxtab="setlist" onclick="setRxTab('setlist')"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>Setlist</div>
+                <div class="m-phone-tab" data-rxtab="ajustes" onclick="setRxTab('ajustes')"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/></svg>Ajustes</div>
               </nav>
             </div>
             <div class="m-receiver">
@@ -5801,7 +5870,14 @@ function initSocket(){
 
   socket.on('state', s => {
     if(state.mode !== 'rx') return;
+    const prevBeat = state.beat;
     Object.assign(state, s);
+    // Vibrar no downbeat (tempo 1) quando playing - so se mudou de tempo
+    if(s.beat === 1 && prevBeat !== 1 && s.playing && navigator.vibrate && localStorage.getItem('vibrate')!=='off'){
+      navigator.vibrate(40);
+    }
+    // Wake lock sempre que recebe state em modo RX (musico nao quer celular dormindo no show)
+    if(!wakeLock) requestWakeLock();
     render();
   });
 
@@ -6094,6 +6170,48 @@ function toggleLoopPart(){
 function prevPart(){ state.partIdx = (state.partIdx-1+cur().parts.length) % cur().parts.length; state.beat=1; state.rep=1; state.bar=1; render(); publish(); }
 function restartPart(){ state.beat=1; state.rep=1; state.bar=1; render(); publish(); }
 function restartSong(){ state.partIdx=0; state.beat=1; state.rep=1; state.bar=1; state.elapsedSec=0; state.elapsedRaw=0; render(); publish(); }
+
+/* ============================================================
+   RECEPTOR MOBILE - tabs Letra/Cifras/Setlist/Ajustes
+   ============================================================ */
+function setRxTab(tab){
+  document.body.dataset.rxtab = tab;
+  document.querySelectorAll('.m-phone-tab').forEach(t=>{
+    t.classList.toggle('active', t.dataset.rxtab===tab);
+  });
+  localStorage.setItem('rxtab', tab);
+}
+// inicializa do localStorage
+if(typeof window !== 'undefined'){
+  const savedRxtab = localStorage.getItem('rxtab') || 'letra';
+  document.addEventListener('DOMContentLoaded', ()=>{
+    document.body.dataset.rxtab = savedRxtab;
+    document.querySelectorAll('.m-phone-tab').forEach(t=>{
+      t.classList.toggle('active', t.dataset.rxtab===savedRxtab);
+    });
+  });
+}
+
+/* Pula pra parte X - musico envia request pro TX via socket */
+function rxRequestJump(partIdx){
+  if(!socket || state.mode!=='rx') return;
+  socket.emit('rx:request', { type:'jump', partIdx, name: localStorage.getItem('musicianName')||'musico' });
+  if(typeof toast==='function') toast('Pedido enviado ao lider');
+}
+
+/* TX recebe pedidos dos receptores */
+function setupRxRequestListener(){
+  if(!socket) return;
+  socket.on('rx:request', req => {
+    if(state.mode!=='tx') return;
+    if(req.type==='jump'){
+      if(typeof toast==='function') toast(`${req.name} pediu: pular pra parte ${req.partIdx+1}`, 'info');
+    }
+  });
+}
+// chama no connect
+setTimeout(()=>setupRxRequestListener(), 1000);
+
 /* countIn redefinida abaixo (pre-roll real) */
 
 let metroTimer=null;
