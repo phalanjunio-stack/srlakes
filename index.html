@@ -4923,10 +4923,11 @@ body{
   box-shadow:0 0 16px rgba(216,154,36,.25)!important;
 }
 
-/* Transport sempre na base, conteudo flexivel encolhe acima */
+/* Layout vertical natural - tudo flow, scroll quando excede viewport */
 .screen[data-screen="live"] .m-content{display:flex!important;flex-direction:column!important}
-.screen[data-screen="live"] .m-stage{display:flex!important;flex-direction:column!important;gap:12px!important;min-height:0!important;flex:1!important}
-.screen[data-screen="live"] .m-section-grid{flex:1!important;min-height:0!important}
+.screen[data-screen="live"] .m-stage{display:flex!important;flex-direction:column!important;gap:12px!important;flex:1!important}
+.screen[data-screen="live"] .m-section-grid{flex:0 0 auto!important;min-height:auto!important}
+.screen[data-screen="live"] .m-section-main{min-width:0!important}
 .screen[data-screen="live"] .m-transport{flex-shrink:0!important;margin-top:auto!important}
 .screen[data-screen="live"] .m-timeline{flex-shrink:0!important}
 
