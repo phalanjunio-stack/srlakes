@@ -4919,6 +4919,22 @@ body.mode-rx[data-rxtab="setlist"] .m-phone-song small{display:block!important}
   }
 }
 
+/* ===== Variantes de tamanho das cifras conforme quantidade ===== */
+.screen[data-screen="live"] .m-chords.sm > .chord{
+  height:60px!important;font-size:34px!important;
+}
+.screen[data-screen="live"] .m-chords.sm > .chord small{
+  top:2px!important;left:4px!important;font-size:8px!important;
+}
+.screen[data-screen="live"] .m-chords.sm > .chord:not(:last-child)::after{
+  font-size:24px!important;right:-8px!important;top:8px!important;
+}
+.screen[data-screen="live"] .m-chords.xs > .chord{
+  height:48px!important;font-size:24px!important;border-radius:6px!important;
+}
+.screen[data-screen="live"] .m-chords.xs > .chord small{display:none!important}
+.screen[data-screen="live"] .m-chords.xs > .chord:not(:last-child)::after{display:none!important}
+
 /* ===== Bridge: classes que o JS gera dinamicamente ===== */
 /* Big chords (JS gera <div class="chord on"><small>1</small>X</div>) */
 .screen[data-screen="live"] .m-chords > .chord{
@@ -6123,6 +6139,10 @@ function render(){
     const isCurrent = i === activeChordIndex;
     return `<div class="chord ${isCurrent?'on':''}"><small>${i+1}</small>${c}</div>`;
   }).join('');
+  /* Auto-shrink quando muitas cifras (5+) pra nao empurrar transport pra fora */
+  const chCount = p.chords.length;
+  $('bigChords').className = 'm-chords' + (chCount>8?' xs':chCount>4?' sm':'');
+  $('bigChords').style.gridTemplateColumns = chCount<=4 ? 'repeat(4,1fr)' : chCount<=8 ? 'repeat(4,1fr)' : 'repeat(6,1fr)';
 
   /* Lyrics — destaca primeira frase quando voz casa */
   const lyricsHtml = lyricSource.split('\n').map(line=>{
